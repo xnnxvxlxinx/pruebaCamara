@@ -31,13 +31,22 @@ module.exports = [
     "clobbers": [
       "CameraPopoverHandle"
     ]
+  },
+  {
+    "id": "cordova-plugin-device.device",
+    "file": "plugins/cordova-plugin-device/www/device.js",
+    "pluginId": "cordova-plugin-device",
+    "clobbers": [
+      "device"
+    ]
   }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
+  "cordova-plugin-whitelist": "1.3.2",
   "cordova-plugin-camera": "2.4.1",
-  "cordova-plugin-whitelist": "1.3.2"
+  "cordova-plugin-device": "1.1.6"
 };
 // BOTTOM OF METADATA
 });
