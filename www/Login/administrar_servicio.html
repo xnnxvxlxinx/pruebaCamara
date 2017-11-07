@@ -100,19 +100,22 @@ var div=document.getElementById('seleccionadorImagenesC');
 var indiv = document.createElement('div');
 		indiv.id='seleccionadorImagenesC_' + numeroImagenes;
 		var texto='';
-		 texto= texto + '<div class="seleccionadorImagenesC_foto" ><img onclick="seleccionFotoImagen(this)" style="width:100%; height:5em;"/></div>';
+		 texto= texto + '<div class="seleccionadorImagenesC_foto" >';
+		 texto= texto + '<input type="text" /><img onclick="seleccionFotoImagen(this)" style="width:100%; height:5em;"/></div>';
 		div.appendChild(indiv);
 		document.getElementById('seleccionadorImagenesC_' + numeroImagenes).innerHTML=texto;
 		numeroImagenes=numeroImagenes+1;
 }
 var fotoImagen='';
 function seleccionFotoImagen(e){
-alert('tomar foto');
-navigator.camera.getPicture(correcto, error,  {quality:100, alowEdit: false});
 fotoImagen=e.src;
+navigator.camera.getPicture(correcto, error,  {quality:100, alowEdit: false});
+
 }
 function correcto(rutaImagen){
 fotoImagen=rutaImagen;
+ObtenerImagenes();
+alert(fotoImagen);
 }
 function error(mensaje){
 alert(mensaje);
