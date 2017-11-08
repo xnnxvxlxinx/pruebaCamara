@@ -417,9 +417,13 @@ var div=document.getElementById('productosBajoMapa');
 		});
 	}
 	document.body.addEventListener('touchmove', function() {
+	alert("scroll");
 	var windowS=$(window).scrollTop();
+	alert(windowS);
 var windowH=$(window).height();
 var documentH=$(document).height();
+alert(windowH);
+alert(documentH);
 if(windowS+windowH==documentH){
 	ProductosBajoMapa(contadorProductosBaj);
 		contadorProductosBaj=contadorProductosBaj+1;
