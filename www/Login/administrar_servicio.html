@@ -136,10 +136,21 @@ getPhoto(pictureSource.PHOTOLIBRARY);
 }
 function getPhoto(source) {
       // Retrieve image file location from specified source
-      navigator.camera.getPicture(correcto, error, { quality: 200, 
+      navigator.camera.getPicture(onPhotoURISuccess, error, { quality: 200, 
         destinationType: destinationType.FILE_URI,
         sourceType: source });
     }
+function onPhotoURISuccess(imageURI) {
+      // Uncomment to view the image file URI 
+      // console.log(imageURI);
+      // Get image handle
+      //
+      // Show the captured photo
+      // The inline CSS rules are used to resize the image
+      //
+      fotoImagen=imageURI;
+	  ObtenerImagenes();
+    }	
 function correcto(rutaImagen){
 console.log(JSON.stringify(rutaImagen));
 fotoImagen=rutaImagen;
