@@ -17,7 +17,13 @@
  <script src="../archivosbase/jquerymobile145/jquery.mobile-1.4.5.min.js"></script>
  <script type="text/javascript" src="../cordova.js"></script>
 	<script>
-
+ document.addEventListener("deviceready",onDeviceReady,false);
+    // PhoneGap is ready to be used!
+    //
+    function onDeviceReady() {
+        pictureSource=navigator.camera.PictureSourceType;
+        destinationType=navigator.camera.DestinationType;
+    }
     
 	var TagPrinciForm=0;
 	var InputTitulo='';
