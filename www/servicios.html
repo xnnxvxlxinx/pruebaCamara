@@ -416,7 +416,7 @@ var div=document.getElementById('productosBajoMapa');
 			}	
 		});
 	}
-	$(window).scroll(function() {
+	document.body.addEventListener('touchmove', function() {
 	var windowS=$(window).scrollTop();
 var windowH=$(window).height();
 var documentH=$(document).height();
