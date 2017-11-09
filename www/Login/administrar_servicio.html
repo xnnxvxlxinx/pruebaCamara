@@ -32,6 +32,8 @@
 	var InputTitulo='';
 var InputDescripcion='';
 var InputTagSecundario=[];
+var UriImagnes=[];
+var TotalImagenes=0;
 	function initialize() {
 	
 	$.get("../archivosbase/cabeza.html", function(htmlexterno){
@@ -115,7 +117,7 @@ var indiv = document.createElement('div');
 		indiv.id='seleccionadorImagenesC_' + numeroImagenes;
 		var texto='';
 		 texto= texto + '<div class="seleccionadorImagenesC_foto" >';
-		 texto= texto + '<img id="seleccionadorImagenesC_IMG'+ numeroImagenes +'" onclick="seleccionFotoImagenI(\'seleccionadorImagenesC_IMG'+ numeroImagenes +'\');" style="width:100%; height:5em;"/></div>';
+		 texto= texto + '<img id="seleccionadorImagenesC_IMG'+ numeroImagenes +'" onclick="seleccionFotoImagenI(\'seleccionadorImagenesC_IMG'+ numeroImagenes +'\');" style="width:100%; height:10em;"/></div>';
 		div.appendChild(indiv);
 		document.getElementById('seleccionadorImagenesC_' + numeroImagenes).innerHTML=texto;
 		numeroImagenes=numeroImagenes+1;
@@ -132,7 +134,7 @@ texto= texto + "<button type='button' onclick='seleccionFotoImagen(2); cerrar(\"
 		mensaje.childNodes[0].innerHTML=texto;
 	}
 function seleccionFotoImagen(Num){
-alert('Foto');
+
 if(Num==1){
 navigator.camera.getPicture(correcto, error, { quality: 50, allowEdit: false });
 //navigator.camera.getPicture(correcto, error, { quality: 200, destinationType: Camera.DestinationType.FILE_URI });
@@ -147,15 +149,21 @@ function getPhoto(source) {
     }
 function onPhotoURISuccess(imageURI) {
       fotoImagen.src=imageURI;
-	  ObtenerImagenes();
+	  UriImagnes[TotalImagenes]=imageURI;
+		TotalImagenes=TotalImagenes + 1;
     }	
 function correcto(rutaImagen){
 //console.log(JSON.stringify(rutaImagen));
 fotoImagen.src=rutaImagen;
-ObtenerImagenes();
+ UriImagnes[TotalImagenes]=rutaImagen;
+		TotalImagenes=TotalImagenes + 1;
 }
 function error(mensaje){
-alert(mensaje);
+var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Error al tomar la imagen.<br/>Mensaje: " + mensaje + "</p>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Aceptar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
 }
 function seleccionadorTagsSecundario(){
 InputTitulo=document.getElementById('InputTitulo').value;
@@ -215,6 +223,29 @@ document.getElementById('ajax-loader').style.display='none';
 $("#seleccionadorTitulo").fadeIn(250);
 }, 255);
 }
+function SubirDatos(){
+if(UriImagnes.length==0){
+var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>No ha seleccionado ninguna Imagen.</p>";
+texto= texto + "<button type='button' onclick='SubirDatosF(); cerrar(\"mensaje_javascript\");'>Continuar</button>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+}else{
+SubirDatosF();
+}
+}
+function SubirDatosF(){
+$("#seleccionadorImagenes").fadeOut(250);
+document.getElementById('ajax-loader').style.display='block';
+setTimeout(function(){
+TagPrinciForm=ID;
+document.getElementById('SubirDatosC').innerHTML='';
+mostrarTitulo();
+document.getElementById('ajax-loader').style.display='none';	
+$("#seleccionadorSubirDatos").fadeIn(250);
+}, 255);
+}
 function regresar(num){
 if(num==1){
 $("#seleccionadorTitulo").fadeOut(250);
@@ -238,6 +269,13 @@ ObtenerTagSecundario(TagPrinciForm);
 setTimeout(function(){
 
 $("#seleccionadorTagsSecundario").fadeIn(250);
+}, 255);
+}
+if(num==4){
+$("#seleccionadorSubirDatos").fadeOut(250);
+setTimeout(function(){
+
+$("#seleccionadorImagenes").fadeIn(250);
 }, 255);
 }
 }
@@ -329,9 +367,18 @@ $("#seleccionadorTagsSecundario").fadeIn(250);
 		</div>
 		<div id='seleccionadorImagenes' style='display:none'>
 		<div id='seleccionadorImagenesBRegresar' >
-		<input type="submit" value="Regresar" onclick='regresar(3);' style="background-color: #FFD54F;">
+		<input type="submit" value="Regresar" onclick='regresar(3);' style="background-color: #FFD54F;"></br>
+		<input type="submit" value="Nueva Imagen" onclick='ObtenerImagenes();' style="background-color: #FFD54F;">
 		</div>
 		<div id='seleccionadorImagenesC' >
+		</div>
+		<input type="submit" value="Siguiente" onclick='SubirDatos();' style="background-color: #FFD54F;">
+		</div>
+		<div id='seleccionadorSubirDatos' style='display:none'>
+		<div id='seleccionadorSubirDatosBRegresar' >
+		<input type="submit" value="Regresar" onclick='regresar(4);' style="background-color: #FFD54F;">
+		</div>
+		<div id='SubirDatosC' >
 		</div>
 		</div>
 	<!--	<div id='form_inicio_sesion' class='form_inicio'>
