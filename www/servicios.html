@@ -137,6 +137,7 @@ function llamarmarc(busqueda){
 				var latt=parseFloat(data[i].Lat);
 				var lon=parseFloat(data[i].Lon);
 				var ImgTag=data[i].ImgTag;
+				ImgTag=ImgTag.replace("../","");
 				var ImgUser=data[i].ImgUser;
 				var PUESTOS=data[i].PUESTOS;
 				var Numero=data[i].Numero;
@@ -418,9 +419,9 @@ var div=document.getElementById('productosBajoMapa');
 	}
 	document.body.addEventListener('touchmove', function() {
 
-	var windowS=$(window).scrollTop();
+	var windowS=$(body).scrollTop();
 
-var windowH=$(window).height();
+var windowH=$(body).height();
 var documentH=$(document).height();
 
 if(windowS+windowH==documentH*0.9){
@@ -431,6 +432,9 @@ alert("entro");
 
 	});
   </script>
+  <style>
+  body{overflow:auto;}
+  </style>
 			<div id='menu_izquierda'>
 		
 			</div>

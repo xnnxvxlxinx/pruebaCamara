@@ -120,6 +120,7 @@ var indiv = document.createElement('div');
 		 texto= texto + '<img id="seleccionadorImagenesC_IMG'+ numeroImagenes +'" onclick="seleccionFotoImagenI(\'seleccionadorImagenesC_IMG'+ numeroImagenes +'\');" style="width:100%; height:10em;"/></div>';
 		div.appendChild(indiv);
 		document.getElementById('seleccionadorImagenesC_' + numeroImagenes).innerHTML=texto;
+		TotalImagenes=numeroImagenes;
 		numeroImagenes=numeroImagenes+1;
 }
 var fotoImagen='';
@@ -150,13 +151,13 @@ function getPhoto(source) {
 function onPhotoURISuccess(imageURI) {
       fotoImagen.src=imageURI;
 	  UriImagnes[TotalImagenes]=imageURI;
-		TotalImagenes=TotalImagenes + 1;
+		//TotalImagenes=TotalImagenes + 1;
     }	
 function correcto(rutaImagen){
 //console.log(JSON.stringify(rutaImagen));
 fotoImagen.src=rutaImagen;
  UriImagnes[TotalImagenes]=rutaImagen;
-		TotalImagenes=TotalImagenes + 1;
+		//TotalImagenes=TotalImagenes + 1;
 }
 function error(mensaje){
 var mensaje=document.getElementById('mensaje_javascript');
