@@ -29,7 +29,12 @@
 //slideBaby();
  location.href ="servicios.html";
   }else{
-  alert('error');
+ 	var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Su dispositivo no esta conectado al Internet.</br>¿Decea intentar conectar de nuevo?</p>";
+texto= texto + "<button type='button' onclick='checkConnection(); cerrar(\"mensaje_javascript\");'>Si</button>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\");'>No</button>";
+		mensaje.childNodes[0].innerHTML=texto;
   }
   },250);
 	}
