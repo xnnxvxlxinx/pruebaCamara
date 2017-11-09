@@ -16,9 +16,7 @@
 	<script src="../archivosbase/jquerymobile145/jquery-3.2.1.min.js"></script>
  <script src="../archivosbase/jquerymobile145/jquery.mobile-1.4.5.min.js"></script>
  <script type="text/javascript" src="../cordova.js"></script>
-   <script type="text/javascript" charset="utf-8" src="../js/phonegap.js"></script>
-   <script type="text/javascript" charset="utf-8" src="js/phonegap.js"></script>
-	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+   <script type="text/javascript"  src="../js/phonegap.js"></script>
 	<script>
 	   var pictureSource;   // picture source
     var destinationType; // sets the format of returned value 
@@ -124,7 +122,7 @@ var indiv = document.createElement('div');
 }
 var fotoImagen='';
 function seleccionFotoImagenI(id){
-alert('Foto');
+
 fotoImagen=document.getElementById(id);
 var mensaje=document.getElementById('mensaje_javascript');
 		mensaje.style.display='block';
@@ -134,6 +132,7 @@ texto= texto + "<button type='button' onclick='seleccionFotoImagen(2); cerrar(\"
 		mensaje.childNodes[0].innerHTML=texto;
 	}
 function seleccionFotoImagen(Num){
+alert('Foto');
 if(Num==1){
 navigator.camera.getPicture(correcto, error, { quality: 200, destinationType: Camera.DestinationType.FILE_URI });
 }else{

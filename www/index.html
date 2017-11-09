@@ -13,6 +13,7 @@
    
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
     <link rel="stylesheet" type="text/css" href="css/index.css" />
+		<link rel="stylesheet" type="text/css" href="archivosbase/CSS/mensaje_javascript.css">
     <title>Nirjob</title>
 	<script src="archivosbase/jquerymobile145/jquery-3.2.1.min.js"></script>
  <script src="archivosbase/jquerymobile145/jquery.mobile-1.4.5.min.js"></script>
@@ -32,13 +33,23 @@
   }
   },250);
 	}
+	function cerrar(div){		
+$("#" + div).fadeOut(150);
+}
 	function checkConnection() {
     	$.ajax({
   			url: 'https://nirjob.com/',
   			async: false,
   			data: {'tag' : 'connection'}
   		})
-  		.fail(function() { conn = false; })
+  		.fail(function() {
+		var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Su dispositivo no esta conectado al Internet.</br>¿Decea intentar conectar de nuevo?</p>";
+texto= texto + "<button type='button' onclick='checkConnection(); cerrar(\"mensaje_javascript\");'>Si</button>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\");'>No</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+		conn = false; })
   		.done(function() { conn = true; })
   }
   function slideBaby() {
@@ -58,6 +69,7 @@
         app.initialize();
 		
     </script>
+	<div id='mensaje_javascript'><div></div></div>
 </body>
 
 </html>
