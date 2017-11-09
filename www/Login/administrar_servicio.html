@@ -16,6 +16,9 @@
 	<script src="../archivosbase/jquerymobile145/jquery-3.2.1.min.js"></script>
  <script src="../archivosbase/jquerymobile145/jquery.mobile-1.4.5.min.js"></script>
  <script type="text/javascript" src="../cordova.js"></script>
+   <script type="text/javascript" charset="utf-8" src="../js/phonegap.js"></script>
+   <script type="text/javascript" charset="utf-8" src="js/phonegap.js"></script>
+	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 	<script>
 	   var pictureSource;   // picture source
     var destinationType; // sets the format of returned value 
@@ -121,7 +124,7 @@ var indiv = document.createElement('div');
 }
 var fotoImagen='';
 function seleccionFotoImagenI(e){
-fotoImagen=e.src;
+fotoImagen=e;
 var mensaje=document.getElementById('mensaje_javascript');
 		mensaje.style.display='block';
 var texto="<p>¿Desea usar la cámara u obtener foto de la galería?</p>";
@@ -137,25 +140,17 @@ getPhoto(pictureSource.PHOTOLIBRARY);
 }
 }
 function getPhoto(source) {
-      // Retrieve image file location from specified source
       navigator.camera.getPicture(onPhotoURISuccess, error, { quality: 200, 
         destinationType: destinationType.FILE_URI,
         sourceType: source });
     }
 function onPhotoURISuccess(imageURI) {
-      // Uncomment to view the image file URI 
-      // console.log(imageURI);
-      // Get image handle
-      //
-      // Show the captured photo
-      // The inline CSS rules are used to resize the image
-      //
-      fotoImagen=imageURI;
+      fotoImagen.src=imageURI;
 	  ObtenerImagenes();
     }	
 function correcto(rutaImagen){
 console.log(JSON.stringify(rutaImagen));
-fotoImagen=rutaImagen;
+fotoImagen.src=rutaImagen;
 ObtenerImagenes();
 }
 function error(mensaje){
