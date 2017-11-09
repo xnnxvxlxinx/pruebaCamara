@@ -134,7 +134,8 @@ texto= texto + "<button type='button' onclick='seleccionFotoImagen(2); cerrar(\"
 function seleccionFotoImagen(Num){
 alert('Foto');
 if(Num==1){
-navigator.camera.getPicture(correcto, error, { quality: 200, destinationType: Camera.DestinationType.FILE_URI });
+navigator.camera.getPicture(correcto, error, { quality: 200, allowEdit: false });
+//navigator.camera.getPicture(correcto, error, { quality: 200, destinationType: Camera.DestinationType.FILE_URI });
 }else{
 getPhoto(pictureSource.PHOTOLIBRARY);
 }
@@ -149,7 +150,7 @@ function onPhotoURISuccess(imageURI) {
 	  ObtenerImagenes();
     }	
 function correcto(rutaImagen){
-console.log(JSON.stringify(rutaImagen));
+//console.log(JSON.stringify(rutaImagen));
 fotoImagen.src=rutaImagen;
 ObtenerImagenes();
 }
