@@ -137,7 +137,7 @@ function llamarmarc(busqueda){
 				var latt=parseFloat(data[i].Lat);
 				var lon=parseFloat(data[i].Lon);
 				var ImgTag=data[i].ImgTag;
-				ImgTag=ImgTag.replace("../","");
+				ImgTag=ImgTag.replace("../","https://nirjob.com/");
 				var ImgUser=data[i].ImgUser;
 				var PUESTOS=data[i].PUESTOS;
 				var Numero=data[i].Numero;
@@ -185,6 +185,7 @@ function llamarmarc(busqueda){
 	  var cont=0;
 
 function marcadores(lati, lon, ImgTag, ImgUser, Nombre, Descri, ID, PUESTOS, Numero){
+alert(ImgTag);
 var image={
 		url:ImgTag,
 		size: new google.maps.Size(64, 64),
