@@ -2,55 +2,55 @@
   "_args": [
     [
       {
-        "raw": "cordova-plugin-file@5.0.0",
+        "raw": "cordova-plugin-file@4.3.3",
         "scope": null,
         "escapedName": "cordova-plugin-file",
         "name": "cordova-plugin-file",
-        "rawSpec": "5.0.0",
-        "spec": "5.0.0",
+        "rawSpec": "4.3.3",
+        "spec": "4.3.3",
         "type": "version"
       },
-      "C:\\Users\\USER\\Desktop\\Demo1\\nirjob"
+      "C:\\Users\\USER\\Desktop\\Demo1\\PhoneGap\\pruebaCamara"
     ]
   ],
-  "_from": "cordova-plugin-file@5.0.0",
-  "_id": "cordova-plugin-file@5.0.0",
+  "_from": "cordova-plugin-file@4.3.3",
+  "_id": "cordova-plugin-file@4.3.3",
   "_inCache": true,
   "_location": "/cordova-plugin-file",
-  "_nodeVersion": "6.6.0",
+  "_nodeVersion": "6.10.1",
   "_npmOperationalInternal": {
-    "host": "s3://npm-registry-packages",
-    "tmp": "tmp/cordova-plugin-file-5.0.0.tgz_1510361700540_0.3414947600103915"
+    "host": "packages-18-east.internal.npmjs.com",
+    "tmp": "tmp/cordova-plugin-file-4.3.3.tgz_1493685743335_0.13007491896860301"
   },
   "_npmUser": {
-    "name": "stevegill",
-    "email": "stevengill97@gmail.com"
+    "name": "filmaj",
+    "email": "maj.fil@gmail.com"
   },
-  "_npmVersion": "4.6.1",
+  "_npmVersion": "3.10.10",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "cordova-plugin-file@5.0.0",
+    "raw": "cordova-plugin-file@4.3.3",
     "scope": null,
     "escapedName": "cordova-plugin-file",
     "name": "cordova-plugin-file",
-    "rawSpec": "5.0.0",
-    "spec": "5.0.0",
+    "rawSpec": "4.3.3",
+    "spec": "4.3.3",
     "type": "version"
   },
   "_requiredBy": [
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/cordova-plugin-file/-/cordova-plugin-file-5.0.0.tgz",
-  "_shasum": "d397682321669c000be8c71f8ef4438aae8f925d",
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-file/-/cordova-plugin-file-4.3.3.tgz",
+  "_shasum": "012e97aa1afb91f84916e6341b548366d23de9b9",
   "_shrinkwrap": null,
-  "_spec": "cordova-plugin-file@5.0.0",
-  "_where": "C:\\Users\\USER\\Desktop\\Demo1\\nirjob",
+  "_spec": "cordova-plugin-file@4.3.3",
+  "_where": "C:\\Users\\USER\\Desktop\\Demo1\\PhoneGap\\pruebaCamara",
   "author": {
     "name": "Apache Software Foundation"
   },
   "bugs": {
-    "url": "https://issues.apache.org/jira/browse/CB"
+    "url": "https://github.com/apache/cordova-plugin-file/issues"
   },
   "cordova": {
     "id": "cordova-plugin-file",
@@ -71,25 +71,16 @@
   "dependencies": {},
   "description": "Cordova File Plugin",
   "devDependencies": {
-    "eslint": "^3.19.0",
-    "eslint-config-semistandard": "^11.0.0",
-    "eslint-config-standard": "^10.2.1",
-    "eslint-plugin-import": "^2.3.0",
-    "eslint-plugin-node": "^5.0.0",
-    "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-standard": "^3.0.1"
+    "jshint": "^2.6.0"
   },
   "directories": {},
   "dist": {
-    "shasum": "d397682321669c000be8c71f8ef4438aae8f925d",
-    "tarball": "https://registry.npmjs.org/cordova-plugin-file/-/cordova-plugin-file-5.0.0.tgz"
+    "shasum": "012e97aa1afb91f84916e6341b548366d23de9b9",
+    "tarball": "https://registry.npmjs.org/cordova-plugin-file/-/cordova-plugin-file-4.3.3.tgz"
   },
   "engines": {
     "cordovaDependencies": {
       "5.0.0": {
-        "cordova-android": ">=6.3.0"
-      },
-      "6.0.0": {
         "cordova": ">100"
       }
     }
@@ -150,9 +141,9 @@
     "url": "git+https://github.com/apache/cordova-plugin-file.git"
   },
   "scripts": {
-    "eslint": "node node_modules/eslint/bin/eslint www && node node_modules/eslint/bin/eslint src && node node_modules/eslint/bin/eslint tests",
-    "test": "npm run eslint"
+    "jshint": "node node_modules/jshint/bin/jshint www && node node_modules/jshint/bin/jshint src && node node_modules/jshint/bin/jshint tests",
+    "test": "npm run jshint"
   },
   "types": "./types/index.d.ts",
-  "version": "5.0.0"
+  "version": "4.3.3"
 }

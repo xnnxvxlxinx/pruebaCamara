@@ -235,9 +235,9 @@ module.exports.metadata =
 {
   "cordova-plugin-camera": "3.0.0",
   "cordova-plugin-device": "1.1.7",
-  "cordova-plugin-file": "5.0.0",
-  "cordova-plugin-file-transfer": "1.7.0",
-  "cordova-plugin-whitelist": "1.3.3"
+  "cordova-plugin-whitelist": "1.3.3",
+  "cordova-plugin-file": "4.3.3",
+  "cordova-plugin-file-transfer": "1.6.3"
 };
 // BOTTOM OF METADATA
 });
