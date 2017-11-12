@@ -323,7 +323,7 @@ var fail = function(error) {
     console.log("upload error source " + error.source);
     console.log("upload error target " + error.target);
 }
-/*$(function(){
+$(function(){
         $("#formServicio").on("submit", function(e){
 			
             e.preventDefault();
@@ -352,13 +352,23 @@ var params = new Object();
 params.ID=data[0].ID;
 options.params=params;
 var ft = new FileTransfer();
-ft.upload(UriImagnes[i], encodeURI("https://nirjob.com/phonegap/servicios/imagenesSubir.php"), win, fail, options);
+ft.upload(UriImagnes[i], encodeURI("https://nirjob.com/PhoneGap/servicios/imagenesSubir.php"), win, fail, options);
 ft.abort();
 }
-				location.href="../index.html";
+var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Se ha subido su servcio con exito.</p>";
+texto= texto + "<button type='button' onclick='location.href=\"../index.html\"; cerrar(\"mensaje_javascript\");'>Continuar</button>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+				
 		
 				}else{
-			
+			var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Error al subir el servicio.</p>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
 				}
 			document.getElementById('ajax-loader').style.display='none';
                 });
@@ -366,7 +376,7 @@ ft.abort();
 				}, 250);
         
 		});
-		});*/
+		});
  		
 	</script>
 </head>
