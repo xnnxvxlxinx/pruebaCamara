@@ -240,9 +240,8 @@ function SubirDatosF(){
 $("#seleccionadorImagenes").fadeOut(250);
 document.getElementById('ajax-loader').style.display='block';
 setTimeout(function(){
-TagPrinciForm=ID;
 document.getElementById('SubirDatosC').innerHTML='';
-mostrarTitulo();
+subirdatosservicio();
 document.getElementById('ajax-loader').style.display='none';	
 $("#seleccionadorSubirDatos").fadeIn(250);
 }, 255);
@@ -280,16 +279,60 @@ $("#seleccionadorImagenes").fadeIn(250);
 }, 255);
 }
 }
+function subirdatosservicio(){
+var div=document.getElementById('SubirDatosC');
+var texto='<div><form id="formServicio" method="post" enctype="multipart/form-data">';
+		var texto='<h3>Título de la Publicación.</h3><input type="text" name="titulo" id="InputTitulo" value="'+ InputTitulo +'" /></br>';
+		 texto= texto + '<h3>Descripción de la Publicación.</h3><input name="descripcion" type="text" id="InputDescripcion" value="' + InputDescripcion +'" /></br>';
+		  texto= texto + '<h3>Tag.</h3><input type="text" name="tagprincipal" value="' +  TagPrinciForm +'" /></br>';
+		for(var i=0; i<InputTagSecundario.length; i++){
+		 texto= texto + '<h3>Tag S.</h3><input type="text" name="tagsecundario[]" value="' +  InputTagSecundario[i] +'" /></br>';
+		}
+		for(var i=0; i<UriImagnes.length; i++){
+		 texto= texto + '<h3>Imagene: </h3><img src="'+ UriImagnes[i] +'"/></br>';
+		}
+		 texto=texto +'<input type="submit"   value="Subir" style="background-color: #FFD54F;"/>';
+		 texto=texto +'</form></div>';
+		div.innerHTML=texto;
+}
+function subirdatosservicioF(){
+/*document.getElementById('ajax-loader').style.display='block';
+setTimeout(function(){
+	   $.get('https://nirjob.com/PhoneGap/servicios/serviciosSubir' + '?ID=' + ID, function(data) {  
+	for(var i=0; i<UriImagnes.length; i++){
+var options= new FileUploaOptions();
+options.fileKey="file";
+options.fileName=UriImagnes[i].substr(UriImagnes[i].lastIndexOf("/")+1);
+options.mimeType="image/jpeg";
+var ft = new FileTransfer();
+ft.upload(fileURL, encodeURI("https://nirjob.com/phonegap/servicios/imagenesSubir.php"), win, fail, options);
+ft.abort();
+}
+		document.getElementById('ajax-loader').style.display='none';	
+		});	
+		}, 150);*/
+
+}
+var win = function(r) {
+    alert("imagen Subida");
+}
+
+var fail = function(error) {
+    // error.code == FileTransferError.ABORT_ERR
+    alert("An error has occurred: Code = " + error.code);
+    console.log("upload error source " + error.source);
+    console.log("upload error target " + error.target);
+}
 /*$(function(){
-        $("#formuploadajaxTag").on("submit", function(e){
+        $("#formServicio").on("submit", function(e){
 			
             e.preventDefault();
             var f = $(this);
-            var formData = new FormData(document.getElementById("formuploadajaxTag"));
+            var formData = new FormData(document.getElementById("formServicio"));
 			document.getElementById('ajax-loader').style.display='block';
 			setTimeout(function(){
             $.ajax({
-                url: "https://nirjob.com/PhoneGap/login.php",
+                url: "https://nirjob.com/PhoneGap/servicios/serviciosSubir.php",
                 type: "post",
                 dataType: "json",
                 data: formData,
@@ -298,38 +341,24 @@ $("#seleccionadorImagenes").fadeIn(250);
 	     processData: false
             }).done(function(data){
 				var tamanio=data.length;
-				if(data[0].SesionError=='0' && tamanio==1){
-				var SesionID=data[0].SesionID;	
-				var SesionNivel=data[0].SesionNivel;
-				var SesionNombre=data[0].SesionNombre;
-				var SesionDireccion=data[0].SesionDireccion;
-				var SesionMail=data[0].SesionMail;
-				var SesionTelefono=data[0].SesionTelefono;
-				var SesionLoggedin=data[0].SesionLoggedin;
-				var SesionUsuario=data[0].SesionUsuario;
-				localStorage.setItem("SesionID", SesionID);
-				localStorage.setItem("SesionNivel", SesionNivel);
-				localStorage.setItem("SesionNombre", SesionNombre);
-				localStorage.setItem("SesionDireccion", SesionDireccion);
-				localStorage.setItem("SesionMail", SesionMail);
-				localStorage.setItem("SesionTelefono", SesionTelefono);
-				localStorage.setItem("SesionLoggedin", SesionLoggedin);
-				localStorage.setItem("SesionUsuario", SesionUsuario);
+				if(data[0].Error=='0' && tamanio==1){
+	for(var i=0; i<UriImagnes.length; i++){
+var options= new FileUploaOptions();
+options.fileKey="file";
+options.fileName=UriImagnes[i].substr(UriImagnes[i].lastIndexOf("/")+1);
+options.mimeType="image/jpeg";
+options.chunkedMode=true;
+var params = new Object();
+params.ID=data[0].ID;
+options.params=params;
+var ft = new FileTransfer();
+ft.upload(UriImagnes[i], encodeURI("https://nirjob.com/phonegap/servicios/imagenesSubir.php"), win, fail, options);
+ft.abort();
+}
 				location.href="../index.html";
-				$("#ErrorInicio").html("");
+		
 				}else{
-				if(data[0].SesionError=='1'){
-				$("#ErrorInicio").html("Error");
-				}
-				if(data[0].SesionError=='2'){
-				$("#ErrorInicio").html("El nombre de usuario o la contraseña están incorrectos.");
-				}
-				if(data[0].SesionError=='3'){
-				$("#ErrorInicio").html("El nombre de usuario o la contraseña están incorrectos.");
-				}
-				if(data[0].SesionError=='4'){
-				$("#ErrorInicio").html("Error 404");
-				}
+			
 				}
 			document.getElementById('ajax-loader').style.display='none';
                 });
