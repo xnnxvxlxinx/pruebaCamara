@@ -27,8 +27,8 @@
         "PHOTOLIBRARY_USAGE_DESCRIPTION": " "
       },
       "cordova-plugin-device": {},
-      "cordova-plugin-file-transfer": {},
-      "cordova-plugin-file": {}
+      "cordova-plugin-file": {},
+      "cordova-plugin-file-transfer": {}
     },
     "platforms": [
       "android",
