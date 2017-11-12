@@ -81,7 +81,7 @@ setTimeout(function(){
 			for(var i=0; i<tamanio; i++){
 				var ID=data[i].ID;
 				var Nombre=data[i].Nombre;
-				texto=texto + "<label>"+ Nombre +": <input type='checkbox' value='"+ ID +"' class='InputTagSecundario'/></label>";
+				texto=texto + "<label>"+ Nombre +": <input type='checkbox' value='"+ ID +"' class='InputTagSecundario'/></label><br/><br/><br/>";
 			}
 			texto=texto + "<input type='submit' value='Siguiente' onclick='seleccionadorImagenes();' style='background-color: #FFD54F;'></div>";
 		document.getElementById('seleccionadorTagsSecundarioC').innerHTML=texto;
@@ -190,7 +190,7 @@ texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>A
 function seleccionadorImagenes(){
 var C=document.getElementsByClassName('InputTagSecundario');
 var aux=0;
-for(var i=0; i<C.length; C++){
+for(var i=0; i<C.length; i++){
 if(C[i].checked==true){
 InputTagSecundario[aux]=C[i].value;
 aux=aux+1;
@@ -240,9 +240,8 @@ function SubirDatosF(){
 $("#seleccionadorImagenes").fadeOut(250);
 document.getElementById('ajax-loader').style.display='block';
 setTimeout(function(){
-TagPrinciForm=ID;
 document.getElementById('SubirDatosC').innerHTML='';
-mostrarTitulo();
+subirdatosservicio();
 document.getElementById('ajax-loader').style.display='none';	
 $("#seleccionadorSubirDatos").fadeIn(250);
 }, 255);
@@ -280,16 +279,62 @@ $("#seleccionadorImagenes").fadeIn(250);
 }, 255);
 }
 }
-/*$(function(){
-        $("#formuploadajaxTag").on("submit", function(e){
-			
+function subirdatosservicio(){
+
+var div=document.getElementById('SubirDatosC');
+var texto='<div>';
+		var texto='<h3>Título de la Publicación.</h3><input type="text" name="titulo" id="InputTitulo" value="'+ InputTitulo +'" required readonly/></br>';
+		 texto= texto + '<h3>Descripción de la Publicación.</h3><input name="descripcion" type="text" id="InputDescripcion" required readonly value="' + InputDescripcion +'" /></br>';
+		  texto= texto + '<h3>Tag.</h3><input type="text" name="tag_principal" required readonly value="' +  TagPrinciForm +'" /></br>';
+		for(var i=0; i<InputTagSecundario.length; i++){
+		 texto= texto + '<h3>Tag S.</h3><input type="text" name="subtag[]" required readonly value="' +  InputTagSecundario[i] +'" /></br>';
+		}
+		for(var i=0; i<UriImagnes.length; i++){
+		 texto= texto + '<h3>Imagene: </h3><img src="'+ UriImagnes[i] +'"/></br>';
+		}
+		var UID = localStorage.getItem('SesionID') || '<empty>';
+		texto= texto + '<input type="text" name="UID" required readonly value="' +  UID +'" style="display:none"/>';
+		 texto= texto + '<input type="text" required readonly name="subir_nuevo_oferta_E" value="Subir" style="display:none"/></br>';
+		 texto=texto +'<input type="submit"   value="Subir" style="background-color: #FFD54F;"/>';
+		 texto=texto +'</form></div>';
+		div.innerHTML=texto;
+}
+function subirdatosservicioF(){
+/*document.getElementById('ajax-loader').style.display='block';
+setTimeout(function(){
+	   $.get('https://nirjob.com/PhoneGap/servicios/serviciosSubir' + '?ID=' + ID, function(data) {  
+	for(var i=0; i<UriImagnes.length; i++){
+var options= new FileUploaOptions();
+options.fileKey="file";
+options.fileName=UriImagnes[i].substr(UriImagnes[i].lastIndexOf("/")+1);
+options.mimeType="image/jpeg";
+var ft = new FileTransfer();
+ft.upload(fileURL, encodeURI("https://nirjob.com/phonegap/servicios/imagenesSubir.php"), win, fail, options);
+ft.abort();
+}
+		document.getElementById('ajax-loader').style.display='none';	
+		});	
+		}, 150);*/
+
+}
+var win = function(r) {
+   alert(r[0].Error);
+}
+
+var fail = function(error) {
+alert(error[0].Error);
+}
+$(function(){
+        $("#formServicio").on("submit", function(e){
+			alert("entro");
             e.preventDefault();
+			alert("entro");
             var f = $(this);
-            var formData = new FormData(document.getElementById("formuploadajaxTag"));
+            var formData = new FormData(document.getElementById("formServicio"));
 			document.getElementById('ajax-loader').style.display='block';
 			setTimeout(function(){
             $.ajax({
-                url: "https://nirjob.com/PhoneGap/login.php",
+                url: "https://nirjob.com/PhoneGap/servicios/subirServicio.php",
                 type: "post",
                 dataType: "json",
                 data: formData,
@@ -298,38 +343,37 @@ $("#seleccionadorImagenes").fadeIn(250);
 	     processData: false
             }).done(function(data){
 				var tamanio=data.length;
-				if(data[0].SesionError=='0' && tamanio==1){
-				var SesionID=data[0].SesionID;	
-				var SesionNivel=data[0].SesionNivel;
-				var SesionNombre=data[0].SesionNombre;
-				var SesionDireccion=data[0].SesionDireccion;
-				var SesionMail=data[0].SesionMail;
-				var SesionTelefono=data[0].SesionTelefono;
-				var SesionLoggedin=data[0].SesionLoggedin;
-				var SesionUsuario=data[0].SesionUsuario;
-				localStorage.setItem("SesionID", SesionID);
-				localStorage.setItem("SesionNivel", SesionNivel);
-				localStorage.setItem("SesionNombre", SesionNombre);
-				localStorage.setItem("SesionDireccion", SesionDireccion);
-				localStorage.setItem("SesionMail", SesionMail);
-				localStorage.setItem("SesionTelefono", SesionTelefono);
-				localStorage.setItem("SesionLoggedin", SesionLoggedin);
-				localStorage.setItem("SesionUsuario", SesionUsuario);
-				location.href="../index.html";
-				$("#ErrorInicio").html("");
+				alert(data[0].Error);
+				if(data[0].Error=='0' && tamanio==1){
+				var UID = localStorage.getItem('SesionID') || '<empty>';
+	for(var i=0; i<UriImagnes.length; i++){
+var options= new FileUploaOptions();
+options.fileKey="file";
+options.fileName=UriImagnes[i].substr(UriImagnes[i].lastIndexOf("/")+1);
+options.mimeType="image/jpeg";
+options.chunkedMode=true;
+var params = new Object();
+params.ID=data[0].ID;
+params.UID=UID;
+options.params=params;
+var ft = new FileTransfer();
+ft.upload(UriImagnes[i], encodeURI("https://nirjob.com/PhoneGap/servicios/imagenesSubir.php"), win, fail, options);
+ft.abort();
+}
+var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Se ha subido su servcio con exito.</p>";
+texto= texto + "<button type='button' onclick='location.href=\"../index.html\"; cerrar(\"mensaje_javascript\");'>Continuar</button>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+				
+		
 				}else{
-				if(data[0].SesionError=='1'){
-				$("#ErrorInicio").html("Error");
-				}
-				if(data[0].SesionError=='2'){
-				$("#ErrorInicio").html("El nombre de usuario o la contraseña están incorrectos.");
-				}
-				if(data[0].SesionError=='3'){
-				$("#ErrorInicio").html("El nombre de usuario o la contraseña están incorrectos.");
-				}
-				if(data[0].SesionError=='4'){
-				$("#ErrorInicio").html("Error 404");
-				}
+			var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Error al subir el servicio.</p>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
 				}
 			document.getElementById('ajax-loader').style.display='none';
                 });
@@ -337,7 +381,7 @@ $("#seleccionadorImagenes").fadeIn(250);
 				}, 250);
         
 		});
-		});*/
+		});
  		
 	</script>
 </head>
@@ -379,8 +423,10 @@ $("#seleccionadorImagenes").fadeIn(250);
 		<div id='seleccionadorSubirDatosBRegresar' >
 		<input type="submit" value="Regresar" onclick='regresar(4);' style="background-color: #FFD54F;">
 		</div>
+		<form id="formServicio" method="post" enctype="multipart/form-data">
 		<div id='SubirDatosC' >
 		</div>
+		</form>
 		</div>
 	<!--	<div id='form_inicio_sesion' class='form_inicio'>
 <div id='ErrorInicio'></div>

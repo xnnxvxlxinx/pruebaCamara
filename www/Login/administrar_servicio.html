@@ -81,7 +81,7 @@ setTimeout(function(){
 			for(var i=0; i<tamanio; i++){
 				var ID=data[i].ID;
 				var Nombre=data[i].Nombre;
-				texto=texto + "<label>"+ Nombre +": <input type='checkbox' value='"+ ID +"' class='InputTagSecundario'/></label>";
+				texto=texto + "<label>"+ Nombre +": <input type='checkbox' value='"+ ID +"' class='InputTagSecundario'/></label><br/><br/><br/>";
 			}
 			texto=texto + "<input type='submit' value='Siguiente' onclick='seleccionadorImagenes();' style='background-color: #FFD54F;'></div>";
 		document.getElementById('seleccionadorTagsSecundarioC').innerHTML=texto;
@@ -190,7 +190,7 @@ texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>A
 function seleccionadorImagenes(){
 var C=document.getElementsByClassName('InputTagSecundario');
 var aux=0;
-for(var i=0; i<C.length; C++){
+for(var i=0; i<C.length; i++){
 if(C[i].checked==true){
 InputTagSecundario[aux]=C[i].value;
 aux=aux+1;
@@ -280,17 +280,21 @@ $("#seleccionadorImagenes").fadeIn(250);
 }
 }
 function subirdatosservicio(){
+
 var div=document.getElementById('SubirDatosC');
-var texto='<div><form id="formServicio" method="post" enctype="multipart/form-data">';
-		var texto='<h3>Título de la Publicación.</h3><input type="text" name="titulo" id="InputTitulo" value="'+ InputTitulo +'" /></br>';
-		 texto= texto + '<h3>Descripción de la Publicación.</h3><input name="descripcion" type="text" id="InputDescripcion" value="' + InputDescripcion +'" /></br>';
-		  texto= texto + '<h3>Tag.</h3><input type="text" name="tagprincipal" value="' +  TagPrinciForm +'" /></br>';
+var texto='<div>';
+		var texto='<h3>Título de la Publicación.</h3><input type="text" name="titulo" id="InputTitulo" value="'+ InputTitulo +'" required readonly/></br>';
+		 texto= texto + '<h3>Descripción de la Publicación.</h3><input name="descripcion" type="text" id="InputDescripcion" required readonly value="' + InputDescripcion +'" /></br>';
+		  texto= texto + '<h3>Tag.</h3><input type="text" name="tag_principal" required readonly value="' +  TagPrinciForm +'" /></br>';
 		for(var i=0; i<InputTagSecundario.length; i++){
-		 texto= texto + '<h3>Tag S.</h3><input type="text" name="tagsecundario[]" value="' +  InputTagSecundario[i] +'" /></br>';
+		 texto= texto + '<h3>Tag S.</h3><input type="text" name="subtag[]" required readonly value="' +  InputTagSecundario[i] +'" /></br>';
 		}
 		for(var i=0; i<UriImagnes.length; i++){
 		 texto= texto + '<h3>Imagene: </h3><img src="'+ UriImagnes[i] +'"/></br>';
 		}
+		var UID = localStorage.getItem('SesionID') || '<empty>';
+		texto= texto + '<input type="text" name="UID" required readonly value="' +  UID +'" style="display:none"/>';
+		 texto= texto + '<input type="text" required readonly name="subir_nuevo_oferta_E" value="Subir" style="display:none"/></br>';
 		 texto=texto +'<input type="submit"   value="Subir" style="background-color: #FFD54F;"/>';
 		 texto=texto +'</form></div>';
 		div.innerHTML=texto;
@@ -314,25 +318,23 @@ ft.abort();
 
 }
 var win = function(r) {
-    alert("imagen Subida");
+   alert(r[0].Error);
 }
 
 var fail = function(error) {
-    // error.code == FileTransferError.ABORT_ERR
-    alert("An error has occurred: Code = " + error.code);
-    console.log("upload error source " + error.source);
-    console.log("upload error target " + error.target);
+alert(error[0].Error);
 }
 $(function(){
         $("#formServicio").on("submit", function(e){
-			
+			alert("entro");
             e.preventDefault();
+			alert("entro");
             var f = $(this);
             var formData = new FormData(document.getElementById("formServicio"));
 			document.getElementById('ajax-loader').style.display='block';
 			setTimeout(function(){
             $.ajax({
-                url: "https://nirjob.com/PhoneGap/servicios/serviciosSubir.php",
+                url: "https://nirjob.com/PhoneGap/servicios/subirServicio.php",
                 type: "post",
                 dataType: "json",
                 data: formData,
@@ -341,7 +343,9 @@ $(function(){
 	     processData: false
             }).done(function(data){
 				var tamanio=data.length;
+				alert(data[0].Error);
 				if(data[0].Error=='0' && tamanio==1){
+				var UID = localStorage.getItem('SesionID') || '<empty>';
 	for(var i=0; i<UriImagnes.length; i++){
 var options= new FileUploaOptions();
 options.fileKey="file";
@@ -350,6 +354,7 @@ options.mimeType="image/jpeg";
 options.chunkedMode=true;
 var params = new Object();
 params.ID=data[0].ID;
+params.UID=UID;
 options.params=params;
 var ft = new FileTransfer();
 ft.upload(UriImagnes[i], encodeURI("https://nirjob.com/PhoneGap/servicios/imagenesSubir.php"), win, fail, options);
@@ -418,8 +423,10 @@ texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>R
 		<div id='seleccionadorSubirDatosBRegresar' >
 		<input type="submit" value="Regresar" onclick='regresar(4);' style="background-color: #FFD54F;">
 		</div>
+		<form id="formServicio" method="post" enctype="multipart/form-data">
 		<div id='SubirDatosC' >
 		</div>
+		</form>
 		</div>
 	<!--	<div id='form_inicio_sesion' class='form_inicio'>
 <div id='ErrorInicio'></div>
