@@ -62,7 +62,7 @@ document.getElementById("search_bar_cabeza").value=URLsearch;
 var resolucionheight=screen.height;
 var resolucionheight10=resolucionheight*0.15;
 document.getElementById('menu_izquierda').style.height=resolucionheight10+'px';
-document.getElementById('map_canvas').style.height=resolucionheight*0.72+'px';
+document.getElementById('map_canvas').style.height=resolucionheight*0.65+'px';
 	
 var lat=-0.1574824;	
 var lon=-78.4682946;	
@@ -185,14 +185,14 @@ function llamarmarc(busqueda){
 	  var cont=0;
 
 function marcadores(lati, lon, ImgTag, ImgUser, Nombre, Descri, ID, PUESTOS, Numero){
-alto=screen.height*0.1;
-bajo=screen.witdh;
+alto=screen.height;
+bajo=screen.width;
 var image={
 		url:ImgTag,
-		size: new google.maps.Size(alto, alto),
+		size: new google.maps.Size(64, 64),
 		 origin: new google.maps.Point(0, 0),
-		 anchor: new google.maps.Point(alto, alto),
-		scaledSize: new google.maps.Size(alto, alto)
+		 anchor: new google.maps.Point(17, 34),
+		scaledSize: new google.maps.Size(59, 65)
 		};
 var contentString = '<div class=\"contentString\">'+
 	'<img class=\"contentImg\" src=\"https://nirjob.com/'+ ImgUser +'\" />' +
