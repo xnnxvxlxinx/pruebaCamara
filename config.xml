@@ -30,4 +30,5 @@
     <plugin name="cordova-plugin-file" spec="^5.0.0" />
     <preference name="AndroidPersistentFileLocation" value="Internal" />
     <plugin name="cordova-plugin-device" spec="^1.1.7" />
+    <engine name="browser" spec="~5.0.1" />
 </widget>

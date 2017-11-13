@@ -1,0 +1,11 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "Nirjob",
+  "short_name": "Nirjob",
+  "version": "io.cordova.Nirjob",
+  "description": "Nirjob APP",
+  "author": "Mateo",
+  "icons": [],
+  "start_url": "index.html"
+}
