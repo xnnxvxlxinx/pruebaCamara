@@ -13,9 +13,6 @@
     "cordova-plugin-camera": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
     },
-    "cordova-plugin-file-transfer": {
-      "PACKAGE_NAME": "io.cordova.hellocordova"
-    },
     "cordova-plugin-file": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
     },

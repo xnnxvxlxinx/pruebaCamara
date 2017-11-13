@@ -16,9 +16,6 @@
     "cordova-plugin-file": {
       "PACKAGE_NAME": "io.cordova.Nirjob"
     },
-    "cordova-plugin-file-transfer": {
-      "PACKAGE_NAME": "io.cordova.Nirjob"
-    },
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "io.cordova.Nirjob"
     }
