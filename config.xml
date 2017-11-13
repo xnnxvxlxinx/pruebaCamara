@@ -23,7 +23,7 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
-<<<<<<< HEAD
+
     <preference name="AndroidPersistentFileLocation" value="Compatibility" />
     <engine name="ios" spec="^4.5.3" />
     <engine name="android" spec="^6.3.0" />
@@ -34,11 +34,11 @@
         <variable name="CAMERA_USAGE_DESCRIPTION" value=" " />
         <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value=" " />
     </plugin>
-=======
+
     <engine name="ios" spec="~4.5.3" />
     <engine name="android" spec="~6.3.0" />
     <plugin name="cordova-plugin-camera" spec="^3.0.0" />
     <plugin name="cordova-plugin-file" spec="^5.0.0" />
     <plugin name="cordova-plugin-file-transfer" spec="^1.7.0" />
->>>>>>> 3c866c95ad07fc0a701f28e90e7ceb7458a40426
+
 </widget>
