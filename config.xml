@@ -32,5 +32,6 @@
     <plugin name="cordova-plugin-device" spec="^1.1.6" />
     <icon src="res/logo.png" />
     <preference name="AndroidPersistentFileLocation" value="Compatibility" />
-    <plugin name="cordova-plugin-file" spec="^5.0.0" />
+    <plugin name="cordova-plugin-file" spec="^4.0.0" />
+    <plugin name="cordova-plugin-file-transfer" spec="^1.6.3" />
 </widget>
