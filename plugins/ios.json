@@ -15,15 +15,6 @@
     },
     "cordova-plugin-file": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
-    },
-<<<<<<< HEAD
-    "cordova-plugin-camera": {
-      "CAMERA_USAGE_DESCRIPTION": " ",
-      "PHOTOLIBRARY_USAGE_DESCRIPTION": " ",
-=======
-    "cordova-plugin-file-transfer": {
->>>>>>> 3c866c95ad07fc0a701f28e90e7ceb7458a40426
-      "PACKAGE_NAME": "io.cordova.hellocordova"
     }
   },
   "dependent_plugins": {}

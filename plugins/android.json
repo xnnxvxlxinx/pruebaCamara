@@ -15,14 +15,6 @@
     },
     "cordova-plugin-file": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
-    },
-<<<<<<< HEAD
-    "cordova-plugin-camera": {
-      "PACKAGE_NAME": "io.cordova.nirjob"
-=======
-    "cordova-plugin-file-transfer": {
-      "PACKAGE_NAME": "io.cordova.hellocordova"
->>>>>>> 3c866c95ad07fc0a701f28e90e7ceb7458a40426
     }
   },
   "dependent_plugins": {}

@@ -22,28 +22,5 @@
     },
     "is_top_level": true,
     "variables": {}
-  },
-<<<<<<< HEAD
-  "cordova-plugin-compat": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-compat@^1.0.0"
-    },
-    "is_top_level": false,
-    "variables": {}
-  },
-  "cordova-plugin-camera": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-camera@^2.4.1"
-=======
-  "cordova-plugin-file-transfer": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-file-transfer"
->>>>>>> 3c866c95ad07fc0a701f28e90e7ceb7458a40426
-    },
-    "is_top_level": true,
-    "variables": {}
   }
 }
