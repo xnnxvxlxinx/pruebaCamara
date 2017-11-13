@@ -7,9 +7,6 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "io.cordova.hellocordova"
-    },
     "cordova-plugin-device": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
     },
@@ -17,6 +14,12 @@
       "PACKAGE_NAME": "io.cordova.nirjob"
     },
     "cordova-plugin-file": {
+      "PACKAGE_NAME": "io.cordova.nirjob"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "io.cordova.nirjob"
+    },
+    "cordova-plugin-file-transfer": {
       "PACKAGE_NAME": "io.cordova.nirjob"
     }
   },
