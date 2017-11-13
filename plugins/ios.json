@@ -17,6 +17,9 @@
     },
     "cordova-plugin-device": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "io.cordova.nirjob"
     }
   },
   "dependent_plugins": {
