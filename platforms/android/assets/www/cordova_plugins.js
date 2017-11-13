@@ -185,6 +185,12 @@ module.exports = [
     ]
   },
   {
+    "id": "cordova-plugin-file.isChrome",
+    "file": "plugins/cordova-plugin-file/www/browser/isChrome.js",
+    "pluginId": "cordova-plugin-file",
+    "runs": true
+  },
+  {
     "id": "cordova-plugin-file.androidFileSystem",
     "file": "plugins/cordova-plugin-file/www/android/FileSystem.js",
     "pluginId": "cordova-plugin-file",
@@ -230,8 +236,8 @@ module.exports.metadata =
   "cordova-plugin-whitelist": "1.3.2",
   "cordova-plugin-camera": "2.4.1",
   "cordova-plugin-device": "1.1.6",
-  "cordova-plugin-file": "4.0.0",
-  "cordova-plugin-file-transfer": "1.6.3"
+  "cordova-plugin-file": "5.0.0",
+  "cordova-plugin-file-transfer": "1.7.0"
 };
 // BOTTOM OF METADATA
 });
