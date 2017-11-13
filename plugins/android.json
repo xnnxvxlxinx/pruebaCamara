@@ -16,9 +16,6 @@
     "cordova-plugin-file": {
       "PACKAGE_NAME": "io.cordova.nirjob"
     },
-    "cordova-plugin-file-transfer": {
-      "PACKAGE_NAME": "io.cordova.nirjob"
-    },
     "cordova-plugin-camera": {
       "PACKAGE_NAME": "io.cordova.nirjob"
     }

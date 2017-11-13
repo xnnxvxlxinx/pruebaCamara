@@ -21,7 +21,6 @@
 		5DED80EBCCC14B1E945C025C /* CDVFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AD96C9FBCAD4F678A157246 /* CDVFile.m */; };
 		EC962F149C7A4312BD86EDB7 /* CDVLocalFilesystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FF61DF7CBCE43229F0223C2 /* CDVLocalFilesystem.m */; };
 		C78E2DC9F4C742A597945213 /* CDVAssetLibraryFilesystem.m in Sources */ = {isa = PBXBuildFile; fileRef = B145F34B648C43C29E73785F /* CDVAssetLibraryFilesystem.m */; };
-		6E75B92719704FA2B1698852 /* CDVFileTransfer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0710B47B2E724E95870A45E4 /* CDVFileTransfer.m */; };
 		0FDABC55420042619DD56588 /* UIImage+CropScaleOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF6B6041321410EAAD53368 /* UIImage+CropScaleOrientation.m */; };
 		F293BD71CAE041F0991975F2 /* CDVCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E40384F46804DAE895F165E /* CDVCamera.m */; };
 		20DA28CEA1C14F59B5402DA7 /* CDVJpegHeaderWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D2564C6EBF49F18F399CE9 /* CDVJpegHeaderWriter.m */; };
@@ -77,8 +76,6 @@
 		8EEBEC0F8DB1421689311E57 /* CDVFile.h */ = {isa = PBXFileReference; name = "CDVFile.h"; path = "cordova-plugin-file/CDVFile.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		7EDAD0DBBB104C94A90F8244 /* CDVLocalFilesystem.h */ = {isa = PBXFileReference; name = "CDVLocalFilesystem.h"; path = "cordova-plugin-file/CDVLocalFilesystem.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		F0C04C3881B24C5CA3AC1994 /* CDVAssetLibraryFilesystem.h */ = {isa = PBXFileReference; name = "CDVAssetLibraryFilesystem.h"; path = "cordova-plugin-file/CDVAssetLibraryFilesystem.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
-		0710B47B2E724E95870A45E4 /* CDVFileTransfer.m */ = {isa = PBXFileReference; name = "CDVFileTransfer.m"; path = "cordova-plugin-file-transfer/CDVFileTransfer.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
-		EA09AB8919B8440D895D610C /* CDVFileTransfer.h */ = {isa = PBXFileReference; name = "CDVFileTransfer.h"; path = "cordova-plugin-file-transfer/CDVFileTransfer.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		5EF6B6041321410EAAD53368 /* UIImage+CropScaleOrientation.m */ = {isa = PBXFileReference; name = "UIImage+CropScaleOrientation.m"; path = "cordova-plugin-camera/UIImage+CropScaleOrientation.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
 		8E40384F46804DAE895F165E /* CDVCamera.m */ = {isa = PBXFileReference; name = "CDVCamera.m"; path = "cordova-plugin-camera/CDVCamera.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
 		15D2564C6EBF49F18F399CE9 /* CDVJpegHeaderWriter.m */ = {isa = PBXFileReference; name = "CDVJpegHeaderWriter.m"; path = "cordova-plugin-camera/CDVJpegHeaderWriter.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
@@ -208,8 +205,6 @@
 				8EEBEC0F8DB1421689311E57 /* CDVFile.h */,
 				7EDAD0DBBB104C94A90F8244 /* CDVLocalFilesystem.h */,
 				F0C04C3881B24C5CA3AC1994 /* CDVAssetLibraryFilesystem.h */,
-				0710B47B2E724E95870A45E4 /* CDVFileTransfer.m */,
-				EA09AB8919B8440D895D610C /* CDVFileTransfer.h */,
 				5EF6B6041321410EAAD53368 /* UIImage+CropScaleOrientation.m */,
 				8E40384F46804DAE895F165E /* CDVCamera.m */,
 				15D2564C6EBF49F18F399CE9 /* CDVJpegHeaderWriter.m */,
@@ -333,7 +328,6 @@
 				5DED80EBCCC14B1E945C025C /* CDVFile.m in Sources */,
 				EC962F149C7A4312BD86EDB7 /* CDVLocalFilesystem.m in Sources */,
 				C78E2DC9F4C742A597945213 /* CDVAssetLibraryFilesystem.m in Sources */,
-				6E75B92719704FA2B1698852 /* CDVFileTransfer.m in Sources */,
 				0FDABC55420042619DD56588 /* UIImage+CropScaleOrientation.m in Sources */,
 				F293BD71CAE041F0991975F2 /* CDVCamera.m in Sources */,
 				20DA28CEA1C14F59B5402DA7 /* CDVJpegHeaderWriter.m in Sources */,
