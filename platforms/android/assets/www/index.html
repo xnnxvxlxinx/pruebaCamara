@@ -24,7 +24,7 @@
 	document.getElementById('logo').style.top=(screen.height)/3 + 'px';
 	 
  checkConnection();
-  /* setTimeout(function(){
+   setTimeout(function(){
   if(conn==true){
 //slideBaby();
  location.href ="servicios.html";
@@ -36,7 +36,7 @@ texto= texto + "<button type='button' onclick='checkConnection(); cerrar(\"mensa
 texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\");'>No</button>";
 		mensaje.childNodes[0].innerHTML=texto;
   }
-  },250);*/
+  },250);
 	}
 	function cerrar(div){		
 $("#" + div).fadeOut(150);
@@ -54,15 +54,15 @@ var texto="<p>Su dispositivo no esta conectado al Internet.</br>¿Decea intentar
 texto= texto + "<button type='button' onclick='checkConnection(); cerrar(\"mensaje_javascript\");'>Si</button>";
 texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\");'>No</button>";
 		mensaje.childNodes[0].innerHTML=texto;
-		 })
-  		.done(function() { location.href ="servicios.html"; })
+		conn = false; })
+  		.done(function() { conn = true; })
   }
-  /*function slideBaby() {
+  function slideBaby() {
 
 			window.plugins.nativepagetransitions.slide({
     "href" : "servicios.html"
 });
-          }*/
+          }
 	</script>
 </head>
 <body onload='initializeT();'>

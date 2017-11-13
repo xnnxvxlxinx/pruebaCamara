@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Inicio de Sesi&oacute;n</title>
+     <meta
+  name="viewport"
+  content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+   
+	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/cabeza.css">
+    <link rel="stylesheet" type="text/css" href="../archivosbase/CSS/iniciosesion.css">
+	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/ajax-loader.css">
+    <link rel="shortcut icon" href="../archivosbase/icons/favicon.ico" />
+	<script src="../archivosbase/jquerymobile145/jquery-3.2.1.min.js"></script>
+ <script src="../archivosbase/jquerymobile145/jquery.mobile-1.4.5.min.js"></script>
+ <script type="text/javascript" src="../cordova.js"></script>
+	<script>
+	function initialize() {
+	$.get("../archivosbase/cabeza.html", function(htmlexterno){
+   $("#cabecera").html(htmlexterno);
+    	});
+		
+		}
+$(function(){
+        $("#formuploadajaxTag").on("submit", function(e){
+			
+            e.preventDefault();
+            var f = $(this);
+            var formData = new FormData(document.getElementById("formuploadajaxTag"));
+			document.getElementById('ajax-loader').style.display='block';
+			setTimeout(function(){
+            $.ajax({
+                url: "https://nirjob.com/PhoneGap/login.php",
+                type: "post",
+                dataType: "json",
+                data: formData,
+                cache: false,
+                contentType: false,
+	     processData: false
+            }).done(function(data){
+				var tamanio=data.length;
+				if(data[0].SesionError=='0' && tamanio==1){
+				var SesionID=data[0].SesionID;	
+				var SesionNivel=data[0].SesionNivel;
+				var SesionNombre=data[0].SesionNombre;
+				var SesionDireccion=data[0].SesionDireccion;
+				var SesionMail=data[0].SesionMail;
+				var SesionTelefono=data[0].SesionTelefono;
+				var SesionLoggedin=data[0].SesionLoggedin;
+				var SesionUsuario=data[0].SesionUsuario;
+				localStorage.setItem("SesionID", SesionID);
+				localStorage.setItem("SesionNivel", SesionNivel);
+				localStorage.setItem("SesionNombre", SesionNombre);
+				localStorage.setItem("SesionDireccion", SesionDireccion);
+				localStorage.setItem("SesionMail", SesionMail);
+				localStorage.setItem("SesionTelefono", SesionTelefono);
+				localStorage.setItem("SesionLoggedin", SesionLoggedin);
+				localStorage.setItem("SesionUsuario", SesionUsuario);
+				location.href="../index.html";
+				$("#ErrorInicio").html("");
+				}else{
+				if(data[0].SesionError=='1'){
+				$("#ErrorInicio").html("Error");
+				}
+				if(data[0].SesionError=='2'){
+				$("#ErrorInicio").html("El nombre de usuario o la contraseña están incorrectos.");
+				}
+				if(data[0].SesionError=='3'){
+				$("#ErrorInicio").html("El nombre de usuario o la contraseña están incorrectos.");
+				}
+				if(data[0].SesionError=='4'){
+				$("#ErrorInicio").html("Error 404");
+				}
+				}
+			document.getElementById('ajax-loader').style.display='none';
+                });
+				
+				}, 250);
+        
+		});
+		});
+ 		
+	</script>
+</head>
+<body onload='initialize();'>
+    <div id="container">
+        <div id="cabecera">
+
+        </div>
+		<div id='contenido'>
+		<div id='form_inicio_sesion' class='form_inicio'>
+<div id='ErrorInicio'></div>
+    <div class="login">
+<form method="post" id='formuploadajaxTag' name="f1">	
+<label for="username"><div class="textLabel">Usuario</div></label>
+<input type="text" name="username" id="username" required placeholder="">
+<br/>
+<label for="userPwd"><div class="textLabel">Contrase&ntilde;a</div></label>
+<input type="password" name="password" id="userPwd" required placeholder="">
+<br/>
+<input type="submit" name="Submit" value="Entrar">
+
+</form>
+<br/>
+<div id="aunnocuenta">
+
+<form action="registro.php" method="POST">
+    <input type="submit" value="Registrarse" style="background-color: #FFD54F;">
+</form>
+</div>
+</div>
+		</div>
+		</div>
+		<div id='footer'>
+
+		</div>
+		<div id='ajax-loader'>
+	<img src='../archivosbase/img/ajax-loader.gif'/>
+	</div>
+    </div>
+</body>
+</html>
+
