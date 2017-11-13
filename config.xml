@@ -26,7 +26,7 @@
     </platform>
     <engine name="ios" spec="~4.5.3" />
     <plugin name="cordova-plugin-device" spec="^1.1.7" />
-    <preference name="AndroidPersistentFileLocation" value="Internal" />
+ 
     <preference name="AndroidPersistentFileLocation" value="Compatibility" />
     <engine name="android" spec="~6.3.0" />
     <plugin name="cordova-plugin-file" spec="^4.3.3" />
