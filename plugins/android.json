@@ -7,9 +7,6 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-camera": {
-      "PACKAGE_NAME": "io.cordova.nirjob"
-    },
     "cordova-plugin-device": {
       "PACKAGE_NAME": "io.cordova.nirjob"
     },
@@ -20,6 +17,9 @@
       "PACKAGE_NAME": "io.cordova.nirjob"
     },
     "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "io.cordova.nirjob"
+    },
+    "cordova-plugin-camera": {
       "PACKAGE_NAME": "io.cordova.nirjob"
     }
   },
