@@ -7,10 +7,10 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-plugin-device": {
+  "cordova-plugin-camera": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-device"
+      "id": "cordova-plugin-camera@3.0.0"
     },
     "is_top_level": true,
     "variables": {}
@@ -18,11 +18,12 @@
   "cordova-plugin-file": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-file@^4.3.3"
+      "id": "cordova-plugin-file@5.0.0"
     },
     "is_top_level": true,
     "variables": {}
   },
+<<<<<<< HEAD
   "cordova-plugin-compat": {
     "source": {
       "type": "registry",
@@ -35,6 +36,12 @@
     "source": {
       "type": "registry",
       "id": "cordova-plugin-camera@^2.4.1"
+=======
+  "cordova-plugin-file-transfer": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-file-transfer"
+>>>>>>> 3c866c95ad07fc0a701f28e90e7ceb7458a40426
     },
     "is_top_level": true,
     "variables": {}
