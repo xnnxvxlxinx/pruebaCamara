@@ -7,23 +7,14 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-device": {
+    "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
     },
-    "cordova-plugin-compat": {
-      "PACKAGE_NAME": "io.cordova.nirjob"
-    },
     "cordova-plugin-camera": {
-      "PACKAGE_NAME": "io.cordova.nirjob"
+      "PACKAGE_NAME": "io.cordova.hellocordova"
     },
     "cordova-plugin-file": {
-      "PACKAGE_NAME": "io.cordova.nirjob"
-    },
-    "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "io.cordova.nirjob"
-    },
-    "cordova-plugin-file-transfer": {
-      "PACKAGE_NAME": "io.cordova.nirjob"
+      "PACKAGE_NAME": "io.cordova.hellocordova"
     }
   },
   "dependent_plugins": {}
