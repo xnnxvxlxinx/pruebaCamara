@@ -24,9 +24,10 @@
     </platform>
     <preference name="AndroidPersistentFileLocation" value="Internal" />
     <engine name="ios" spec="^4.5.3" />
-    <engine name="android" spec="^6.3.0" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
     <plugin name="cordova-plugin-camera" spec="^3.0.0" />
     <plugin name="cordova-plugin-file" spec="^5.0.0" />
     <plugin name="cordova-plugin-device" spec="^1.1.7" />
+    <engine name="android" spec="~6.3.0" />
+    <plugin name="cordova-plugin-compat" spec="^1.2.0" />
 </widget>

@@ -220,7 +220,8 @@ module.exports.metadata =
   "cordova-plugin-whitelist": "1.3.3",
   "cordova-plugin-camera": "3.0.0",
   "cordova-plugin-file": "5.0.0",
-  "cordova-plugin-device": "1.1.7"
+  "cordova-plugin-device": "1.1.7",
+  "cordova-plugin-compat": "1.2.0"
 };
 // BOTTOM OF METADATA
 });
