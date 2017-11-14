@@ -253,8 +253,8 @@ module.exports.metadata =
   "cordova-plugin-dialogs": "1.3.4",
   "cordova-plugin-device": "1.1.7",
   "cordova-plugin-camera": "2.4.1",
-  "cordova-plugin-file": "5.0.0",
-  "cordova-plugin-file-transfer": "1.7.0"
+  "cordova-plugin-file": "4.3.3",
+  "cordova-plugin-file-transfer": "1.6.3"
 };
 // BOTTOM OF METADATA
 });
