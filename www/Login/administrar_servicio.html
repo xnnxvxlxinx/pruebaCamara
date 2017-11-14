@@ -317,13 +317,7 @@ ft.abort();
 		}, 150);*/
 
 }
-var win = function(r) {
-   alert(r[0].Error);
-}
 
-var fail = function(error) {
-alert(error[0].Error);
-}
 $(function(){
         $("#formServicio").on("submit", function(e){
 			alert("entro");
@@ -348,6 +342,13 @@ $(function(){
 				var UID = localStorage.getItem('SesionID') || '<empty>';
 	for(var i=0; i<UriImagnes.length; i++){
 	alert(UriImagnes.length);
+	var win = function(r) {
+   alert(r[0].Error);
+}
+
+var fail = function(error) {
+alert(error[0].Error);
+}
 var options= new FileUploaOptions();
 options.fileKey="file";
 alert(i);
