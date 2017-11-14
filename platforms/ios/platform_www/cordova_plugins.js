@@ -212,6 +212,22 @@ module.exports = [
     "clobbers": [
       "device"
     ]
+  },
+  {
+    "id": "cordova-plugin-file-transfer.FileTransferError",
+    "file": "plugins/cordova-plugin-file-transfer/www/FileTransferError.js",
+    "pluginId": "cordova-plugin-file-transfer",
+    "clobbers": [
+      "window.FileTransferError"
+    ]
+  },
+  {
+    "id": "cordova-plugin-file-transfer.FileTransfer",
+    "file": "plugins/cordova-plugin-file-transfer/www/FileTransfer.js",
+    "pluginId": "cordova-plugin-file-transfer",
+    "clobbers": [
+      "window.FileTransfer"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -221,7 +237,8 @@ module.exports.metadata =
   "cordova-plugin-camera": "3.0.0",
   "cordova-plugin-file": "5.0.0",
   "cordova-plugin-device": "1.1.7",
-  "cordova-plugin-compat": "1.2.0"
+  "cordova-plugin-compat": "1.2.0",
+  "cordova-plugin-file-transfer": "1.7.0"
 };
 // BOTTOM OF METADATA
 });
