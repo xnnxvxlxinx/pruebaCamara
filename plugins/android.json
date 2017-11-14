@@ -19,10 +19,10 @@
     "cordova-plugin-camera": {
       "PACKAGE_NAME": "io.cordova.Nirjob"
     },
-    "cordova-plugin-file-transfer": {
+    "cordova-plugin-file": {
       "PACKAGE_NAME": "io.cordova.Nirjob"
     },
-    "cordova-plugin-file": {
+    "cordova-plugin-file-transfer": {
       "PACKAGE_NAME": "io.cordova.Nirjob"
     }
   },
