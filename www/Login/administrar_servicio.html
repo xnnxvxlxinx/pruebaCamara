@@ -347,13 +347,14 @@ $(function(){
 				if(data[0].Error=='0' && tamanio==1){
 				var UID = localStorage.getItem('SesionID') || '<empty>';
 	for(var i=0; i<UriImagnes.length; i++){
-	alert(i);
+	alert(UriImagnes.length);
 var options= new FileUploaOptions();
 options.fileKey="file";
+alert(i);
 options.fileName=UriImagnes[i].substr(UriImagnes[i].lastIndexOf("/")+1);
 options.mimeType="image/jpeg";
 options.chunkedMode=true;
-var params = new Object();
+var params = {};
 params.ID=data[0].ID;
 params.UID=UID;
 options.params=params;
