@@ -34,6 +34,6 @@
         <variable name="CAMERA_USAGE_DESCRIPTION" value=" " />
         <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value=" " />
     </plugin>
-	<preference name="AndroidPersistentFileLocation" value="Compatibility" />
-    <plugin name="cordova-plugin-file-transfer" spec="^1.7.0" />
+    <preference name="AndroidPersistentFileLocation" value="Compatibility" />
+    <plugin name="cordova-plugin-file-transfer" spec="^1.6.3" />
 </widget>
