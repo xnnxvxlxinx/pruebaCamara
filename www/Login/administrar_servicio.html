@@ -24,6 +24,7 @@
     // PhoneGap is ready to be used!
     //
     function onDeviceReady() {
+	
         pictureSource=navigator.camera.PictureSourceType;
         destinationType=navigator.camera.DestinationType;
     }
@@ -342,26 +343,28 @@ $(function(){
 				var UID = localStorage.getItem('SesionID') || '<empty>';
 	for(var i=0; i<UriImagnes.length; i++){
 	alert(UriImagnes.length);
-	var win = function(r) {
+	
+var options = new FileUploadOptions();
+options.fileKey = "file";
+alert(i);
+options.fileName = UriImagnes[i].substr(UriImagnes[i].lastIndexOf('/') + 1);
+options.mimeType = "image/jpeg";
+
+var params = {};
+params.ID=data[0].ID;
+params.UID=UID;
+options.params = params;
+alert("err");
+var ft = new FileTransfer();
+
+ft.upload(UriImagnes[i], encodeURI("https://nirjob.com/PhoneGap/servicios/imagenesSubir.php"), win, fail, options);
+var win = function(r) {
    alert(r[0].Error);
 }
 
 var fail = function(error) {
 alert(error[0].Error);
 }
-var options= new FileUploaOptions();
-options.fileKey="file";
-alert(i);
-options.fileName=UriImagnes[i].substr(UriImagnes[i].lastIndexOf("/")+1);
-options.mimeType="image/jpeg";
-options.chunkedMode=true;
-var params = {};
-params.ID=data[0].ID;
-params.UID=UID;
-options.params=params;
-alert("err");
-var ft = new FileTransfer();
-ft.upload(UriImagnes[i], encodeURI("https://nirjob.com/PhoneGap/servicios/imagenesSubir.php"), win, fail, options);
 alert("err");
 }
 var mensaje=document.getElementById('mensaje_javascript');
