@@ -21,9 +21,6 @@
     },
     "cordova-plugin-compat": {
       "PACKAGE_NAME": "io.cordova.Nirjob"
-    },
-    "cordova-plugin-file-transfer": {
-      "PACKAGE_NAME": "io.cordova.Nirjob"
     }
   },
   "dependent_plugins": {}
