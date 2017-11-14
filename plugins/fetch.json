@@ -15,10 +15,10 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-plugin-file": {
+  "cordova-plugin-dialogs": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-file@^5.0.0"
+      "id": "cordova-plugin-dialogs"
     },
     "is_top_level": true,
     "variables": {}
@@ -27,14 +27,6 @@
     "source": {
       "type": "registry",
       "id": "cordova-plugin-device"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-compat": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-compat@^1.2.0"
     },
     "is_top_level": true,
     "variables": {}

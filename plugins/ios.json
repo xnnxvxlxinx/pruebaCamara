@@ -13,14 +13,11 @@
     "cordova-plugin-camera": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
     },
-    "cordova-plugin-file": {
+    "cordova-plugin-dialogs": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
     },
     "cordova-plugin-device": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
-    },
-    "cordova-plugin-compat": {
-      "PACKAGE_NAME": "io.cordova.Nirjob"
     }
   },
   "dependent_plugins": {}
