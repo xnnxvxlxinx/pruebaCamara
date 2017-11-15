@@ -343,7 +343,14 @@ $(function(){
 				var UID = localStorage.getItem('SesionID') || '<empty>';
 	for(var i=0; i<UriImagnes.length; i++){
 	alert(UriImagnes.length);
-	
+
+var win = function(r) {
+   alert("win");
+}
+
+var fail = function(error) {
+alert("fail");
+}	
 var options = new FileUploadOptions();
 options.fileKey = "file";
 alert(i);
@@ -358,13 +365,7 @@ alert("err");
 var ft = new FileTransfer();
 
 ft.upload(UriImagnes[i], encodeURI("https://nirjob.com/PhoneGap/servicios/imagenesSubir.php"), win, fail, options);
-var win = function(r) {
-   alert(r[0].Error);
-}
 
-var fail = function(error) {
-alert(error[0].Error);
-}
 alert("err");
 }
 var mensaje=document.getElementById('mensaje_javascript');
