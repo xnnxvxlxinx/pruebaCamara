@@ -318,12 +318,18 @@ ft.abort();
 		}, 150);*/
 
 }
+ function win(r) {
+   alert("Win:" + r);
+}
 
+function fail(error) {
+alert("error:" + error);
+}
 $(function(){
         $("#formServicio").on("submit", function(e){
 			alert("entro");
             e.preventDefault();
-			alert("entro");
+			
             var f = $(this);
             var formData = new FormData(document.getElementById("formServicio"));
 			document.getElementById('ajax-loader').style.display='block';
@@ -338,12 +344,11 @@ $(function(){
 	     processData: false
             }).done(function(data){
 				var tamanio=data.length;
-				alert(data[0].Error);
+				
 				if(data[0].Error=='0' && tamanio==1){
 				var UID = localStorage.getItem('SesionID') || '<empty>';
 	for(var i=0; i<UriImagnes.length; i++){
-	alert(UriImagnes.length);
-	
+alert(UriImagnes.length);
 var options = new FileUploadOptions();
 options.fileKey = "file";
 alert(i);
@@ -356,15 +361,7 @@ params.UID=UID;
 options.params = params;
 alert("err");
 var ft = new FileTransfer();
-
 ft.upload(UriImagnes[i], encodeURI("https://nirjob.com/PhoneGap/servicios/imagenesSubir.php"), win, fail, options);
-var win = function(r) {
-   alert("Win:" + r);
-}
-
-var fail = function(error) {
-alert("error:" + error);
-}
 alert("err");
 }
 var mensaje=document.getElementById('mensaje_javascript');
