@@ -1,22 +1,6 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
   {
-    "id": "cordova-plugin-dialogs.notification",
-    "file": "plugins/cordova-plugin-dialogs/www/notification.js",
-    "pluginId": "cordova-plugin-dialogs",
-    "merges": [
-      "navigator.notification"
-    ]
-  },
-  {
-    "id": "cordova-plugin-device.device",
-    "file": "plugins/cordova-plugin-device/www/device.js",
-    "pluginId": "cordova-plugin-device",
-    "clobbers": [
-      "device"
-    ]
-  },
-  {
     "id": "cordova-plugin-camera.Camera",
     "file": "plugins/cordova-plugin-camera/www/CameraConstants.js",
     "pluginId": "cordova-plugin-camera",
@@ -236,18 +220,24 @@ module.exports = [
     "clobbers": [
       "window.FileTransfer"
     ]
+  },
+  {
+    "id": "cordova-plugin-device.device",
+    "file": "plugins/cordova-plugin-device/www/device.js",
+    "pluginId": "cordova-plugin-device",
+    "clobbers": [
+      "device"
+    ]
   }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
   "cordova-plugin-whitelist": "1.3.3",
-  "cordova-plugin-dialogs": "1.3.4",
-  "cordova-plugin-device": "1.1.7",
-  "cordova-plugin-compat": "1.2.0",
-  "cordova-plugin-camera": "2.4.1",
-  "cordova-plugin-file": "4.3.3",
-  "cordova-plugin-file-transfer": "1.6.3"
+  "cordova-plugin-camera": "3.0.0",
+  "cordova-plugin-file": "5.0.0",
+  "cordova-plugin-file-transfer": "1.7.0",
+  "cordova-plugin-device": "1.1.7"
 };
 // BOTTOM OF METADATA
 });
