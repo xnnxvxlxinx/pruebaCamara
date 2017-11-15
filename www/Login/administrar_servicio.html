@@ -359,11 +359,11 @@ var ft = new FileTransfer();
 
 ft.upload(UriImagnes[i], encodeURI("https://nirjob.com/PhoneGap/servicios/imagenesSubir.php"), win, fail, options);
 var win = function(r) {
-   alert(r[0].Error);
+   alert("Win:" + r);
 }
 
 var fail = function(error) {
-alert(error[0].Error);
+alert("error:" + error);
 }
 alert("err");
 }
