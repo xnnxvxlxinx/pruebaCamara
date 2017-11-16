@@ -36,7 +36,32 @@ GetBusqueda="?busqueda=" + URLsearch;
 GetbusTag="?Bus=" + URLsearch;
 llamarmarc(GetBusqueda);
 }
-
+	function checkConnection() {
+    	$.ajax({
+  			url: 'https://nirjob.com/',
+  			async: false,
+  			data: {'tag' : 'connection'}
+  		})
+  		.fail(function() {
+		var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Su dispositivo no esta conectado al Internet.</br>¿Decea intentar conectar de nuevo?</p>";
+texto= texto + "<button type='button' onclick='window.location.reload(true);'>Si</button>";
+texto= texto + "<button type='button' onclick='cerrarMensaje(\"mensaje_javascript\");'>No</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+		 })
+  		.done(function() {
+setTimeout( function (){
+checkConnection();
+}, 10000);
+		})
+  }
+  function cerrarMensaje(div){
+  $("#" + div).fadeOut(100);
+  }
+setTimeout( function (){
+checkConnection();
+}, 1000);
 	function getAbsolutePath() {
     var loc = window.location;
     var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') + 1);
@@ -55,23 +80,38 @@ if(Usuario!='<empty>' && Nivel!='<empty>'){
 if(Nivel==1){
 texto = texto + "<li><h5>" + Usuario + "</h5></li>";
 texto = texto + "<li><a href='" + url + "Login/MiCuenta.html'>Mi Sesion</a></li>";
-texto = texto + "<li><a href='" + url + "buscador.html'>Empresas/Productos</a></li>";
+//texto = texto + "<li><a href='" + url + "buscador.html'>Empresas/Productos</a></li>";
 texto = texto + "<li><a href='" + url + "servicios.html'>Servicios</a></li>";
 texto = texto + "<li><a>Configuraciones de Administrador</a></li>";
 texto = texto + "<li><a href='" + url + "Login/logout.html'>Cerrar Sesion</a></li>";
-}else{
+}
+if(Nivel==2){
 texto = texto + "<li><h5>" + Usuario + "</h5></li>";
 texto = texto + "<li><a href='" + url + "Login/MiCuenta.html'>Mi Sesion</a></li>";
-texto = texto + "<li><a href='" + url + "buscador.html'>Empresas/Productos</a></li>";
-texto = texto + "<li><a href='" + url + "servicios.html'>Servicios</a></li>";
+texto = texto + "<li><a href='" + url + "Login/descripcionE.html'>Descripcion de mi Empresa</a></li>";
+texto = texto + "<li><a href='" + url + "Login/ubicacion.html'>Ubicaciones de mis Locales</a></li>";
+texto = texto + "<li><a href='" + url + "Login/horarios.html'>Horarios de atencion de mis Locales</a></li>";
+//texto = texto + "<li><a href='" + url + "buscador.html'>Empresas/Productos</a></li>";
+texto = texto + "<li><a href='" + url + "servicios.html'>Ver Servicios</a></li>";
+texto = texto + "<li><a href='" + url + "Login/administrar_oferta.html'>Publicar requerimiento de Servicio</a></li>";
+texto = texto + "<li><a href='" + url + "Login/administrar_servicio.html'>Publicar nuevo Servicio</a></li>";
+texto = texto + "<li><a href='" + url + "Login/logout.html'>Cerrar Sesion</a></li>";
+}
+if(Nivel==3){
+texto = texto + "<li><h5>" + Usuario + "</h5></li>";
+texto = texto + "<li><a href='" + url + "Login/MiCuenta.html'>Mi Sesion</a></li>";
+texto = texto + "<li><a href='" + url + "Login/descripcionP.html'>Descripcion de mis Servicios</a></li>";
+//texto = texto + "<li><a href='" + url + "buscador.html'>Empresas/Productos</a></li>";
+texto = texto + "<li><a href='" + url + "servicios.html'>Ver Servicios</a></li>";
+texto = texto + "<li><a href='" + url + "Login/administrar_oferta.html'>Publicar requerimiento de Servicio</a></li>";
 texto = texto + "<li><a href='" + url + "Login/administrar_servicio.html'>Publicar nuevo Servicio</a></li>";
 texto = texto + "<li><a href='" + url + "Login/logout.html'>Cerrar Sesion</a></li>";
 }
 }else{
 texto = texto + "<li><a href='" + url + "Login/index.html'>Inicio de Sesion</a></li>";
-texto = texto + "<li><a href='" + url + "buscador.html'>Empresas/Productos</a></li>";
+//texto = texto + "<li><a href='" + url + "buscador.html'>Empresas/Productos</a></li>";
 texto = texto + "<li><a href='" + url + "servicios.html'>Servicios</a></li>";
-texto = texto + "<li><a href='pruebacamara.html'>Prueba Camara</a></li>";
+//texto = texto + "<li><a href='pruebacamara.html'>Prueba Camara</a></li>";
 }
 $("#MenuCabezaUl").html(texto);
 });

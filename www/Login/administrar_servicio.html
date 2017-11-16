@@ -286,12 +286,12 @@ var div=document.getElementById('SubirDatosC');
 var texto='<div>';
 		var texto='<h3>Título de la Publicación.</h3><input type="text" name="titulo" id="InputTitulo" value="'+ InputTitulo +'" required readonly/></br>';
 		 texto= texto + '<h3>Descripción de la Publicación.</h3><input name="descripcion" type="text" id="InputDescripcion" required readonly value="' + InputDescripcion +'" /></br>';
-		  texto= texto + '<h3>Tag.</h3><input type="text" name="tag_principal" required readonly value="' +  TagPrinciForm +'" /></br>';
+		  texto= texto + '<input type="text" name="tag_principal" required readonly value="' +  TagPrinciForm +'" style="display:none"/></br>';
 		for(var i=0; i<InputTagSecundario.length; i++){
-		 texto= texto + '<h3>Tag S.</h3><input type="text" name="subtag[]" required readonly value="' +  InputTagSecundario[i] +'" /></br>';
+		 texto= texto + '<input type="text" name="subtag[]" required readonly value="' +  InputTagSecundario[i] +'" style="display:none"/></br>';
 		}
 		for(var i=0; i<UriImagnes.length; i++){
-		 texto= texto + '<h3>Imagene: </h3><img src="'+ UriImagnes[i] +'"/></br>';
+		 texto= texto + '<h3>Imagen: </h3><div class="seleccionadorImagenesC_foto"><img src="'+ UriImagnes[i] +'" style="width:100%; height:10em;"/></div></br>';
 		}
 		var UID = localStorage.getItem('SesionID') || '<empty>';
 		texto= texto + '<input type="text" name="UID" required readonly value="' +  UID +'" style="display:none"/>';
