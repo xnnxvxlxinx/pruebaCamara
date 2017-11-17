@@ -42,4 +42,7 @@
     <preference name="phonegap-version" value="cli-7.0.1" />
     <preference name="pgb-builder-version" value="1" />
     <preference name="AndroidPersistentFileLocation" value="Compatibility" />
+    <feature name="LocalNotification">
+        <param name="android-package" value="de.appplant.cordova.plugin.localnotification.LocalNotification" />
+    </feature>
 </widget>
