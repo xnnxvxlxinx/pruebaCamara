@@ -33,7 +33,8 @@
       },
       "cordova-plugin-compat": {},
       "cordova-plugin-file": {},
-      "cordova-plugin-file-transfer": {}
+      "cordova-plugin-file-transfer": {},
+      "cordova-plugin-local-notification": {}
     },
     "platforms": [
       "ios",
