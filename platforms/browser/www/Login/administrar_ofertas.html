@@ -364,7 +364,7 @@ options.params = params;
 var ft = new FileTransfer();
 
 ft.upload(UriImagnes[i], encodeURI("https://nirjob.com/PhoneGap/servicios/imagenesSubir.php"), win, fail, options);
-}else{
+}}else{
 var mensaje=document.getElementById('mensaje_javascript');
 		mensaje.style.display='block';
 var texto="<p>Se ha subido su pedido de servcio con exito.</p>";
@@ -377,7 +377,7 @@ texto= texto + "<button type='button' onclick='location.href=\"../index.html\"; 
 var texto="<p>Error al subir la oferta de servicio.</p>";
 texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
 		mensaje.childNodes[0].innerHTML=texto;
-				}}
+				}
 			document.getElementById('ajax-loader').style.display='none';
                 });
 				
