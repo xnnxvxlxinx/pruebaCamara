@@ -425,11 +425,9 @@ if(document.getElementById('productosBuscador').style.display=='none'){
 
 var windowH=$(window).height();
 var documentH=$(document).height();
-if(windowS!=0){
-alert(windowS + " " + windowH + " " + documentH);
-}
-if(windowS+windowH==documentH){
 
+if(windowS+windowH>=documentH){
+alert("Ws: " + windowS + " Wh: " + windowH + " Dh: " + documentH);
 	ProductosBajoMapa(contadorProductosBaj);
 		contadorProductosBaj=contadorProductosBaj+1;
 		window.scrollTo(0, windowS*0.8);}
