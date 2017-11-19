@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Capture Photo</title>
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1"/>
+    <script type="text/javascript" charset="utf-8" src="js/phonegap.js"></script>
+	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script type="text/javascript" charset="utf-8">
+   
+    document.addEventListener("deviceready",onDeviceReady,false);
+    // PhoneGap is ready to be used!
+    //
+    function onDeviceReady() {
+       alert("listo");
+    }
+	function notificacion(){
+	    alert("notif");
+	cordova.plugins.notification.local.schedule({
+	id: 1,
+    title: 'Prueba',
+    text: 'Esta es una prueba de notificacion'
+});
+	}
+    </script>
+  </head>
+  <body>
+    <button onclick="notificacion();">Enviar notificacion</button> <br>
+
+  </body>
+</html>
