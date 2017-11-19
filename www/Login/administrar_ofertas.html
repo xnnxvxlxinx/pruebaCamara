@@ -302,7 +302,7 @@ texto= texto + '<h3>Valor $:</h3><input name="puestos" type="text"  required rea
 		}
 		var UID = localStorage.getItem('SesionID') || '<empty>';
 		texto= texto + '<input type="text" name="UID" required readonly value="' +  UID +'" style="display:none"/>';
-		texto= texto + '<input type="text" name="tipo" required readonly value="2" style="display:none"/>';
+		texto= texto + '<input type="text" name="tipo" required readonly value="1" style="display:none"/>';
 		 texto= texto + '<input type="text" required readonly name="subir_nuevo_oferta_E" value="Subir" style="display:none"/></br>';
 		 texto=texto +'<input type="submit"   value="Subir" style="background-color: #FFD54F;"/>';
 		 texto=texto +'</form></div>';
@@ -312,9 +312,9 @@ texto= texto + '<h3>Valor $:</h3><input name="puestos" type="text"  required rea
 
 $(function(){
         $("#formServicio").on("submit", function(e){
-			
+			alert("entro");
             e.preventDefault();
-			
+			alert("entro");
             var f = $(this);
             var formData = new FormData(document.getElementById("formServicio"));
 			document.getElementById('ajax-loader').style.display='block';
@@ -329,10 +329,10 @@ $(function(){
 	     processData: false
             }).done(function(data){
 				var tamanio=data.length;
-				
+				alert(data[0].Error);
 				if(data[0].Error=='0' && tamanio==1){
 				var UID = localStorage.getItem('SesionID') || '<empty>';
-	if(UriImagnes.length>0){
+				if(UriImagnes.length>0){
 	for(var i=0; i<UriImagnes.length; i++){
 
 var win = function(r) {
