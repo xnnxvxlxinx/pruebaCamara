@@ -60,14 +60,15 @@ $(function(){
 			document.getElementById('ajax-loader').style.display='block';
 			var valorContra=document.getElementById('userPwd').value;
 			var valorContra2=document.getElementById('userPwd2').value;
+			var valorMail=document.getElementById('mail').value;
 			if(tiene_numeros(valorContra)==1){
 			if(tiene_minusculas(valorContra)==1){
 			if(tiene_mayusculas(valorContra)==1){
 			if(valorContra.length>=8){
 			if(valorContra==valorContra2){
-			
+			if(es_mail(valorMail)==1){
 			setTimeout(function(){
-            .ajax({
+            /*.ajax({
                 url: "https://nirjob.com/PhoneGap/registro.php",
                 type: "post",
                 dataType: "json",
@@ -105,10 +106,16 @@ $(function(){
 				$("#ErrorInicio").html("Error 404");
 				}
 				}
-                });
+                });*/
 				
 				}, 250);
 				}else{
+				var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Las contraseñas no son iguales.</p>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+				}}else{
 				var mensaje=document.getElementById('mensaje_javascript');
 		mensaje.style.display='block';
 var texto="<p>Las contraseñas no son iguales.</p>";
@@ -166,19 +173,23 @@ texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>R
 <br/>
 <label for="userPwd2"><div class="textLabel">*Confirmar Contrase&ntilde;a</div></label>
 <input type="password" name="password2" id="userPwd2" required placeholder="">
-<br/>
+<br/><br/>
 <label>Soy: <select name='tipo' id='SelectTipo' required>
 <option value=''>Seleccione una Opci&ocute;n</option>
 <option value='1'>Empresa</option>
 <option value='2'>Particular</option>
-</select></label>
+</select></label><br/><br/><br/>
+<label for="mail"><div class="textLabel">Correo Electronico</div></label>
+<input type="text" name="mail" id="mail" placeholder="ejemplo@xxxxxx.com">
+<br/>
 <label for="telefono"><div class="textLabel">Tel&ecute;fono</div></label>
 <input type="text" name="telefono" id="telefono" placeholder="09xxxxxxxx">
 <br/>
 <label for="direccion"><div class="textLabel">Direcci&ocute;n</div></label>
 <input type="text" name="direccion" id="direccion"  placeholder="">
 <br/>
-<input type="submit" name="Submit" value="Entrar" />
+<input type="text" name="Submit" id="direccion" value="Registrarse" style='display:none'  placeholder="">
+<input type="submit"  value="Registrarse" />
 
 </form>
 <br/>
