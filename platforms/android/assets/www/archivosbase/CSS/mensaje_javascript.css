@@ -1,5 +1,5 @@
 #mensaje_javascript{
-    position: absolute;
+    position: fixed;
     z-index: 10;
     width: 100%;
     height: 100%;
@@ -13,6 +13,7 @@
 }
 #mensaje_javascript div
 {
+	 z-index: 11;
     position: absolute;
     background-color: #FFFFFF;
     top: 50%;
