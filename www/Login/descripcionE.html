@@ -18,6 +18,57 @@
  <script type="text/javascript" src="../cordova.js"></script>
    <script type="text/javascript"  src="../js/phonegap.js"></script>
 	<script>
+	var TagPrinciForm=0;
+	var InputDescripcion='';
+	var InputTagSecundario=[];
+	function initialize() {
+	
+	$.get("../archivosbase/cabeza.html", function(htmlexterno){
+   $("#cabecera").html(htmlexterno);
+    	});
+		
+		tagPrincipal();
+		}
+	function tagPrincipal(){
+
+document.getElementById('ajax-loader').style.display='block';
+setTimeout(function(){
+	document.getElementById('seleccionadorTags').innerHTML='';
+	var numeroTagsPrin=0;
+	TagPrinciForm=0;
+ InputDescripcion='';
+ InputTagSecundario=[];
+	   $.getJSON('https://nirjob.com/PhoneGap/servicios/TagPrincipales.php', function(data) {  
+  
+		var tamanio=data.length;
+			for(var i=0; i<tamanio; i++){
+				var ID=data[i].ID;
+				var Nombre=data[i].Nombre;
+				var Imagen=data[i].Imagen;
+			mostrarTags(ID, Nombre, Imagen);
+			}
+		document.getElementById('ajax-loader').style.display='none';	
+		});	
+
+		}, 150);
+} 
+function ObtenerTagSecundario(ID){
+document.getElementById('ajax-loader').style.display='block';
+setTimeout(function(){
+	   $.getJSON('https://nirjob.com/PhoneGap/servicios/TagSecundarios.php' + '?ID=' + ID, function(data) {  
+	var texto='<div><h3>Sub Categorías.</h3>';
+		var tamanio=data.length;
+			for(var i=0; i<tamanio; i++){
+				var ID=data[i].ID;
+				var Nombre=data[i].Nombre;
+				texto=texto + "<label>"+ Nombre +": <input type='checkbox' value='"+ ID +"' class='InputTagSecundario'/></label><br/><br/><br/>";
+			}
+			texto=texto + "<input type='submit' value='Siguiente' onclick='seleccionadorImagenes();' style='background-color: #FFD54F;'></div>";
+		document.getElementById('seleccionadorTagsSecundarioC').innerHTML=texto;
+		document.getElementById('ajax-loader').style.display='none';	
+		});	
+		}, 150);
+}	
 	 /*  var pictureSource;   // picture source
     var destinationType; // sets the format of returned value 
  document.addEventListener("deviceready",onDeviceReady,false);
@@ -36,14 +87,6 @@ var InputTagSecundario=[];
 var UriImagnes=[];
 var TotalImagenes=0;
 var InputPrecio=0;
-	function initialize() {
-	
-	$.get("../archivosbase/cabeza.html", function(htmlexterno){
-   $("#cabecera").html(htmlexterno);
-    	});
-		
-		tagPrincipal();
-		}
 
 function cerrar(div){		
 $("#" + div).fadeOut(150);
