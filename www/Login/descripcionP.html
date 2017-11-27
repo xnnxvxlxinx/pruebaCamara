@@ -1,0 +1,202 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Inicio de Sesi&oacute;n</title>
+     <meta
+  name="viewport"
+  content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+   
+	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/cabeza.css">
+    <link rel="stylesheet" type="text/css" href="../archivosbase/CSS/iniciosesion.css">
+	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/publicacionServicios.css">
+	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/fotosseleccion.css">
+	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/ajax-loader.css">
+	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/mensaje_javascript.css">
+    <link rel="shortcut icon" href="../archivosbase/icons/favicon.ico" />
+	<script src="../archivosbase/jquerymobile145/jquery-3.2.1.min.js"></script>
+ <script src="../archivosbase/jquerymobile145/jquery.mobile-1.4.5.min.js"></script>
+ <script type="text/javascript" src="../cordova.js"></script>
+   <script type="text/javascript"  src="../js/phonegap.js"></script>
+	<script>
+	var TagPrinciForm=0;
+	var InputDescripcion='';
+	var InputTagSecundario='';
+	var UID = localStorage.getItem('SesionID') || '<empty>';
+	
+function cerrar(div){		
+$("#" + div).fadeOut(150);
+}
+	function initialize() {
+	
+	$.get("../archivosbase/cabeza.html", function(htmlexterno){
+   $("#cabecera").html(htmlexterno);
+    	});
+		
+		obtenerDescripcion();
+		tagPrincipal();
+		//ObtenerTagSecundario();
+		document.getElementById('inputUID').value=UID;
+		}
+	function obtenerDescripcion(){
+	document.getElementById('ajax-loader').style.display='block';
+	setTimeout(function(){
+	    $.getJSON('https://nirjob.com/PhoneGap/descripcion/descripcion.php?ID=' + UID, function(data) {  
+		var tamanio=data.length;
+		for(var i=0; i<tamanio; i++){
+		if(data[0].Error=='0'){
+		TagPrinciForm=data[0].TagPrincipal;
+		InputDescripcion=data[0].Descripcion;
+		InputTagSecundario=data[0].TagSecundario;
+				document.getElementById('inputDescripcion').value=InputDescripcion;
+		}
+		if(data[0].Error=='2'){
+		/*var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>La publicación debe tener un título, una descripción y un precio.<br/>(* Precio=0, A Convenir)</p>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Aceptar</button>";
+		mensaje.childNodes[0].innerHTML=texto;*/
+		}
+		if(data[0].Error=='1'){
+		alert('ERROR: 404');
+		}
+		}
+		document.getElementById('ajax-loader').style.display='none';	
+		});	
+	
+		}, 150);
+		
+	
+	}	
+function tagPrincipal(){
+	document.getElementById('ajax-loader').style.display='block';
+	setTimeout(function(){
+	document.getElementById('TagPrincipalC').innerHTML='';
+	   $.getJSON('https://nirjob.com/PhoneGap/servicios/TagPrincipales.php', function(data) {  
+  
+		var tamanio=data.length;
+var div=document.getElementById('TagPrincipalC');
+var texto="<select name='TagPrincipal' onchange='ObtenerTagSecundario()' id='ITagPrincipal' required><option value=''>Escoja una Opci&oacute;n</option>";
+
+		for(var i=0; i<tamanio; i++){
+				var ID=data[i].ID;
+				var Nombre=data[i].Nombre;
+				var Imagen=data[i].Imagen;
+				if(TagPrinciForm==ID){
+				texto=texto + "<option selected value='"+ ID +"'>"+ Nombre +"</option>";
+				}else{
+				texto=texto + "<option value='"+ ID +"'>"+ Nombre +"</option>";
+			}
+			}
+			texto=texto + "</select>";
+			div.innerHTML=texto;
+		document.getElementById('ajax-loader').style.display='none';	
+		ObtenerTagSecundario();
+		});	
+
+		}, 150);
+} 
+function ObtenerTagSecundario(){
+ID=document.getElementById('ITagPrincipal').value;
+document.getElementById('ajax-loader').style.display='block';
+setTimeout(function(){
+	   $.getJSON('https://nirjob.com/PhoneGap/servicios/TagSecundarios.php' + '?ID=' + ID, function(data) {  
+	var texto='<div><h3>Sub Categorías.</h3>';
+		var tamanio=data.length;
+			for(var i=0; i<tamanio; i++){
+				var ID=data[i].ID;
+				var Nombre=data[i].Nombre;
+				if(InputTagSecundario.indexOf('#' + ID +';') != -1){
+				texto=texto + "<label>"+ Nombre +": <input type='checkbox' checked name='subTag[]' value='"+ ID +"' class='InputTagSecundario'/></label><br/><br/><br/></div>";
+			
+}else{
+texto=texto + "<label>"+ Nombre +": <input type='checkbox' name='subTag[]' value='"+ ID +"' class='InputTagSecundario'/></label><br/><br/><br/></div>";
+}
+				}
+		document.getElementById('SubTagC').innerHTML=texto;
+		document.getElementById('ajax-loader').style.display='none';	
+		});	
+		}, 150);
+}	
+$(function(){
+        $("#formDescripcion").on("submit", function(e){
+            e.preventDefault();
+            var f = $(this);
+            var formData = new FormData(document.getElementById("formDescripcion"));
+			document.getElementById('ajax-loader').style.display='block';
+			setTimeout(function(){
+            $.ajax({
+                url: "https://nirjob.com/PhoneGap/descripcion/descripcionS.php",
+                type: "post",
+                dataType: "json",
+                data: formData,
+                cache: false,
+                contentType: false,
+	     processData: false
+            }).done(function(data){
+				var tamanio=data.length;
+			
+				if(data[0].Error=='0' && tamanio==1){
+				
+				var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Exito al subir su descripci&oacute;n.</p>";
+texto= texto + "<button type='button' onclick='location.href=\"../index.html\";'>Aceptar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+			}else{
+			var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Error al subir su descripci&oacute;n.</p>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+				}
+			document.getElementById('ajax-loader').style.display='none';
+                });
+				
+				}, 250);
+        
+		});
+		});
+	 	
+	</script>
+</head>
+<body onload='initialize();'>
+    <div id="container">
+        <div id="cabecera">
+
+        </div>
+		<div id='contenido'>
+		<div class='limpiador'></div>
+		<div id='seleccionadorSubirDatos'>
+		<form id="formDescripcion" method="post" enctype="multipart/form-data">
+		<div id='SubirDatosC' >
+		<div id='descripcion'>
+		<h3>Descripci&oacute;n: </h3>
+		<div id='descripcionC'>
+		<input type='text' name='descripcion' value='' id='inputDescripcion' required />
+		</div>
+		<div id='TagPrincipal'>
+		<h3>Categoria Principal: </h3>
+		<div id='TagPrincipalC'>
+		</div>
+		<div id='SubTagC'>
+		</div>
+		</div>
+		<div>
+		<input name='UID' value='' required readonly style='display:none' type='text' id='inputUID' />
+		<input id='InputDescriEnviar' type='submit' value='Subir' />
+		</div>
+		</form>
+		</div>
+
+		</div>
+		<div id='footer'>
+
+		</div>
+		<div id='ajax-loader'>
+	<img src='../archivosbase/img/ajax-loader.gif'/>
+	</div>
+	<div id='mensaje_javascript'><div></div></div>
+    </div>
+</body>
+</html>
+
