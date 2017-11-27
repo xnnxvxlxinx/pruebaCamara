@@ -28,7 +28,7 @@ $("#" + div).fadeOut(150);
 	$.get("../archivosbase/cabeza.html", function(htmlexterno){
    $("#cabecera").html(htmlexterno);
     	});
-
+document.getElementById('inputUID').value=UID;
 		}
 
 	</script>
@@ -43,26 +43,29 @@ $("#" + div).fadeOut(150);
 		<div id='seleccionadorSubirDatos'>
 		<form id="formUbicacion" method="post" enctype="multipart/form-data">
 		<div id='SubirDatosC' >
-		<div id='descripcion'>
-		<h3>Descripci&oacute;n: </h3>
-		<div id='descripcionC'>
-		<input type='text' name='descripcion' value='' id='inputDescripcion' required />
+		<div id='Botones'>
+		<button type='button' onclick='gps();'>Obtener ubicacion por GPS</button>
+		<button type='button' onclick='Ngps();'>Ubicacion Predeterminada</button>
 		</div>
-		<div id='TagPrincipal'>
-		<h3>Categoria Principal: </h3>
-		<div id='TagPrincipalC'>
+		<div id='InputsC'>
+		<input type='text' id='direccion' name='direccion' readonly value='NF' required />
+		<input type='text' id='inputLon' name='latitud'	readonly value='' required />
+		<input type='text' id='inputLat' name='longitud' readonly value='' required />
 		</div>
-		<div id='SubTagC'>
+		<div id='mapa'>
+		<div id='mapaC'>
 		</div>
 		</div>
 		<div>
 		<input name='UID' value='' required readonly style='display:none' type='text' id='inputUID' />
 		<input id='InputDescriEnviar' type='submit' value='Subir' />
 		</div>
-		</form>
 		</div>
+		</form>
+		
 
 		</div>
+		 </div>
 		<div id='footer'>
 
 		</div>
