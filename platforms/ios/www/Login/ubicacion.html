@@ -156,112 +156,45 @@ function obtenerUbicacion(lat,lon, inoutLat, inputLon) {
       marker.setMap(map); 
     getCoords(marker, inoutLat, inputLon); 
   }	
-/*
- var onSuccess = function(position) {
-        alert('Latitude: '          + position.coords.latitude          + '\n' +
-              'Longitude: '         + position.coords.longitude         + '\n');
-    obtenerUbicacion(position.coords.latitude, position.coords.longitude,'inputLat','inputLon');
-	};
-
-  var onError = function(error) {
-        alert('code: '    + error.code    + '\n' +
-              'message: ' + error.message + '\n');
-    }
-function gps(){
-navigator.geolocation.getCurrentPosition(onSuccess, onError);
-}
-	function getCoords(marker, inoutLat, inputLon)
-					{ 
-				document.getElementById(inoutLat).value=marker.getPosition().lat(); 
-				document.getElementById(inputLon).value=marker.getPosition().lng(); 
-					} 
-				var contadorubicaciones=1;
-				function obtenerUbicacion(lat,lon, inoutLat, inputLon) {	
-				var myLatlng = new google.maps.LatLng(lat,lon); 
-				document.getElementById('mapa').display='block';
-				var myOptions = { 
-				zoom: 16, 
-        center: myLatlng, 
-        mapTypeId: google.maps.MapTypeId.ROADMAP, 
-    } 
-    var map = new google.maps.Map(document.getElementById('mapaC'), myOptions); 
-   marker = new google.maps.Marker({ 
-          position: myLatlng, 
-          draggable: true, 
-          title:'Donde?' 
-    });
-	
-    google.maps.event.addListener(marker, 'dragend', function() { 
-                    getCoords(marker, inoutLat, inputLon); 
-    }); 
-     
-      marker.setMap(map); 
-    getCoords(marker, inoutLat, inputLon); 
-  }
-  
-  $concultaUbicacion="SELECT * FROM UBICACION WHERE ID_Usuario='$_SESSION[ID]'";
-			$result = $conexion->query($concultaUbicacion);
-			$numero=mysqli_num_rows($result);
-			echo "<script type='text/javascript'> 
-function getCoords(marker, inoutLat, inputLon){ 
-    document.getElementById(inoutLat).value=marker.getPosition().lat(); 
-      document.getElementById(inputLon).value=marker.getPosition().lng(); 
-
-} 
- var contadorubicaciones=$numero;
-function initialize(lat,lon, inoutLat, inputLon) {	
-    var myLatlng = new google.maps.LatLng(lat,lon); 
-    var myOptions = { 
-        zoom: 15, 
-        center: myLatlng, 
-        mapTypeId: google.maps.MapTypeId.ROADMAP, 
-    } 
-    var map = new google.maps.Map(document.getElementById('map_canvas'), myOptions); 
-    for(var i=0; i<contadorubicaciones; i++){ 
-   marker = new google.maps.Marker({ 
-          position: myLatlng, 
-          draggable: true, 
-          title:'Donde?' 
-    });
-	}	
-    google.maps.event.addListener(marker, 'dragend', function() { 
-                    getCoords(marker, inoutLat, inputLon); 
-    }); 
-     
-      marker.setMap(map); 
-    getCoords(marker, inoutLat, inputLon); 
-  } 
- 
- function nuevaubicacion(){
-	 var texto=document.getElementById('ubicaciones').innerHTML;
-	 contadorubicaciones=contadorubicaciones+1;
-	 texto=texto + \"<label style='display:none'> Latitud: <input type='text' class='coordEdit' name='latitud[]' id='latitud_mapa_\" + contadorubicaciones + \"' required readonly></label>\";
-	 texto=texto + \"<label style='display:none'> Longitud: <input type='text' class='coordEdit' id='longitud_mapa_\" + contadorubicaciones + \"' name='longitud[]' required readonly></label>\";
-	 texto=texto + \"<label> Direcci&oacute;n: <input type='text' class='coordEdit' name='direccion[]' required></label>\";
-	 texto=texto + \"<button type='button' onclick=\\\"initialize(-0.1574824, -78.4682946,'latitud_mapa_\" + contadorubicaciones + \"','longitud_mapa_\" + contadorubicaciones + \"')\\\" style='margin-left: 2%;'>Ubicar</button><br/>\";
-	 document.getElementById('ubicaciones').innerHTML=texto;
- }
-		echo "
-		<div id='ubicacion_empresas' class='oculto'>
-		<form action='$_SERVER[PHP_SELF]' method='post' >
-		<div id='ubicaciones'>";
-		$i=1;
-		while ($fila = $result->fetch_row()){
-echo "<label style='display:none'> Latitud: <input type='text' class='coordEdit' name='latitud[]' value='$fila[2]' id='latitud_mapa_$i' required readonly></label><label style='display:none'> Longitud: <input type='text' class='coordEdit' value='$fila[3]' id='longitud_mapa_$i' name='longitud[]' required readonly></label>
-<label> Direcci&oacute;n: <input type='text'class='coordEdit' name='direccion[]' value='$fila[4]' required></label>
-<input type='text' required readonly name='id_editar_ubicacion[]' value='$fila[0]' style='display:none;' /><button type='button' onclick='initialize($fila[2], $fila[3],\"latitud_mapa_$i\",\"longitud_mapa_$i\")' style='margin-left: 2%;'>Ubicar</button><br/>";
-		$i=$i+1;}
-		echo "</div>
-		<button type='submit' name='ubicacion_empresa_nuevo' value='Enviar'>Enviar</button><button type='button' onclick='nuevaubicacion()' style='margin-left: 2%;'>Nueva</button>
-		</form>
-<div id='mapas_de_google' style='position:relative;'>
-<div id='map_canvas' style='width:400px; height:400px;' ></div><br> 
-</div>
-		<div id='mapa_empresa_ubicacion'>
-		</div>
-		</div>";
-  
-  */ 
+$(function(){
+        $("#formUbicacion").on("submit", function(e){
+            e.preventDefault();
+            var f = $(this);
+            var formData = new FormData(document.getElementById("formUbicacion"));
+			document.getElementById('ajax-loader').style.display='block';
+			setTimeout(function(){
+            $.ajax({
+                url: "https://nirjob.com/PhoneGap/ubicacion/SubirE.php",
+                type: "post",
+                dataType: "json",
+                data: formData,
+                cache: false,
+                contentType: false,
+	     processData: false
+            }).done(function(data){
+				var tamanio=data.length;
+			
+				if(data[0].Error=='0' && tamanio==1){
+				
+				var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Exito al subir sus Ubicaciones.</p>";
+texto= texto + "<button type='button' onclick='location.href=\"../index.html\";'>Aceptar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+			}else{
+			var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Error al subir sus Ubicaciones.</p>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+				}
+			document.getElementById('ajax-loader').style.display='none';
+                });
+				
+				}, 250);
+        
+		});
+		});
 	</script>
 </head>
 <body onload='initialize();'>
@@ -273,10 +206,6 @@ echo "<label style='display:none'> Latitud: <input type='text' class='coordEdit'
 		<div id='seleccionadorSubirDatos'>
 		<form id="formUbicacion" method="post" enctype="multipart/form-data">
 		<div id='SubirDatosC' >
-		<!--<div id='Botones'>
-		<button type='button' onclick='gps();'>Obtener ubicacion por GPS</button>
-		<button type='button' onclick="obtenerUbicacion(-0.1574824, -78.4682946,'inputLat','inputLon');">Ubicacion Predeterminada</button>
-		</div>-->
 		<div id='InputsC'>
 		</div>
 		<div id='mapa' style='width:100%; height:20em; display:none;'>
