@@ -45,7 +45,33 @@ $("#" + div).fadeOut(150);
    $("#cabecera").html(htmlexterno);
     	});
 document.getElementById('inputUID').value=UID;
+	ObtenerSucursales();
+	}
+	function ObtenerSucursales(){
 	
+	document.getElementById('ajax-loader').style.display='block';
+	setTimeout(function(){	   
+	   $.getJSON('https://nirjob.com/PhoneGap/ubicacion/locales.php?ID=' + UID, function(data) {  
+		var tamanio=data.length;
+		for(var i=0; i<tamanio; i++){
+		if(data[i].ERROR=='0'){
+		latitud=parseFloat(data[i].latitud);
+		longitud=parseFloat(data[i].longitud);
+		direccion=data[i].direccion;
+		UbiId=data[i].UbiId;
+			document.getElementById('inputLat').value=latitud;
+			document.getElementById('inputLon').value=longitud;
+			document.getElementById('direccion').value=direccion;
+			obtenerUbicacion(latitud, longitud,'inputLat','inputLon');
+		}
+		if(data[0].ERROR=='1'){
+		alert('ERROR: 404');
+		}
+		}
+		document.getElementById('ajax-loader').style.display='none';	
+		});	
+	
+		}, 150);
 	}
 function gps(){
 navigator.geolocation.getCurrentPosition(onSuccess, onError);
@@ -78,6 +104,45 @@ navigator.geolocation.getCurrentPosition(onSuccess, onError);
       marker.setMap(map); 
     getCoords(marker, inoutLat, inputLon); 
   } 
+  $(function(){
+        $("#formUbicacion").on("submit", function(e){
+            e.preventDefault();
+            var f = $(this);
+            var formData = new FormData(document.getElementById("formUbicacion"));
+			document.getElementById('ajax-loader').style.display='block';
+			setTimeout(function(){
+            $.ajax({
+                url: "https://nirjob.com/PhoneGap/ubicacion/SubirP.php",
+                type: "post",
+                dataType: "json",
+                data: formData,
+                cache: false,
+                contentType: false,
+	     processData: false
+            }).done(function(data){
+				var tamanio=data.length;
+			
+				if(data[0].Error=='0' && tamanio==1){
+				
+				var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Exito al subir su Ubicaci&oacute;n.</p>";
+texto= texto + "<button type='button' onclick='location.href=\"../index.html\";'>Aceptar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+			}else{
+			var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Error al subir su Ubicaci&oacute;n.</p>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+				}
+			document.getElementById('ajax-loader').style.display='none';
+                });
+				
+				}, 250);
+        
+		});
+		});
 	</script>
 </head>
 <body onload='initialize();'>
@@ -94,9 +159,9 @@ navigator.geolocation.getCurrentPosition(onSuccess, onError);
 		<button type='button' onclick="obtenerUbicacion(-0.1574824, -78.4682946,'inputLat','inputLon');">Ubicacion Predeterminada</button>
 		</div>
 		<div id='InputsC'>
-		<input type='text' id='direccion' name='direccion' readonly value='NF' required />
-		<input type='text' id='inputLon' name='latitud'	readonly value='' required />
-		<input type='text' id='inputLat' name='longitud' readonly value='' required />
+		Direcci&oacute;n: <input type='text' id='direccion' name='direccion' value='NF' required />
+		<input type='text' style='display:none' id='inputLat' name='latitud'	readonly value='' required />
+		<input type='text' style='display:none' id='inputLon' name='longitud' readonly value='' required />
 		</div>
 		<div id='mapa' style='width:100%; height:20em; display:none;'>
 		<div id='mapaC' style='width:90%; height:20em; margin-left:5%;'>
