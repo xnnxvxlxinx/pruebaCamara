@@ -58,7 +58,7 @@ navigator.geolocation.getCurrentPosition(onSuccess, onError);
 				var contadorubicaciones=1;
 				function obtenerUbicacion(lat,lon, inoutLat, inputLon) {	
 				var myLatlng = new google.maps.LatLng(lat,lon); 
-				document.getElementById('mapa').display='block';
+				document.getElementById('mapa').style.display='block';
 				var myOptions = { 
 				zoom: 16, 
         center: myLatlng, 
