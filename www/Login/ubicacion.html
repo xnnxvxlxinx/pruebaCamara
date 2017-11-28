@@ -23,8 +23,6 @@
 	<script>
 	var UID = localStorage.getItem('SesionID') || '<empty>';
 	 
-
-    
 function cerrar(div){		
 $("#" + div).fadeOut(150);
 }
@@ -36,15 +34,46 @@ $("#" + div).fadeOut(150);
 document.getElementById('inputUID').value=UID;
 	
 	}
+	function ObtenerSucursales(){
+	setTimeout(function(){
+	    $.getJSON('https://nirjob.com/PhoneGap/ubicacion/locales.php?ID=' + UID, function(data) {  
+		var tamanio=data.length;
+		for(var i=0; i<tamanio; i++){
+		if(data[0].Error=='0'){
+		latitud=data[0].latitud;
+		longitud=data[0].longitud;
+		direccion=data[0].direccion;
+		UbiId=data[0].UbiId;
+			construir(latitud, longitud, direccion, UbiId);
+		}
+		if(data[0].Error=='2'){
+		/*var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>La publicación debe tener un título, una descripción y un precio.<br/>(* Precio=0, A Convenir)</p>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Aceptar</button>";
+		mensaje.childNodes[0].innerHTML=texto;*/
+		}
+		if(data[0].Error=='1'){
+		alert('ERROR: 404');
+		}
+		}
+		document.getElementById('ajax-loader').style.display='none';	
+		});	
+	
+		}, 150);
+		
+	
+	}
+	function construir(latitud, longitud, direccion, UbiId){
+	
+	}
 /*
  var onSuccess = function(position) {
         alert('Latitude: '          + position.coords.latitude          + '\n' +
               'Longitude: '         + position.coords.longitude         + '\n');
     obtenerUbicacion(position.coords.latitude, position.coords.longitude,'inputLat','inputLon');
 	};
- 
-    // onError Callback receives a PositionError object
-    //
+
   var onError = function(error) {
         alert('code: '    + error.code    + '\n' +
               'message: ' + error.message + '\n');
@@ -123,7 +152,6 @@ function initialize(lat,lon, inoutLat, inputLon) {
 	 texto=texto + \"<button type='button' onclick=\\\"initialize(-0.1574824, -78.4682946,'latitud_mapa_\" + contadorubicaciones + \"','longitud_mapa_\" + contadorubicaciones + \"')\\\" style='margin-left: 2%;'>Ubicar</button><br/>\";
 	 document.getElementById('ubicaciones').innerHTML=texto;
  }
-  </script>";
 		echo "
 		<div id='ubicacion_empresas' class='oculto'>
 		<form action='$_SERVER[PHP_SELF]' method='post' >
