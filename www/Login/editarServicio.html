@@ -64,6 +64,7 @@ setTimeout(function(){
 	   $.getJSON('https://nirjob.com/PhoneGap/servicios/Obtener.php', function(data) {  
   
 		var tamanio=data.length;
+			var texto='';
 			for(var i=0; i<tamanio; i++){
 				var IDOB=data[i].ID;
 				var TagPricipalOB=data[i].Nombre;
@@ -72,7 +73,9 @@ setTimeout(function(){
 				var SecundariosOB=data[i].Imagen;
 				var TituloOB=data[i].Imagen;
 				var DescripcionOB=data[i].Imagen;
-			mostrarServicios(ID, Nombre, Imagen);
+			texto += '<div><div>'+ TituloOB +'</div>' +
+			
+			;
 			}
 		document.getElementById('ajax-loader').style.display='none';	
 		});	
