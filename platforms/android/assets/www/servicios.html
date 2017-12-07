@@ -16,6 +16,7 @@
 	<link rel="stylesheet" type="text/css" href="archivosbase/CSS/errores.css">
 	<link rel="stylesheet" type="text/css" href="archivosbase/CSS/ajax-loader.css">
 	<link rel="stylesheet" type="text/css" href="archivosbase/CSS/productosBuscador.css">
+	<link rel="stylesheet" type="text/css" href="archivosbase/CSS/index_style.css">
 <script type="text/javascript" 
     src="https://maps.google.com/maps/api/js?sensor=false&key=AIzaSyDfGxUMXZLtPNZzXgJ1xioFvsJranjPkiU"> 
 </script> 
@@ -355,7 +356,9 @@ function ordenarProductos(e){
 	  }
 	function htmlTagsInicial(){
 	document.getElementById('ajax-loader').style.display='block';
-	$.get('https://nirjob.com/archivosbase/php/Buscador100Jq_contratacion/funcionhtmlTagsInicial.php'+ GetbusTag, function(texto) {
+	//$.get('https://nirjob.com/archivosbase/php/Buscador100Jq_contratacion/funcionhtmlTagsInicial.php'+ GetbusTag, function(texto) {
+		$.get('https://nirjob.com/archivosbase/php/subhead.php'+ GetbusTag, function(texto) {
+		
 		texto='<button name=\'mapButton\' class=\'optionMapButtonYellow1\' onclick=\'cambiodeMenu("mapas_de_google")\'>Mapa</button>' +
 		'<button name=\'listButton\' class=\'optionMapButtonYellow2\' onclick=\'cambiodeMenu("productosBuscador")\'>Lista</button><br>' +
 		'<div class=\'divLabelsLeft\'><label>Ofertas <input checked type="checkbox" value="1" onchange="buscador_tipo_check()" id="checkbox_tipo_busqueda_1"/></label><label>Servicios <input checked type="checkbox" onchange="buscador_tipo_check()" value="2" id="checkbox_tipo_busqueda_2" /></label></div>' + texto;
