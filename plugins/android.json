@@ -1,0 +1,33 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.nirjob"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.nirjob"
+    },
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "com.nirjob"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.nirjob"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "com.nirjob"
+    },
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "com.nirjob"
+    },
+    "cordova-plugin-dialogs": {
+      "PACKAGE_NAME": "com.nirjob"
+    }
+  },
+  "dependent_plugins": {}
+}
