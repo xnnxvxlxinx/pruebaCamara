@@ -102,8 +102,9 @@ font-size:1.05em;
 #MenuCabeza{
 	display:none;
 	position:absolute;
+	overflow:auto;
 	width:70%;
-background:rgba(0,0,0,0.7);
+background:#0277BD;
 	z-index:30;
 	
 }
@@ -116,12 +117,32 @@ background:rgba(0,0,0,0.7);
 	
 }
 #MenuCabezaUl{
-	font-size:1.25em;
-	
+	font-size:1em;
+	list-style:none;
+	padding:0;
+	margin-left:5%;
+}
+#MenuCabezaUl li{
+margin-top:0.3em;
+border-bottom:1px solid white;
+}
+#MenuCabezaUl h5{
+display:inline-block;
+}
+#CabezaImgUser{
+	display:inline-block;
+	width:25%;
+	height:3.8em;
+	border-radius:200px;
+	overflow:hidden;
+}
+#CabezaImgUser img{
+height:4em;
 }
 #MenuCabeza a{
+	text-decoration:none;   
 	color:white;
-	font-size:1.25em;
+	font-size:1.2em;
 }
 #ManeuBuscadorRadio{
  width: 15%;

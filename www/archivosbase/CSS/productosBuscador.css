@@ -1,33 +1,73 @@
 #productosBuscador{
 	/*EDITAR PARA HACERLE CON FLOAT EL MENU*/
-	width:90%;
-margin:1em 5% 0 5%;
+	/*position: absolute;
+	top: 10em;
+	left: 22%;*/
+	/*top:-35em;*/
+	float:right;
+	width:95%;
+	right:2.5%;
+	height:auto;
+}
+#buttonMore{
+	text-align: center;
 }
 
-
-#mostradorProductos div{
+#productosBajoMapaC{
+	margin-left: 2.5%;
+	width:95%;
+	text-align:left;
+	margin-top: 1.5em;
+}
+#productosBajoMapa{
+	/*text-align:left;*/
 	width:100%;
-	border:solid 1px black;
 }
-#mostradorProductos div div{
+#mostradorProductos div, #productosBajoMapaC div div{
+	width:95%;
+	/*border-top: 2px solid #029BDB;*/
+	padding-left: 1%;
+	display: inline-flex;
+	padding-top: 1%;
+	padding-bottom: 1%;
+	padding-right: 1%;
+	background-color: #FFFFFF;
+}
+/*#mostradorProductos div div{
 	border:0;
 	display: inline-block;
-	width:33%;
-	overflow:hidden;
+	width:30%;
+	overflow:auto;
 	height:8em;
-}
-#mostradorProductos div div img{
+}*/
+/*#mostradorProductos div div img{
 	max-width:100%;
 	border:0;
 	max-height:7.5em;
+}*/
+.descripcionProducto{
+	max-width: 67%;
+	border-top: 2px solid #029BDB;
+	padding-left: 1%;
 }
-.productosBajoMapa{
-	display:inline-block;
-	width:47%;
-	margin-left:2%;
-	margin-bottom:0.2em;
+.imagenProducto{
+	max-width: 20%;
+	border: none;
+	max-height:7.5em;
+	border-top: 2px solid #029BDB;
+	padding-left: 1%;
 }
-.productosBajoMapa img{
-	max-width:90%;
-	max-height:4em;
+.imagenProducto img{
+	max-width: 100%;
+	/*border-top: 2px solid #029BDB;*/
+}
+.precioProducto
+{
+	max-width: 8%;
+	border-top: 2px solid #029BDB;
+	padding-left: 1%;
+}
+#mostradorProductos h3, #productosBajoMapaC h3{
+	margin-right: 1em;
+	font-size: 14px;
 }

@@ -8,9 +8,11 @@
   content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
    
 	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/cabeza.css">
-    <link rel="stylesheet" type="text/css" href="https://nirjob.com/archivosbase/CSS/visorE.css">	
+    <link rel="stylesheet" type="text/css" href="../archivosbase/CSS/visorE.css">	
 	 <link rel="stylesheet" type="text/css" href="https://nirjob.com/archivosbase/CSS/estrellitas.css">	
 	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/ajax-loader.css">
+	 	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/errores.css">
+ <link rel="stylesheet" type="text/css" href="../archivosbase/CSS/productosBuscador.css">
 	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/mensaje_javascript.css">
     <link rel="shortcut icon" href="../archivosbase/icons/favicon.ico" />
 	<script src="../archivosbase/jquerymobile145/jquery-3.2.1.min.js"></script>
@@ -79,7 +81,7 @@ $( "#contenido" ).live( "click", function() {
 function htmlTagsInicial(){
 	
 	document.getElementById('ajax-loader').style.display='block';
-	$.get('http://nirjob.com/archivosbase/php/visor100jq/funcioninicial.php'+ GetID, function(texto) {
+	$.get('http://nirjob.com/PhoneGap/visores/funcioninicial.php'+ GetID, function(texto) {
 		
 		document.getElementById('contenido').innerHTML=texto;
 		document.getElementById('ajax-loader').style.display='none';
