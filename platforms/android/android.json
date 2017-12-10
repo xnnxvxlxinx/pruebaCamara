@@ -39,10 +39,6 @@
                         {
                             "xml": "<feature name=\"LocalNotification\"><param name=\"android-package\" value=\"de.appplant.cordova.plugin.localnotification.LocalNotification\" /></feature>",
                             "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"Geolocation\"><param name=\"android-package\" value=\"org.apache.cordova.geolocation.Geolocation\" /></feature>",
-                            "count": 1
                         }
                     ]
                 }
@@ -53,18 +49,6 @@
                         {
                             "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
                             "count": 3
-                        },
-                        {
-                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<uses-feature android:name=\"android.hardware.location.gps\" />",
-                            "count": 1
                         }
                     ],
                     "application": [
@@ -140,9 +124,6 @@
             "PACKAGE_NAME": "io.cordova.Nirjob"
         },
         "cordova-plugin-local-notification": {
-            "PACKAGE_NAME": "io.cordova.Nirjob"
-        },
-        "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "io.cordova.Nirjob"
         }
     },
@@ -419,20 +400,6 @@
                 "cordova.plugins.notification.local.core",
                 "plugin.notification.local.core"
             ]
-        },
-        {
-            "id": "cordova-plugin-geolocation.geolocation",
-            "file": "plugins/cordova-plugin-geolocation/www/android/geolocation.js",
-            "pluginId": "cordova-plugin-geolocation",
-            "clobbers": [
-                "navigator.geolocation"
-            ]
-        },
-        {
-            "id": "cordova-plugin-geolocation.PositionError",
-            "file": "plugins/cordova-plugin-geolocation/www/PositionError.js",
-            "pluginId": "cordova-plugin-geolocation",
-            "runs": true
         }
     ],
     "plugin_metadata": {
@@ -443,7 +410,6 @@
         "cordova-plugin-file": "4.3.3",
         "cordova-plugin-file-transfer": "1.6.3",
         "cordova-plugin-app-event": "1.2.1",
-        "cordova-plugin-local-notification": "0.8.4",
-        "cordova-plugin-geolocation": "3.0.0"
+        "cordova-plugin-local-notification": "0.8.4"
     }
 }

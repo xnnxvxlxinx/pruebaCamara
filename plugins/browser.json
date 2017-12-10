@@ -25,9 +25,6 @@
         "cordova-plugin-file-transfer": {
             "PACKAGE_NAME": "io.cordova.Nirjob"
         },
-        "cordova-plugin-geolocation": {
-            "PACKAGE_NAME": "io.cordova.Nirjob"
-        },
         "cordova-plugin-local-notification": {
             "PACKAGE_NAME": "io.cordova.Nirjob"
         },
