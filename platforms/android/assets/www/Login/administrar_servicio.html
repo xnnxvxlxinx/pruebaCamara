@@ -24,7 +24,6 @@
     // PhoneGap is ready to be used!
     //
     function onDeviceReady() {
-	
         pictureSource=navigator.camera.PictureSourceType;
         destinationType=navigator.camera.DestinationType;
     }
@@ -35,7 +34,6 @@ var InputDescripcion='';
 var InputTagSecundario=[];
 var UriImagnes=[];
 var TotalImagenes=0;
-var InputPrecio=0;
 	function initialize() {
 	
 	$.get("../archivosbase/cabeza.html", function(htmlexterno){
@@ -59,8 +57,6 @@ setTimeout(function(){
 	TagPrinciForm=0;
 	 InputTitulo='';
  InputDescripcion='';
- InputPrecio=0;
- UriImagnes=[];
  InputTagSecundario=[];
 	   $.getJSON('https://nirjob.com/PhoneGap/servicios/TagPrincipales.php', function(data) {  
   
@@ -110,7 +106,6 @@ var div=document.getElementById('seleccionadorTituloC');
 
 		var texto='<div ><h3>Título de la Publicación.</h3><input type="text" id="InputTitulo" value="'+ InputTitulo +'" /></br>';
 		 texto= texto + '<h3>Descripción de la Publicación.</h3><input type="text" id="InputDescripcion" value="' + InputDescripcion +'" /></br>';
-		 texto= texto + '<h3>*Precio $:</h3><input type="number" id="InputPrecio" value="' + InputPrecio +'" /></br>';
 		 texto=texto +'<input type="submit" value="Siguiente" onclick="seleccionadorTagsSecundario();" style="background-color: #FFD54F;"></div>';
 		
 		div.innerHTML=texto;
@@ -174,8 +169,7 @@ texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>A
 function seleccionadorTagsSecundario(){
 InputTitulo=document.getElementById('InputTitulo').value;
 InputDescripcion=document.getElementById('InputDescripcion').value;
-InputPrecio=document.getElementById('InputPrecio').value;
-if(InputTitulo!='' && InputDescripcion!='' && InputPrecio!='' && InputPrecio>=0){
+if(InputTitulo!='' && InputDescripcion!=''){
 $("#seleccionadorTitulo").fadeOut(250);
 document.getElementById('ajax-loader').style.display='block';
 setTimeout(function(){
@@ -188,7 +182,7 @@ $("#seleccionadorTagsSecundario").fadeIn(250);
 }else{
 var mensaje=document.getElementById('mensaje_javascript');
 		mensaje.style.display='block';
-var texto="<p>La publicación debe tener un título, una descripción y un precio.<br/>(* Precio=0, A Convenir)</p>";
+var texto="<p>La publicación debe tener un título y una descripción.</p>";
 texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Aceptar</button>";
 		mensaje.childNodes[0].innerHTML=texto;
 }
@@ -214,8 +208,7 @@ $("#seleccionadorImagenes").fadeIn(250);
 var mensaje=document.getElementById('mensaje_javascript');
 		mensaje.style.display='block';
 var texto="<p>No ha seleccionado ninguna sub categoría.</p>";
-texto= texto + "<button type='button' onclick='seleccionadorImagenes(); cerrar(\"mensaje_javascript\");'>Siguiente</button>";
-texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Aceptar</button>";
 		mensaje.childNodes[0].innerHTML=texto;
 }
 }
@@ -290,31 +283,52 @@ function subirdatosservicio(){
 
 var div=document.getElementById('SubirDatosC');
 var texto='<div>';
-		var texto='<h3>Título de la Publicación.</h3><input type="text" name="titulo" value="'+ InputTitulo +'" required readonly/></br>';
-		 texto= texto + '<h3>Descripción de la Publicación.</h3><input name="descripcion" type="text" required readonly value="' + InputDescripcion +'" /></br>';
-texto= texto + '<h3>Valor $:</h3><input name="puestos" type="text"  required readonly value="' + InputPrecio +'" /></br>';		 
-		 texto= texto + '<input type="text" name="tag_principal" required readonly value="' +  TagPrinciForm +'" style="display:none"/></br>';
+		var texto='<h3>Título de la Publicación.</h3><input type="text" name="titulo" id="InputTitulo" value="'+ InputTitulo +'" required readonly/></br>';
+		 texto= texto + '<h3>Descripción de la Publicación.</h3><input name="descripcion" type="text" id="InputDescripcion" required readonly value="' + InputDescripcion +'" /></br>';
+		  texto= texto + '<h3>Tag.</h3><input type="text" name="tag_principal" required readonly value="' +  TagPrinciForm +'" /></br>';
 		for(var i=0; i<InputTagSecundario.length; i++){
-		 texto= texto + '<input type="text" name="subtag[]" required readonly value="' +  InputTagSecundario[i] +'" style="display:none"/></br>';
+		 texto= texto + '<h3>Tag S.</h3><input type="text" name="subtag[]" required readonly value="' +  InputTagSecundario[i] +'" /></br>';
 		}
 		for(var i=0; i<UriImagnes.length; i++){
-		 texto= texto + '<h3>Imagen: </h3><div class="seleccionadorImagenesC_foto"><img src="'+ UriImagnes[i] +'" style="width:100%; height:10em;"/></div></br>';
+		 texto= texto + '<h3>Imagene: </h3><img src="'+ UriImagnes[i] +'"/></br>';
 		}
 		var UID = localStorage.getItem('SesionID') || '<empty>';
 		texto= texto + '<input type="text" name="UID" required readonly value="' +  UID +'" style="display:none"/>';
-		texto= texto + '<input type="text" name="tipo" required readonly value="2" style="display:none"/>';
 		 texto= texto + '<input type="text" required readonly name="subir_nuevo_oferta_E" value="Subir" style="display:none"/></br>';
 		 texto=texto +'<input type="submit"   value="Subir" style="background-color: #FFD54F;"/>';
 		 texto=texto +'</form></div>';
 		div.innerHTML=texto;
 }
+function subirdatosservicioF(){
+/*document.getElementById('ajax-loader').style.display='block';
+setTimeout(function(){
+	   $.get('https://nirjob.com/PhoneGap/servicios/serviciosSubir' + '?ID=' + ID, function(data) {  
+	for(var i=0; i<UriImagnes.length; i++){
+var options= new FileUploaOptions();
+options.fileKey="file";
+options.fileName=UriImagnes[i].substr(UriImagnes[i].lastIndexOf("/")+1);
+options.mimeType="image/jpeg";
+var ft = new FileTransfer();
+ft.upload(fileURL, encodeURI("https://nirjob.com/phonegap/servicios/imagenesSubir.php"), win, fail, options);
+ft.abort();
+}
+		document.getElementById('ajax-loader').style.display='none';	
+		});	
+		}, 150);*/
 
+}
+var win = function(r) {
+   alert(r[0].Error);
+}
 
+var fail = function(error) {
+alert(error[0].Error);
+}
 $(function(){
         $("#formServicio").on("submit", function(e){
-			
+			alert("entro");
             e.preventDefault();
-			
+			alert("entro");
             var f = $(this);
             var formData = new FormData(document.getElementById("formServicio"));
 			document.getElementById('ajax-loader').style.display='block';
@@ -329,52 +343,37 @@ $(function(){
 	     processData: false
             }).done(function(data){
 				var tamanio=data.length;
-				
+				alert(data[0].Error);
 				if(data[0].Error=='0' && tamanio==1){
 				var UID = localStorage.getItem('SesionID') || '<empty>';
-	if(UriImagnes.length>0){
 	for(var i=0; i<UriImagnes.length; i++){
-
-var win = function(r) {
-   var mensaje=document.getElementById('mensaje_javascript');
-		mensaje.style.display='block';
-var texto="<p>Se ha subido su pedido de servcio con exito.</p>";
-texto= texto + "<button type='button' onclick='location.href=\"../index.html\"; cerrar(\"mensaje_javascript\");'>Continuar</button>";
-//texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
-		mensaje.childNodes[0].innerHTML=texto;
-}
-
-var fail = function(error) {
-var mensaje=document.getElementById('mensaje_javascript');
-		mensaje.style.display='block';
-var texto="<p>Error al enviar su pedido de servcio.</p>";
-texto= texto + "<button type='button' onclick='location.href=\"../index.html\"; cerrar(\"mensaje_javascript\");'>Salir</button>";
-texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Volvar a intentar</button>";
-		mensaje.childNodes[0].innerHTML=texto;
-}	
-var options = new FileUploadOptions();
-options.fileKey = "file";
-options.fileName = UriImagnes[i].substr(UriImagnes[i].lastIndexOf('/') + 1);
-options.mimeType = "image/jpeg";
-
-var params = {};
+	alert(i);
+var options= new FileUploaOptions();
+options.fileKey="file";
+options.fileName=UriImagnes[i].substr(UriImagnes[i].lastIndexOf("/")+1);
+options.mimeType="image/jpeg";
+options.chunkedMode=true;
+var params = new Object();
 params.ID=data[0].ID;
 params.UID=UID;
-options.params = params;
+options.params=params;
+alert("err");
 var ft = new FileTransfer();
-
 ft.upload(UriImagnes[i], encodeURI("https://nirjob.com/PhoneGap/servicios/imagenesSubir.php"), win, fail, options);
-}}else{
+alert("err");
+}
 var mensaje=document.getElementById('mensaje_javascript');
 		mensaje.style.display='block';
-var texto="<p>Se ha subido su pedido de servcio con exito.</p>";
+var texto="<p>Se ha subido su servcio con exito.</p>";
 texto= texto + "<button type='button' onclick='location.href=\"../index.html\"; cerrar(\"mensaje_javascript\");'>Continuar</button>";
-//texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
 		mensaje.childNodes[0].innerHTML=texto;
-}			}else{
+				
+		
+				}else{
 			var mensaje=document.getElementById('mensaje_javascript');
 		mensaje.style.display='block';
-var texto="<p>Error al subir la oferta de servicio.</p>";
+var texto="<p>Error al subir el servicio.</p>";
 texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
 		mensaje.childNodes[0].innerHTML=texto;
 				}
