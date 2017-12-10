@@ -1,0 +1,208 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Inicio</title>
+<meta http-equiv="Expires" content="0">
+  <meta http-equiv="Last-Modified" content="0">
+  <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+    <script type="text/javascript" src="archivos_base/script/isMobile.js"></script>
+	<link rel="stylesheet" type="text/css" href="archivosbase/CSS/cabeza.css">	
+	<link rel="stylesheet" type="text/css" href="archivosbase/CSS/map.css">	
+	<link rel="shortcut icon" href="archivosbase/icons/favicon.ico" />
+	<link rel="stylesheet" type="text/css" href="archivosbase/CSS/errores.css">
+	<link rel="stylesheet" type="text/css" href="archivosbase/CSS/productosBuscador.css">
+	<link rel="stylesheet" type="text/css" href="archivosbase/CSS/ajax-loader.css"> 
+<script src="archivosbase/jquerymobile145/jquery-3.2.1.min.js"></script>
+ <script src="archivosbase/jquerymobile145/jquery.mobile-1.4.5.min.js"></script>
+</head>
+
+<body onload='initialize(); '>
+<div id="container">
+    <div id="cabecera">
+
+    </div>
+	<div id='contenido'>
+		
+		<div id='menuTags'></div>
+		
+		<div id='contenidoBuscador'>
+			<div id='botonBuscador'>
+			</div>
+			
+<script type='text/javascript'> 
+var GetBusqueda='';
+var GetbusTag='';
+function initialize() {
+var URLsearch = window.location.search;
+if(URLsearch==''){
+GetBusqueda='';
+GetbusTag='';
+}else{
+GetBusqueda="?busqueda=" + URLsearch;
+GetbusTag="?Bus=" + URLsearch;
+}
+htmlTagsInicial();
+	  llamarmarc(GetBusqueda);
+  } 
+ var buscheck=''; 
+ var contproductos=0;
+ function desaparecer(){
+	 for(var kon=contproductos-1; kon>=0; kon--){
+		$("#Producto_div_" + kon ).fadeOut(250);
+	}
+ }
+function llamarmarc(busqueda){
+	desaparecer();
+	setTimeout(function(){
+		
+	buscheck=busqueda;
+	document.getElementById('mostradorProductos').innerHTML='';
+	contproductos=0;
+	//document.getElementById('ajax-loader').style.display='block';
+	   $.getJSON('http://nirjob.com/archivosbase/php/productos/buscadorproductos.php' + busqueda, function(data) {   
+		var tamanio=data.length;
+			for(var i=0; i<tamanio; i++){
+		
+				var Precio=parseFloat(data[i].Precio);
+				var Titulo=data[i].Titulo;
+				var ID_Usuario=data[i].ID_Usuario;
+				var Descri=data[i].Descri;
+				var ID=data[i].ID;
+				var Imagen=data[i].Imagen;
+			mostrarProductos(Precio, Titulo, ID_Usuario, Descri, ID, Imagen);
+			}
+		//document.getElementById('ajax-loader').style.display='none';	
+		});	
+		//setTimeout(function(){deleteMarkers()},5000);
+		}, 250);
+	}
+	
+function mostrarProductos(Precio, Titulo, ID_Usuario, Descri, ID, Imagen){
+	
+	var div=document.getElementById('mostradorProductos');
+	var indiv = document.createElement('div');
+		indiv.id='Producto_div_' + contproductos;
+		indiv.style.display='none';
+	var texto='<div class=\"imagenProducto\"><img src=\"http://nirjob.com/' + Imagen + '\"></div>';
+	texto=texto+'<div class=\"descripcionProducto\"><h3><a href=\"Visor/visorP.php?ID='+ID+'\">' + Titulo + '</a></h3><p>' + Descri + '</p></div>';
+	texto=texto+'<div class=\"precioProducto\"><h3>' + Precio + '</h3></div>';
+		div.appendChild(indiv);
+		document.getElementById('Producto_div_' + contproductos).innerHTML=texto;
+		$("#Producto_div_" + contproductos).fadeIn(250);
+		contproductos=contproductos + 1;
+}
+
+/*Funcion resiclda*/
+	  function subTag(TAG){
+		  if(TAG!='Todos'){
+			document.getElementById('categoriaTagPrincipalMenu').style.display='none';
+			document.getElementById('categoriaCheckButton').style.display='block';
+		  }else{
+			document.getElementById('categoriaTagPrincipalMenu').style.display='block';
+			document.getElementById('categoriaCheckButton').style.display='none';
+		  }
+		 
+		 $.getJSON('http://nirjob.com/archivosbase/php/Buscador100Jq/funciontablaTag.php', function(datat) {
+			 
+		var tamaniot=datat.length;
+			for(var i=0; i<tamaniot; i++){
+			 var ID=datat[i].ID;
+			
+			 if(TAG==ID){
+			document.getElementById('categoriaCheckButton_' + ID).style.display='block';
+
+		}else{
+			document.getElementById('categoriaCheckButton_' + ID).style.display='none';
+		}
+			}
+		});	
+
+	  
+	  }
+	  
+	  function checkTagSecundario(e, Tag){
+		  var check=e.checked;
+		  var busc='&tagS%5B%5D='+ e.value;
+		  if(check==true){
+		  buscheck=buscheck + busc;
+		  }else{
+			  buscheck=buscheck.replace(busc, '');
+		  }
+		  
+		  llamarmarc(buscheck);
+	  }
+	function ordenarProductos(e){
+		if(buscheck==''){
+		 var busc='?ordenar='+ e.value;
+		 buscheck=buscheck + busc;
+		 llamarmarc(buscheck);
+		}else{
+			var busc='&ordenar='+ e.value;
+		 buscheck=buscheck + busc;
+		 llamarmarc(buscheck);
+		}
+	}
+	
+	function htmlTagsInicial(){
+	$.get("archivosbase/cabeza.html", function(htmlexterno){
+   $("#cabecera").html(htmlexterno);
+    	});
+	document.getElementById('ajax-loader').style.display='block';
+	$.get('http://nirjob.com/archivosbase/php/productos/funcionhtmlTagsInicial.php'+ GetbusTag, function(texto) {
+		document.getElementById('menu_izquierda').innerHTML=texto;
+		document.getElementById('ajax-loader').style.display='none';
+	});	
+	}
+function buscadorTagP(ID){
+	
+	if(buscheck==''){
+		var busc='?tag='+ ID;
+		/*if(ID!='N'){*/
+		 buscheck=buscheck + busc;
+		 llamarmarc(buscheck);
+		/*}else{
+			buscheck=buscheck.replace(busc, '');
+			llamarmarc(buscheck);
+		}*/
+		}else{
+			var busc='&tag='+ ID;
+			/*if(ID!='N'){*/
+		 buscheck=buscheck + busc;
+		 llamarmarc(buscheck);
+		/*}else{
+			buscheck=buscheck.replace(busc, '');
+			llamarmarc(buscheck);
+		}*/}
+	}
+	
+  </script>
+			<div id='menu_izquierda'>
+		
+			</div>
+			<div id='productosBuscador'>
+			<div id='productosOrdenar'>
+			<select onchange='ordenarProductos(this)'>
+			<option value='0'>Ordenar</option>
+			<option value='1'>Fecha de publicacion</option>
+			<option value='2'>Precio (Mayor a menor)</option>
+			<option value='3'>Precio (Menor a mayor)</option>
+			</select>
+			</div>
+			<div id='mostradorProductos'>
+			</div>
+			<div class='limpiador'></div>
+			</div>
+			<div class='limpiador'></div>
+		</div>
+		
+	</div>
+	<div id='footer'>
+
+	</div>
+	<div id='ajax-loader'>
+	<img src='archivosbase/img/ajax-loader.gif'/>
+	</div>
+</div>
+</body>
+</html>

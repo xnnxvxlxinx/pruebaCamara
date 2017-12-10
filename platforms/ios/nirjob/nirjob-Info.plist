@@ -5,7 +5,7 @@
     <key>CFBundleDevelopmentRegion</key>
     <string>English</string>
     <key>CFBundleDisplayName</key>
-    <string>nirjob</string>
+    <string>Nirjob</string>
     <key>CFBundleExecutable</key>
     <string>${EXECUTABLE_NAME}</string>
     <key>CFBundleIcons</key>
@@ -53,10 +53,10 @@
       <true/>
     </dict>
     <key>NSCameraUsageDescription</key>
-    <string></string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string></string>
-    <key>NSLocationWhenInUseUsageDescription</key>
     <string/>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string/>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string></string>
   </dict>
 </plist>

@@ -1,33 +1,33 @@
 {
-  "_from": "cordova-plugin-geolocation@3.0.0",
-  "_id": "cordova-plugin-geolocation@3.0.0",
+  "_from": "cordova-plugin-geolocation@2.4.3",
+  "_id": "cordova-plugin-geolocation@2.4.3",
   "_inBundle": false,
-  "_integrity": "sha1-5j4NRXwaL7qw3AKd3qZbjwSSFBA=",
+  "_integrity": "sha1-HdAAI9Hxos4zD4dn7Qj3tzj+cYQ=",
   "_location": "/cordova-plugin-geolocation",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "cordova-plugin-geolocation@3.0.0",
+    "raw": "cordova-plugin-geolocation@2.4.3",
     "name": "cordova-plugin-geolocation",
     "escapedName": "cordova-plugin-geolocation",
-    "rawSpec": "3.0.0",
+    "rawSpec": "2.4.3",
     "saveSpec": null,
-    "fetchSpec": "3.0.0"
+    "fetchSpec": "2.4.3"
   },
   "_requiredBy": [
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/cordova-plugin-geolocation/-/cordova-plugin-geolocation-3.0.0.tgz",
-  "_shasum": "e63e0d457c1a2fbab0dc029ddea65b8f04921410",
-  "_spec": "cordova-plugin-geolocation@3.0.0",
-  "_where": "C:\\Users\\Mateo\\Desktop\\GitHub\\pruebacamara\\pruebaCamara\\nirjob",
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-geolocation/-/cordova-plugin-geolocation-2.4.3.tgz",
+  "_shasum": "1dd00023d1f1a2ce330f8767ed08f7b738fe7184",
+  "_spec": "cordova-plugin-geolocation@2.4.3",
+  "_where": "C:\\Users\\Mateo\\Desktop\\GitHub\\pruebacamara\\pruebaCamara\\pruebaCamara",
   "author": {
     "name": "Apache Software Foundation"
   },
   "bugs": {
-    "url": "https://issues.apache.org/jira/browse/CB"
+    "url": "https://github.com/apache/cordova-plugin-geolocation/issues"
   },
   "bundleDependencies": false,
   "cordova": {
@@ -48,20 +48,11 @@
   "deprecated": false,
   "description": "Cordova Geolocation Plugin",
   "devDependencies": {
-    "eslint": "^4.0.0",
-    "eslint-config-semistandard": "^11.0.0",
-    "eslint-config-standard": "^10.2.1",
-    "eslint-plugin-import": "^2.3.0",
-    "eslint-plugin-node": "^5.0.0",
-    "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-standard": "^3.0.1"
+    "jshint": "^2.6.0"
   },
   "engines": {
     "cordovaDependencies": {
       "3.0.0": {
-        "cordova-android": ">=6.3.0"
-      },
-      "4.0.0": {
         "cordova": ">100"
       }
     }
@@ -89,8 +80,8 @@
     "url": "git+https://github.com/apache/cordova-plugin-geolocation.git"
   },
   "scripts": {
-    "eslint": "node node_modules/eslint/bin/eslint www && node node_modules/eslint/bin/eslint src && node node_modules/eslint/bin/eslint tests",
-    "test": "npm run eslint"
+    "jshint": "node node_modules/jshint/bin/jshint www && node node_modules/jshint/bin/jshint src && node node_modules/jshint/bin/jshint tests",
+    "test": "npm run jshint"
   },
-  "version": "3.0.0"
+  "version": "2.4.3"
 }
