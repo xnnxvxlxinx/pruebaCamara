@@ -285,6 +285,14 @@ module.exports = [
     "file": "plugins/cordova-plugin-geolocation/www/PositionError.js",
     "pluginId": "cordova-plugin-geolocation",
     "runs": true
+  },
+  {
+    "id": "cordova.plugins.diagnostic.Diagnostic",
+    "file": "plugins/cordova.plugins.diagnostic/www/android/diagnostic.js",
+    "pluginId": "cordova.plugins.diagnostic",
+    "clobbers": [
+      "cordova.plugins.diagnostic"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -298,7 +306,8 @@ module.exports.metadata =
   "cordova-plugin-file-transfer": "1.6.3",
   "cordova-plugin-app-event": "1.2.1",
   "cordova-plugin-local-notification": "0.8.4",
-  "cordova-plugin-geolocation": "3.0.0"
+  "cordova-plugin-geolocation": "3.0.0",
+  "cordova.plugins.diagnostic": "3.7.2"
 };
 // BOTTOM OF METADATA
 });

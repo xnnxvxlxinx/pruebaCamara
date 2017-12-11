@@ -30,6 +30,9 @@
     },
     "cordova-plugin-geolocation": {
       "PACKAGE_NAME": "io.cordova.Nirjob"
+    },
+    "cordova.plugins.diagnostic": {
+      "PACKAGE_NAME": "io.cordova.Nirjob"
     }
   },
   "dependent_plugins": {
