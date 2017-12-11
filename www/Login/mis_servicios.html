@@ -12,6 +12,7 @@
 	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/fotosseleccion.css">
 	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/ajax-loader.css">
 	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/mensaje_javascript.css">
+	<link rel="stylesheet" type="text/css" href="archivosbase/CSS/productosBuscador.css">
     <link rel="shortcut icon" href="../archivosbase/icons/favicon.ico" />
 	<script src="../archivosbase/jquerymobile145/jquery-3.2.1.min.js"></script>
  <script src="../archivosbase/jquerymobile145/jquery.mobile-1.4.5.min.js"></script>
@@ -49,11 +50,12 @@ function cerrar(div){
 $("#" + div).fadeOut(150);
 }
 function buscarServicios(){
-
+ alert('in');
 document.getElementById('ajax-loader').style.display='block';
 setTimeout(function(){
 
-	document.getElementById('SeleccionadorServicios').innerHTML='';
+	document.getElementById('productosBajoMapa').innerHTML='';
+	var UID = localStorage.getItem('SesionID') || '<empty>';
 	var numeroTagsPrin=0;
 	TagPrinciForm=0;
 	 InputTitulo='';
@@ -61,27 +63,37 @@ setTimeout(function(){
  InputPrecio=0;
  UriImagnes=[];
  InputTagSecundario=[];
-	   $.getJSON('https://nirjob.com/PhoneGap/servicios/Obtener.php', function(data) {  
-  
+ var contproductosBaj=0;
+	   $.getJSON('https://nirjob.com/PhoneGap/servicios/Obtener.php?ID=' + UID, function(data) {  
+  alert('in');
 		var tamanio=data.length;
 			var texto='';
 			for(var i=0; i<tamanio; i++){
 				var IDOB=data[i].ID;
-				var TagPricipalOB=data[i].Nombre;
+				var DescripcionOB=data[i].Descripcion;
+				var PrecioOB=data[i].Puestos;
+				var TagPricipalOB=data[i].TagPri;
+				var SecundariosOB=data[i].TagSec;
+				var TituloOB=data[i].titulo;
 				var ImagenOB=data[i].Imagen;
-				var PrecioOB=data[i].Imagen;
-				var SecundariosOB=data[i].Imagen;
-				var TituloOB=data[i].Imagen;
-				var DescripcionOB=data[i].Imagen;
-			texto += '<div><div>'+ TituloOB +'</div>' +
-			
-			;
+			var div=document.getElementById('productosBajoMapa');
+	var indiv = document.createElement('div');
+		indiv.id='productosBajoMapa_' + contproductosBaj;
+		indiv.className='productosBajoMapa';
+		indiv.style.display='none';
+	var texto='<div class="imagenProducto"><img src="https://nirjob.com/' + ImagenOB[0] + '"></div>';
+	texto=texto+'<div class="descripcionProducto"><h3><a href="Login/visorServicios.html?ID='+IDOB+'\">' + TituloOB + '</a></h3></div>';
+	texto=texto+'<div class="precioProducto"><h3>' + PrecioOB + '</h3></div>';
+		div.appendChild(indiv);
+		document.getElementById('productosBajoMapa_' + contproductosBaj).innerHTML=texto;
+		$("#productosBajoMapa_" + contproductosBaj).fadeIn(250);
+		contproductosBaj=contproductosBaj + 1;
 			}
 		document.getElementById('ajax-loader').style.display='none';	
 		});	
 
 		}, 150);
-		tagPrincipal();
+		//tagPrincipal();
 }
 		var numeroTagsPrin=0;
 function tagPrincipal(){
@@ -126,7 +138,12 @@ function mostrarTags(ID, Nombre, Imagen){
 var div=document.getElementById('seleccionadorTags');
 var indiv = document.createElement('div');
 		indiv.id='seleccionadorTags_' + numeroTagsPrin;
+		if(TagPrinciForm==ID){
+		var texto='<div  onclick="seleccionadorTitulo(\''+ ID +'\')"><img src="https://nirjob.com/'+ Imagen +'" style="background-color:#FFD54F;border-radius: 20px;"/>';
+		
+		}else{
 		var texto='<div  onclick="seleccionadorTitulo(\''+ ID +'\')"><img src="https://nirjob.com/'+ Imagen +'" style="background-color:#1c8ee6;border-radius: 20px;"/>';
+		 }
 		 texto= texto + '<h3>'+ Nombre +'</h3></div>';
 		div.appendChild(indiv);
 		document.getElementById('seleccionadorTags_' + numeroTagsPrin).innerHTML=texto;
@@ -284,7 +301,7 @@ $("#seleccionadorSubirDatos").fadeIn(250);
 }
 function regresar(num){
 if(num==0){
-$("#SeleccionadorServicios").fadeOut(250);
+$("#productosBajoMapa").fadeOut(250);
 tagPrincipal();
 setTimeout(function(){
 
@@ -432,7 +449,7 @@ texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>R
         </div>
 		<div id='contenido'>
 		<div class='limpiador'></div>
-		<div id ='SeleccionadorServicios'></div>
+		<div id ='productosBajoMapa'></div>
 		<div id='seleccionadorTags' style='display:none'>
 		<input type="submit" value="Regresar" onclick='regresar(0);' style="background-color: #FFD54F;">
 		

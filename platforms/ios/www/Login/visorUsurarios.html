@@ -86,6 +86,24 @@ function htmlTagsInicial(){
 		document.getElementById('contenido').innerHTML=texto;
 		document.getElementById('ajax-loader').style.display='none';
 		estrellitasF();
+		
+	var Usuario = localStorage.getItem('SesionUsuario') || '<empty>';
+var Nivel = localStorage.getItem('SesionNivel') || '<empty>';
+var SesionID = localStorage.getItem('SesionID') || '<empty>';
+if(Usuario!='<empty>' && Nivel!='<empty>'){
+
+var y=document.getElementsByClassName('botondisable');
+for(var j=0; j<y.length; j++){
+y[j].innerHTML='Enviar';
+y[j].disabled=false;
+}
+document.getElementById('InputUID1').value=SesionID;
+document.getElementById('InputUID2').value=SesionID;
+var z=document.getElementsByClassName('InputUID3');
+for(var k=0; k<z.length; k++){
+z[k].value=SesionID;
+}
+}	
 	});	
 
 	}
