@@ -48,20 +48,9 @@ var resolucionheight=screen.height;
 var resolucionheight10=resolucionheight*0.15;
 document.getElementById('menu_izquierda').style.height=resolucionheight10+'px';
 document.getElementById('map_canvas').style.height=resolucionheight*0.65+'px';
-cordova.plugins.diagnostic.isGpsLocationAvailable(successCallback, errorCallback);
 
-}
-var successCallback = function(enabled) {
-alert(enabled);
-if(enabled==true){
 navigator.geolocation.getCurrentPosition(onSuccess, onError);
-}else{
-initialize();
 }
-	};
-	var errorCallback = function(error) {
-		alert(error);
-	};
 						var onSuccess = function(position) {
 			lat=position.coords.latitude;
             lon=position.coords.longitude ;
