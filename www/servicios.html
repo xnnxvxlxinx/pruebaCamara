@@ -48,22 +48,21 @@ var resolucionheight=screen.height;
 var resolucionheight10=resolucionheight*0.15;
 document.getElementById('menu_izquierda').style.height=resolucionheight10+'px';
 document.getElementById('map_canvas').style.height=resolucionheight*0.65+'px';
-
-navigator.geolocation.getCurrentPosition(onSuccess, onError);
-}
-						var onSuccess = function(position) {
+cordova.plugins.diagnostic.isLocationEnabled(function(enabled){
+alert(enabled);
+if(enabled==true){
+			navigator.geolocation.getCurrentPosition(function(position) {
 			lat=position.coords.latitude;
             lon=position.coords.longitude ;
 			initialize();
-	};
-
-  var onError = function(error) {
+	}, function(error) {
 initialize();
-    };
-
-
-
-
+    });
+			}else{
+			initialize();
+			}
+}, function(error){alert(error);});
+}
 						function initialize() {
 							var URLsearch = window.location.search;	
 								if(URLsearch==''){
