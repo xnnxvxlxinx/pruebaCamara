@@ -7,7 +7,7 @@
   content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
    
 	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/cabeza.css">
-    <link rel="stylesheet" type="text/css" href="../archivosbase/CSS/iniciosesion.css">
+   <link rel="stylesheet" type="text/css" href="../archivosbase/CSS/estilosinlabel.css">
 	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/publicacionServicios.css">
 	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/fotosseleccion.css">
 	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/ajax-loader.css">
@@ -329,12 +329,12 @@ $(function(){
 	     processData: false
             }).done(function(data){
 				var tamanio=data.length;
-				
+				alert('Error: ' + data[0].Error);
 				if(data[0].Error=='0' && tamanio==1){
 				var UID = localStorage.getItem('SesionID') || '<empty>';
 	if(UriImagnes.length>0){
 	for(var i=0; i<UriImagnes.length; i++){
-
+alert('entro: ' + i);
 var win = function(r) {
    var mensaje=document.getElementById('mensaje_javascript');
 		mensaje.style.display='block';
@@ -351,7 +351,8 @@ var texto="<p>Error al enviar su pedido de servcio.</p>";
 texto= texto + "<button type='button' onclick='location.href=\"../index.html\"; cerrar(\"mensaje_javascript\");'>Salir</button>";
 texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Volvar a intentar</button>";
 		mensaje.childNodes[0].innerHTML=texto;
-}	
+}
+alert('Var');	
 var options = new FileUploadOptions();
 options.fileKey = "file";
 options.fileName = UriImagnes[i].substr(UriImagnes[i].lastIndexOf('/') + 1);
