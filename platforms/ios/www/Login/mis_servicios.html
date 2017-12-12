@@ -7,7 +7,7 @@
   content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
    
 	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/cabeza.css">
-    <link rel="stylesheet" type="text/css" href="../archivosbase/CSS/iniciosesion.css">
+   <link rel="stylesheet" type="text/css" href="../archivosbase/CSS/estilosinlabel.css">
 	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/publicacionServicios.css">
 	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/fotosseleccion.css">
 	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/ajax-loader.css">
@@ -91,7 +91,7 @@ setTimeout(function(){
 		indiv.id='productosBajoMapa_' + contproductosBaj;
 		indiv.className='productosBajoMapa';
 		indiv.style.display='none';
-	var texto='<div class="imagenProducto"><img src="https://nirjob.com/' + ImagenOB[0] + '"></div>';
+	var texto='<div class="imagenProducto"><img src="https://nirjob.com/' + ImagenOB[i] + '"></div>';
 	texto=texto+'<div class="descripcionProducto">';
 	texto=texto+'<h3><a onclick="llenadodeServi(' + IDOB + ', \''+ DescripcionOB +'\', \''+ PrecioOB +'\', \''+ TagPricipalOB +'\', \''+ SecundariosOB +'\', \''+ TituloOB +'\', \''+ ImagenOB +'\' );">' + TituloOB + '</a></h3></div>';
 	texto=texto+'<div class="precioProducto"><h3>' + PrecioOD + '</h3></div>';
@@ -108,7 +108,7 @@ setTimeout(function(){
 		//tagPrincipal();
 }
 function llenadodeServi(IDOF, DescripcionOF, PrecioOF, TagPricipalOF, SecundariosOF, TituloOF, ImagenOF){
-alert('en');
+
 InputID=IDOF;
 InputDescripcion=DescripcionOF;
 InputPrecio=PrecioOF;
@@ -116,7 +116,7 @@ TagPrinciForm=TagPricipalOF;
   var arregloDeCadenas = SecundariosOF.split(';');
   for (var i=0; i < arregloDeCadenas.length-1; i++) {
      InputTagSecundario[i]=arregloDeCadenas[i].replace('#', '');
-	 alert(InputTagSecundario[i]);
+
    }
   InputTitulo=TituloOF; 
   UriTImagnes=ImagenOF;
@@ -157,7 +157,11 @@ setTimeout(function(){
 			for(var i=0; i<tamanio; i++){
 				var ID=data[i].ID;
 				var Nombre=data[i].Nombre;
+				if(InputTagSecundario[i]==ID){
+				texto=texto + "<label>"+ Nombre +": <input type='checkbox' value='"+ ID +"' checked class='InputTagSecundario'/></label><br/><br/><br/>";
+				}else{
 				texto=texto + "<label>"+ Nombre +": <input type='checkbox' value='"+ ID +"' class='InputTagSecundario'/></label><br/><br/><br/>";
+				}
 			}
 			texto=texto + "<input type='submit' value='Siguiente' onclick='seleccionadorImagenes();' style='background-color: #FFD54F;'></div>";
 		document.getElementById('seleccionadorTagsSecundarioC').innerHTML=texto;
@@ -193,18 +197,31 @@ var div=document.getElementById('seleccionadorTituloC');
 		div.innerHTML=texto;
 }
 var numeroImagenes=0;
+var numeroImagenesT=0;
 function ObtenerImagenes(){
 var div=document.getElementById('seleccionadorImagenesC');
 var indiv = document.createElement('div');
 		indiv.id='seleccionadorImagenesC_' + numeroImagenes;
 		var texto='';
 		 texto= texto + '<div class="seleccionadorImagenesC_foto" >';
-		 texto= texto + '<img id="seleccionadorImagenesC_IMG'+ numeroImagenes +'" onclick="seleccionFotoImagenI(\'seleccionadorImagenesC_IMG'+ numeroImagenes +'\');" style="width:100%; height:10em;"/></div>';
+		 texto= texto + '<img id="seleccionadorImagenesC_IMG'+ numeroImagenes +'" onclick="seleccionFotoImagenI(\'seleccionadorImagenesC_IMG'+ numeroImagenes +'\');" style="width:100%; height:10em;"/>';
+		texto = texto + '<button type="button" class="cancelar_edit" onclick="eliminar_div_tagprinci(\'seleccionadorImagenesC_' + numeroImagenes +'\')"></button><br/></div>';
 		div.appendChild(indiv);
 		document.getElementById('seleccionadorImagenesC_' + numeroImagenes).innerHTML=texto;
 		TotalImagenes=numeroImagenes;
 		numeroImagenes=numeroImagenes+1;
 }
+function eliminar_div_tagprinci(div1){
+			
+			var div = document.getElementById(div1);
+    if(div !== null){
+        while (div.hasChildNodes()){
+            div.removeChild(div.lastChild);
+        }
+    }else{
+        alert ("No existe esta foto??");
+    }
+		}
 var fotoImagen='';
 function seleccionFotoImagenI(id){
 
@@ -291,8 +308,8 @@ $("#seleccionadorImagenes").fadeIn(250);
 var mensaje=document.getElementById('mensaje_javascript');
 		mensaje.style.display='block';
 var texto="<p>No ha seleccionado ninguna sub categoría.</p>";
-texto= texto + "<button type='button' onclick='seleccionadorImagenes(); cerrar(\"mensaje_javascript\");'>Siguiente</button>";
-texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
+//texto= texto + "<button type='button' onclick='seleccionadorImagenes(); cerrar(\"mensaje_javascript\");'>Siguiente</button>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\");'>Regresar</button>";
 		mensaje.childNodes[0].innerHTML=texto;
 }
 }

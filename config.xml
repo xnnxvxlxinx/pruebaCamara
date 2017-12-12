@@ -8,7 +8,7 @@
         Mateo Moscoso
     </author>
     <preference name="phonegap-version" value="cli-7.0.1" />
-
+<preference name='pgb-builder-version' value='2' />
     <preference name="orientation" value="portrait" />
     <icon src="res/logo.png" />
     <content src="index.html" />

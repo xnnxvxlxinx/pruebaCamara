@@ -20,3 +20,8 @@
 	max-height:6.3em;
 
 }
+.seleccionadorImagenesC_foto{
+ background-image: url("../img/masVerde.png");
+   background-repeat: no-repeat;
+    background-size: 100% 100%;
+}

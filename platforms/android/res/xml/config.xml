@@ -27,6 +27,10 @@
     <feature name="Geolocation">
         <param name="android-package" value="org.apache.cordova.geolocation.Geolocation" />
     </feature>
+    <feature name="Diagnostic">
+        <param name="android-package" value="cordova.plugins.Diagnostic" />
+        <param name="onload" value="true" />
+    </feature>
     <name>Nirjob</name>
     <description>
         Nirjob APP
@@ -46,11 +50,7 @@
     <allow-intent href="market:*" />
     <preference name="loglevel" value="DEBUG" />
     <preference name="phonegap-version" value="cli-7.0.1" />
-    <preference name="pgb-builder-version" value="1" />
+    <preference name="pgb-builder-version" value="2" />
     <preference name="orientation" value="portrait" />
     <preference name="AndroidPersistentFileLocation" value="Compatibility" />
-    <feature name="Diagnostic">
-        <param name="android-package" value="cordova.plugins.Diagnostic" />
-        <param name="onload" value="true" />
-    </feature>
 </widget>

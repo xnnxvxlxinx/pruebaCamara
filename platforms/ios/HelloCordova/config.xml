@@ -72,7 +72,7 @@
     <preference name="PaginationMode" value="unpaginated" />
     <preference name="CameraUsesGeolocation" value="false" />
     <preference name="phonegap-version" value="cli-7.0.1" />
-    <preference name="pgb-builder-version" value="1" />
+    <preference name="pgb-builder-version" value="2" />
     <preference name="orientation" value="portrait" />
     <preference name="AndroidPersistentFileLocation" value="Compatibility" />
 </widget>
