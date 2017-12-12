@@ -54,7 +54,8 @@ document.getElementById('map_canvas').style.height=resolucionheight*0.65+'px';
 			navigator.geolocation.getCurrentPosition(function(position) {
 			var latI=position.coords.latitude;
             var lonI=position.coords.longitude;
-			if(isNaN(lat)==false && isNaN(lon)==false && lat!='' && lon!=''){
+			alert('Lat: ' + latI + ' Long: ' + lonI);
+			if(isNaN(latI)==false && isNaN(lonI)==false && latI!='' && lonI!=''){
 			lat=latI;
 			lon=lonI;
 			initialize();
