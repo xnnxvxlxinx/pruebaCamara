@@ -444,13 +444,14 @@ texto= texto + '<h3>Valor $:</h3><input name="puestos" type="text"  required rea
 		 texto= texto + '<input type="text" name="subtag[]" required readonly value="' +  InputTagSecundario[i] +'" style="display:none"/></br>';
 		}
 		for(var i=0; i<UriTImagnes.length; i++){
-		 texto= texto + '<h3>Imagen: </h3><div class="seleccionadorImagenesC_foto"><img src="'+ UriTImagnes[i] +'" style="width:100%; height:10em;"/></div></br>';
+		 texto= texto + '<h3>Imagen: </h3><div class="seleccionadorImagenesC_foto"><img src="https://nirjob.com/'+ UriTImagnes[i] +'" style="width:100%; height:10em;"/></div></br>';
 		}
 		for(var i=0; i<UriImagnes.length; i++){
 		 texto= texto + '<h3>Imagen: </h3><div class="seleccionadorImagenesC_foto"><img src="'+ UriImagnes[i] +'" style="width:100%; height:10em;"/></div></br>';
 		}
 		var UID = localStorage.getItem('SesionID') || '<empty>';
 		texto= texto + '<input type="text" name="UID" required readonly value="' +  UID +'" style="display:none"/>';
+		texto= texto + '<input type="text" name="EID" required readonly value="' +  InputID +'" style="display:none"/>';
 		texto= texto + '<input type="text" name="tipo" required readonly value="2" style="display:none"/>';
 		 texto= texto + '<input type="text" required readonly name="subir_nuevo_oferta_E" value="Subir" style="display:none"/></br>';
 		 texto=texto +'<input type="submit"   value="Subir" style="background-color: #FFD54F;"/>';
@@ -469,7 +470,7 @@ $(function(){
 			document.getElementById('ajax-loader').style.display='block';
 			setTimeout(function(){
             $.ajax({
-                url: "https://nirjob.com/PhoneGap/servicios/subirServicio.php",
+                url: "https://nirjob.com/PhoneGap/servicios/editarServicio.php",
                 type: "post",
                 dataType: "json",
                 data: formData,
