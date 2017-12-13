@@ -24,8 +24,13 @@
  <script src="archivosbase/jquerymobile145/jquery.mobile-1.4.5.min.js"></script>
  <script type="text/javascript" src="cordova.js"></script>
 </head>
-<body onload='primero();'>
+<body >
 <script type='text/javascript'> 
+ document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady() {
+        primero();
+    }
+
 						var map;
 						var marker = [];
 						var markers = [];
@@ -48,27 +53,23 @@ var resolucionheight=screen.height;
 var resolucionheight10=resolucionheight*0.15;
 document.getElementById('menu_izquierda').style.height=resolucionheight10+'px';
 document.getElementById('map_canvas').style.height=resolucionheight*0.65+'px';
-//cordova.plugins.diagnostic.isLocationEnabled(function(enabled){
-//alert(enabled);
-//if(enabled==true){
+cordova.plugins.diagnostic.isLocationEnabled(function(enabled){
+alert(enabled);
+if(enabled==true){
 			navigator.geolocation.getCurrentPosition(function(position) {
 			var latI=position.coords.latitude;
             var lonI=position.coords.longitude;
-			alert('Lat: ' + latI + ' Long: ' + lonI);
-			if(isNaN(latI)==false && isNaN(lonI)==false && latI!='' && lonI!=''){
 			lat=latI;
 			lon=lonI;
 			initialize();
-			}else{
-			initialize();
-			}
+			
 	}, function(error) {
 initialize();
     });
-			/*}else{
+			}else{
 			initialize();
 			}
-}, function(error){alert(error);});*/
+}, function(error){alert(error);});
 }
 						function initialize() {
 							var URLsearch = window.location.search;	
