@@ -24,8 +24,13 @@
  <script src="archivosbase/jquerymobile145/jquery.mobile-1.4.5.min.js"></script>
  <script type="text/javascript" src="cordova.js"></script>
 </head>
-<body onload='primero();'>
+<body >
 <script type='text/javascript'> 
+ document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady() {
+        primero();
+    }
+
 						var map;
 						var marker = [];
 						var markers = [];
@@ -49,12 +54,15 @@ var resolucionheight10=resolucionheight*0.15;
 document.getElementById('menu_izquierda').style.height=resolucionheight10+'px';
 document.getElementById('map_canvas').style.height=resolucionheight*0.65+'px';
 cordova.plugins.diagnostic.isLocationEnabled(function(enabled){
-alert(enabled);
+//alert(enabled);
 if(enabled==true){
 			navigator.geolocation.getCurrentPosition(function(position) {
-			lat=position.coords.latitude;
-            lon=position.coords.longitude ;
+			var latI=position.coords.latitude;
+            var lonI=position.coords.longitude;
+			lat=latI;
+			lon=lonI;
 			initialize();
+			
 	}, function(error) {
 initialize();
     });

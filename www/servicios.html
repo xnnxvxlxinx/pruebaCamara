@@ -54,7 +54,7 @@ var resolucionheight10=resolucionheight*0.15;
 document.getElementById('menu_izquierda').style.height=resolucionheight10+'px';
 document.getElementById('map_canvas').style.height=resolucionheight*0.65+'px';
 cordova.plugins.diagnostic.isLocationEnabled(function(enabled){
-alert(enabled);
+//alert(enabled);
 if(enabled==true){
 			navigator.geolocation.getCurrentPosition(function(position) {
 			var latI=position.coords.latitude;

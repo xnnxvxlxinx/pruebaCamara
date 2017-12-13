@@ -80,7 +80,9 @@ setTimeout(function(){
 				var TagPricipalOB=data[i].TagPri;
 				var SecundariosOB=data[i].TagSec;
 				var TituloOB=data[i].titulo;
-				var ImagenOB=data[i].Imagen;
+				var ImagenOB=[];
+				 ImagenOB=data[i].Imagen;
+				 
 				if(PrecioOB=='0'){
 					var PrecioOD='A convenir';
 				}else{
@@ -91,7 +93,7 @@ setTimeout(function(){
 		indiv.id='productosBajoMapa_' + contproductosBaj;
 		indiv.className='productosBajoMapa';
 		indiv.style.display='none';
-	var texto='<div class="imagenProducto"><img src="https://nirjob.com/' + ImagenOB[i] + '"></div>';
+	var texto='<div class="imagenProducto"><img src="https://nirjob.com/' + ImagenOB[0] + '"></div>';
 	texto=texto+'<div class="descripcionProducto">';
 	texto=texto+'<h3><a onclick="llenadodeServi(' + IDOB + ', \''+ DescripcionOB +'\', \''+ PrecioOB +'\', \''+ TagPricipalOB +'\', \''+ SecundariosOB +'\', \''+ TituloOB +'\', \''+ ImagenOB +'\' );">' + TituloOB + '</a></h3></div>';
 	texto=texto+'<div class="precioProducto"><h3>' + PrecioOD + '</h3></div>';
@@ -119,7 +121,13 @@ TagPrinciForm=TagPricipalOF;
 
    }
   InputTitulo=TituloOF; 
-  UriTImagnes=ImagenOF;
+  var arregloDeCadenas2 = ImagenOF.split(',');
+  for (var i=0; i < arregloDeCadenas2.length; i++) {
+     UriTImagnes[i]=arregloDeCadenas2[i];
+ 
+  }
+  //UriTImagnes=ImagenOF;
+  
   tagPrincipal();
   $("#productosBajoMapa").fadeOut(150);
   setTimeout(function(){
@@ -301,6 +309,19 @@ $("#seleccionadorTagsSecundario").fadeOut(250);
 document.getElementById('ajax-loader').style.display='block';
 setTimeout(function(){
 document.getElementById('seleccionadorImagenesC').innerHTML='';
+
+
+for(var j=0; j<UriTImagnes.length; j++){
+var div=document.getElementById('seleccionadorImagenesC');
+var indiv = document.createElement('div');
+		indiv.id='seleccionadorImagenesC_T' + j;
+		var texto='';
+		 texto= texto + '<div class="seleccionadorImagenesC_foto" >';
+		 texto= texto + '<img id="seleccionadorImagenesC_IMGT'+ j +'" src="https://nirjob.com/' + UriTImagnes[j] + '" style="width:100%; height:10em;"/>';
+		texto = texto + '<button type="button" class="cancelar_edit" onclick="eliminar_Imagen(\'' + UriTImagnes[j] + '\', \'seleccionadorImagenesC_T' + j + '\')"></button><br/></div>';
+		div.appendChild(indiv);
+		document.getElementById('seleccionadorImagenesC_T' + j).innerHTML=texto;
+	}	
 ObtenerImagenes();
 document.getElementById('ajax-loader').style.display='none';	
 $("#seleccionadorImagenes").fadeIn(250);
@@ -312,6 +333,29 @@ var texto="<p>No ha seleccionado ninguna sub categoría.</p>";
 texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\");'>Regresar</button>";
 		mensaje.childNodes[0].innerHTML=texto;
 }
+}
+function eliminar_Imagen(link, div){
+var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>¿Está seguro de que quiere borrar la imagen?.</p>";
+texto= texto + "<p><img src='https://nirjob.com/" + link + "' style='width:40px; height:40px'/></p>";
+texto= texto + '<button type="button" onclick="cerrar(\"mensaje_javascript\"); eliminar_ImagenF(\'' + link + '\', \'' + div + '\')">BORRAR</button>';
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\");'>Cancelar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+}
+function eliminar_ImagenF(link, div){
+$.getJSON("https://nirjob.com/PhoneGap/servicios/BorrarImagen.php?link=" + link, function(data){
+if(data[0].Error=='0'){
+var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Imagen Borrada.</p>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\");'>Aceptar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+eliminar_div_tagprinci(div);		
+}else{
+alert(data[0].Error);
+}
+});
 }
 function seleccionadorTitulo(ID){
 
@@ -398,6 +442,9 @@ texto= texto + '<h3>Valor $:</h3><input name="puestos" type="text"  required rea
 		 texto= texto + '<input type="text" name="tag_principal" required readonly value="' +  TagPrinciForm +'" style="display:none"/></br>';
 		for(var i=0; i<InputTagSecundario.length; i++){
 		 texto= texto + '<input type="text" name="subtag[]" required readonly value="' +  InputTagSecundario[i] +'" style="display:none"/></br>';
+		}
+		for(var i=0; i<UriTImagnes.length; i++){
+		 texto= texto + '<h3>Imagen: </h3><div class="seleccionadorImagenesC_foto"><img src="'+ UriTImagnes[i] +'" style="width:100%; height:10em;"/></div></br>';
 		}
 		for(var i=0; i<UriImagnes.length; i++){
 		 texto= texto + '<h3>Imagen: </h3><div class="seleccionadorImagenesC_foto"><img src="'+ UriImagnes[i] +'" style="width:100%; height:10em;"/></div></br>';
