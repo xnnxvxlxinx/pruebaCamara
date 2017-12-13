@@ -67,7 +67,7 @@ setTimeout(function(){
  InputTagSecundario=[];
  InputID=0;
  var contproductosBaj=0;
-	   $.getJSON('https://nirjob.com/PhoneGap/servicios/Obtener.php?ID=' + UID, function(data) {  
+	   $.getJSON('https://nirjob.com/PhoneGap/servicios/Obtener.php?TIPO=2&ID=' + UID, function(data) {  
 		var tamanio=data.length;
 			var texto='';
 			 if(data[0].ERROR=='1'){
