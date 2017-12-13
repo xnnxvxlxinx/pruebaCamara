@@ -339,7 +339,7 @@ var mensaje=document.getElementById('mensaje_javascript');
 		mensaje.style.display='block';
 var texto="<p>¿Está seguro de que quiere borrar la imagen?.</p>";
 texto= texto + "<p><img src='https://nirjob.com/" + link + "' style='width:40px; height:40px'/></p>";
-texto= texto + '<button type="button" onclick="cerrar(\"mensaje_javascript\"); eliminar_ImagenF(\'' + link + '\', \'' + div + '\')">BORRAR</button>';
+texto= texto + '<button type="button" onclick="eliminar_ImagenF(\'' + link + '\', \'' + div + '\');">BORRAR</button>';
 texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\");'>Cancelar</button>";
 		mensaje.childNodes[0].innerHTML=texto;
 }
@@ -351,7 +351,9 @@ var mensaje=document.getElementById('mensaje_javascript');
 var texto="<p>Imagen Borrada.</p>";
 texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\");'>Aceptar</button>";
 		mensaje.childNodes[0].innerHTML=texto;
-eliminar_div_tagprinci(div);		
+eliminar_div_tagprinci(div);
+var pos = UriTImagnes.indexOf(link);
+UriTImagnes.splice(pos, 1);		
 }else{
 alert(data[0].Error);
 }
