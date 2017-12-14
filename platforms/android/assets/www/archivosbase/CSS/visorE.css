@@ -11,13 +11,13 @@
     background: #F4F4F4;
     width: 728px;
     height: 90px;
-    /*border: solid 1px black;*/
-    /*position: absolute;*/
+	display:none;
     margin: auto;
     margin-top: 20px;
 }
 .adMediaLeft{
-    width: 160px;
+    display:none;
+	width: 160px;
     height: 600px;
     writing-mode: vertical-lr;
     /*transform: rotate(180deg);*/
@@ -29,6 +29,7 @@
     float: left;
 }
 .adMediaRight{
+	display:none;
     width: 160px;
     height: 600px;
     writing-mode: vertical-lr;
@@ -41,8 +42,8 @@
     /*position: absolute;*/
     /*margin-left: 30px;*/
     /*margin-top: 30px;*/
-    width: 200px;
-    margin-right: 20px;
+    max-width: 100%;
+    /*margin-right: 20px;*/
     display: inline-block;
 
 }
@@ -63,9 +64,9 @@ h3{
 .contenedorVisor{
     margin: auto;
     margin-top: 1.5em;
-    width: 65%;
-    padding-left: 2.5%;
-    padding-right: 2.5%;
+    width: 90%;
+    padding-left: 0%;
+    padding-right: 0%;
     /*border: solid 1px black;*/
     background: rgba(241, 240, 240, 0.4);
     border-radius: 10px;
@@ -98,7 +99,7 @@ h3{
     /*margin-left: 00px;*/
     /*border: solid 1px black;*/
     /*float: right;*/
-    width: 67.4%;
+    width: 90%;
     padding-left: 2%;
     padding-top: 3%;
     padding-bottom: 3%;
@@ -118,8 +119,8 @@ h3{
     padding-top: 3%;
     padding-bottom: 3%;
     padding-right: 2%;
-    margin-bottom: 3%;
-    display: inline-block;
+    /*margin-bottom: 3%;*/
+    /*display: inline-block;*/
     /*padding-right: 200px;*/
 }
 /*Productos*/
@@ -145,14 +146,14 @@ h3{
 }
 .contenerdor_Productos .producto .img_producto{
     width:30%;
-    width: 140px;
-    height: 115px;
+    /*width: 140px;*/
+    height: 7.8em;
 }
 .contenerdor_Productos .producto .img_producto img{
 	/*max-width:100%;
     max-height:7.8em;*/
-    width: 140px;
-    height: 115px;
+    max-width: 25%;
+    height: 7.8em;
 	position:absolute;
 
 }
@@ -182,8 +183,8 @@ button{
     padding-bottom: 5%;*/
     /*margin-top: 30%;
     margin-left: 5%;*/
-    padding-top: 5px;
-    padding-bottom: 5px;
+    /*padding-top: 5px;
+    padding-bottom: 5px;*/
     width: 20%;
     border: none;
     color: #FFFFFF;
@@ -196,7 +197,7 @@ button{
     text-decoration: none;
     color: #FFFFFF;
 }
-a{
+.contenerdor_Productos a{
     text-decoration: none;
     color: #FFFFFF;
 }
@@ -206,7 +207,7 @@ a{
     padding-left: 1em;
 }
 .contenerdor_Productos .producto .discripcion_producto{
-    margin-left: 1.2em;
+    /*margin-left: 1.2em;*/
 	overflow:auto;
     padding-left: 10px;
     padding-right: 10px;
