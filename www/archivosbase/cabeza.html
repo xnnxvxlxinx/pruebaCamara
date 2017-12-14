@@ -220,8 +220,14 @@ $("#ManeuBuscadorRadio").html(texto1);
 			if(Si.checked==true){
 				document.getElementById('mensaje-cabeza').style.display='block';
 				var texto='<p>Informaci&oacute;n</p><h3>Desea enviar su posici&oacute;n actual?.</h3>';
+				cordova.plugins.diagnostic.isLocationEnabled(function(enabled){
+if(enabled==true){
+			texto=texto + '<button type=\"button\" onclick=\"disponibilidadPartiularS(1);\">Usar posici&oacute;n actual.</button>';
+			}else{
+			texto=texto + '<button type=\"button\" disabled >Usar posici&oacute;n actual.</br>(Su GPS no esta Activado)</button>';
+			}
+}, function(error){alert(error);});
 				
-				texto=texto + '<button type=\"button\" onclick=\"disponibilidadPartiularS(1);\">Usar posici&oacute;n actual.</button>';
 				texto=texto + '<button type=\"button\" onclick=\"disponibilidadPartiularS(0);\">Usar &uacute;ltima posici&oacute;n registrada.</button>';
 			document.getElementById('mensaje-cabezaC').innerHTML=texto;
 			}
