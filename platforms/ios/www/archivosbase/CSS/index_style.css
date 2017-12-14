@@ -381,15 +381,15 @@ label{
     color: black;
 }
 
-#index_button{
+.index_button{
     background: #FFD54F;
 	border: 0;
-	width: 10em;
+	width: 40%;
 	height: 3em;
 	margin-top: 0.2em;
 	/*margin-right: 0.2em;*/
     margin-bottom: 0.2em;
-    margin-left: 0.4em;
+    margin-left: 5%;
 	border-radius: 3px;
 	color: white;
 	cursor: pointer;
