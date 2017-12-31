@@ -3,7 +3,7 @@
     <div id="logo"><div id="logoMain"></div></div>
 	
 	<div id="busqueda">
-	<input type="search"  class="search_bar" id="search_bar_cabeza" placeholder="Busque Aqui" required>
+	<input type="text"  class="search_bar" id="search_bar_cabeza" placeholder="Busque Aqui" required>
 	<input type='submit' class='search_button' id='search_buttonB' onclick='funcion_buscar_text()' value=''>
 	</div>
 	<div id='ManeuBuscadorRadio'></div>
@@ -91,29 +91,35 @@ texto = texto + "<li><a href='" + url + "Login/logout.html'>Cerrar Sesion</a></l
 }
 if(Nivel==2){
 texto = texto + "<li><span id='CabezaImgUser'></span><h5>" + Usuario + "</h5></li>";
-texto = texto + "<li><a href='" + url + "Login/MiCuenta.html'>Mi Sesion</a></li>";
+texto = texto + "<li><a href='" + url + "Login/MiCuenta.html'>Configuraci&oacute;n de perfil</a></li>";
+texto = texto + "<li><a href='" + url + "servicios.html'>P&aacute;gina principal</a></li>";
+
+texto = texto + "<li><a href='" + url + "Login/notificaciones.html'>Notificaciones</a></li>";
 texto = texto + "<li><a href='" + url + "Login/descripcionE.html'>Descripcion de mi Empresa</a></li>";
 texto = texto + "<li><a href='" + url + "Login/ubicacion.html'>Ubicaciones de mis Locales</a></li>";
 texto = texto + "<li><a href='" + url + "Login/horarios.html'>Horarios de atencion de mis Locales</a></li>";
+texto = texto + "<li><a href='" + url + "Login/mis_servicios.html'>Mis servicios publicados</a></li>";
+texto = texto + "<li><a href='" + url + "Login/mis_ofertas.html'>Mis vacantes publicadas</a></li>";
+
 //texto = texto + "<li><a href='" + url + "buscador.html'>Empresas/Productos</a></li>";
-texto = texto + "<li><a href='" + url + "servicios.html'>Mapa de Servicios</a></li>";
-texto = texto + "<li><a href='" + url + "Login/administrar_ofertas.html'>Publicar requerimiento de Servicio</a></li>";
 texto = texto + "<li><a href='" + url + "Login/administrar_servicio.html'>Publicar nuevo Servicio</a></li>";
-texto = texto + "<li><a href='" + url + "Login/mis_servicios.html'>Mis Servicios</a></li>";
-texto = texto + "<li><a href='" + url + "Login/mis_ofertas.html'>Ver requerimientos de Servicios</a></li>";
+texto = texto + "<li><a href='" + url + "Login/administrar_ofertas.html'>Publicar nueva vacante</a></li>";
 texto = texto + "<li><a href='" + url + "Login/logout.html'>Cerrar Sesion</a></li>";
 }
 if(Nivel==3){
 texto = texto + "<li><span id='CabezaImgUser'></span><h5>" + Usuario + "</h5></li>";
-texto = texto + "<li><a href='" + url + "Login/MiCuenta.html'>Mi Sesion</a></li>";
+texto = texto + "<li><a href='" + url + "servicios.html'>P&aacute;gina principal</a></li>";
+texto = texto + "<li><a href='" + url + "Login/MiCuenta.html'>Configuraci&oacute;n de perfil</a></li>";
+
+texto = texto + "<li><a href='" + url + "Login/notificaciones.html'>Notificaciones</a></li>";
 texto = texto + "<li><a href='" + url + "Login/descripcionP.html'>Descripcion de mis Servicios</a></li>";
-texto = texto + "<li><a href='" + url + "Login/Mubicacion.html'>Mi Ubicaci&oacute;n</a></li>";
+texto = texto + "<li><a href='" + url + "Login/Mubicacion.html'>Mi Ubicaci&oacute;n en el MAPA</a></li>";
 //texto = texto + "<li><a href='" + url + "buscador.html'>Empresas/Productos</a></li>";
-texto = texto + "<li><a href='" + url + "servicios.html'>Mapa de Servicios</a></li>";
-texto = texto + "<li><a href='" + url + "Login/administrar_ofertas.html'>Publicar requerimiento de Servicio</a></li>";
+texto = texto + "<li><a href='" + url + "Login/mis_servicios.html'>Mis servicios publicados</a></li>";
+texto = texto + "<li><a href='" + url + "Login/mis_ofertas.html'>Mis vacantes publicadas</a></li>";
+
+texto = texto + "<li><a href='" + url + "Login/administrar_ofertas.html'>Publicar nueva vacante</a></li>";
 texto = texto + "<li><a href='" + url + "Login/administrar_servicio.html'>Publicar nuevo Servicio</a></li>";
-texto = texto + "<li><a href='" + url + "Login/mis_servicios.html'>Mis Servicios</a></li>";
-texto = texto + "<li><a href='" + url + "Login/mis_ofertas.html'>Ver requerimientos de Servicios</a></li>";
 texto = texto + "<li><a href='" + url + "Login/logout.html'>Cerrar Sesion</a></li>";
 
 }

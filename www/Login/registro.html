@@ -14,6 +14,11 @@
 	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/mensaje_javascript.css">
  <script src="../archivosbase/jquerymobile145/jquery.mobile-1.4.5.min.js"></script>
  <script type="text/javascript" src="../cordova.js"></script>
+ <style>
+ .textLabel{
+ width:16em;
+ }
+ </style>
 	<script>
 	function initialize() {
 	$.get("../archivosbase/cabeza.html", function(htmlexterno){
@@ -24,6 +29,8 @@
 		var numeros="0123456789";
 		var letras="abcdefghyjklmnñopqrstuvwxyz";
 var letras_mayusculas="ABCDEFGHYJKLMNÑOPQRSTUVWXYZ";
+var letras_mail="@";
+var letras_mail2=".";
 		function tiene_numeros(texto){
    for(i=0; i<texto.length; i++){
       if (numeros.indexOf(texto.charAt(i),0)!=-1){
@@ -48,6 +55,24 @@ function tiene_mayusculas(texto){
    }
    return 0;
 }
+function es_mail(texto){
+var arrova=0;
+var opunto=0;
+ for(i=0; i<texto.length; i++){
+      if (letras_mail.indexOf(texto.charAt(i),0)!=-1){  
+        arrova=1;
+      }
+	  if (letras_mail2.indexOf(texto.charAt(i),0)!=-1){  
+        opunto=1;
+      }
+   }
+   if(arrova==1 && opunto==1)
+   {
+    return 1;
+   }else{
+   return 0;
+   }
+}
  		function cerrar(div){		
 $("#" + div).fadeOut(150);
 }
@@ -68,7 +93,7 @@ $(function(){
 			if(valorContra==valorContra2){
 			if(es_mail(valorMail)==1){
 			setTimeout(function(){
-            /*.ajax({
+            $.ajax({
                 url: "https://nirjob.com/PhoneGap/registro.php",
                 type: "post",
                 dataType: "json",
@@ -77,42 +102,53 @@ $(function(){
                 contentType: false,
 	     processData: false
             }).done(function(data){
+			
 				var tamanio=data.length;
-				alert(tamanio);
+				//alert(tamanio);
 				if(data[0].SesionError=='0' && tamanio==1){
-				var SesionID=data[0].SesionID;	
-				var SesionNivel=data[0].SesionNivel;
-				var SesionNombre=data[0].SesionNombre;
-				var SesionDireccion=data[0].SesionDireccion;
-				var SesionMail=data[0].SesionMail;
-				var SesionTelefono=data[0].SesionTelefono;
-				var SesionLoggedin=data[0].SesionLoggedin;
-				var SesionUsuario=data[0].SesionUsuario;
-				localStorage.setItem("SesionID", SesionID);
-				localStorage.setItem("SesionNivel", SesionNivel);
-				localStorage.setItem("SesionNombre", SesionNombre);
-				localStorage.setItem("SesionDireccion", SesionDireccion);
-				localStorage.setItem("SesionMail", SesionMail);
-				localStorage.setItem("SesionTelefono", SesionTelefono);
-				localStorage.setItem("SesionLoggedin", SesionLoggedin);
-				localStorage.setItem("SesionUsuario", SesionUsuario);
-				location.href="../index.html";
-				$("#ErrorInicio").html("");
+				var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<h3>Usuario registrado con &eacute;xito.</h3><p>Ya puede iniciar sesi&oacute;n con estos datos.</p>";
+texto= texto + "<button type='button' onclick='location.href=\"index.html\";'>Aceptar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+				
 				}else{
 				if(data[0].SesionError=='1'){
-				$("#ErrorInicio").html("Error");
+				var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Error base.</p>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+				}
+				if(data[0].SesionError=='3'){
+				var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>El nombre de Usuario ya existe.</p>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+				}
+				if(data[0].SesionError=='2'){
+				var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>El mail ya est&aacute; registrado.</p>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
 				}
 				if(data[0].SesionError=='4'){
-				$("#ErrorInicio").html("Error 404");
+				var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Error Datos.</p>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
 				}
 				}
-                });*/
+                });
 				
 				}, 250);
 				}else{
 				var mensaje=document.getElementById('mensaje_javascript');
 		mensaje.style.display='block';
-var texto="<p>Las contraseñas no son iguales.</p>";
+var texto="<p>El mail no es v&aacute;lido.</p>";
 texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
 		mensaje.childNodes[0].innerHTML=texto;
 				}}else{
@@ -142,14 +178,31 @@ texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>R
 				}}else{
 				var mensaje=document.getElementById('mensaje_javascript');
 		mensaje.style.display='block';
-var texto="<p>La contraseña debe tener al menos 1 N&ucute;mero.</p>";
+var texto="<p>La contraseña debe tener al menos 1 N&uacute;mero.</p>";
 texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
 		mensaje.childNodes[0].innerHTML=texto;
 				}
         document.getElementById('ajax-loader').style.display='none';
 		});
 		});
-
+/*var SesionID=data[0].SesionID;	
+				var SesionNivel=data[0].SesionNivel;
+				var SesionNombre=data[0].SesionNombre;
+				var SesionDireccion=data[0].SesionDireccion;
+				var SesionMail=data[0].SesionMail;
+				var SesionTelefono=data[0].SesionTelefono;
+				var SesionLoggedin=data[0].SesionLoggedin;
+				var SesionUsuario=data[0].SesionUsuario;
+				localStorage.setItem("SesionID", SesionID);
+				localStorage.setItem("SesionNivel", SesionNivel);
+				localStorage.setItem("SesionNombre", SesionNombre);
+				localStorage.setItem("SesionDireccion", SesionDireccion);
+				localStorage.setItem("SesionMail", SesionMail);
+				localStorage.setItem("SesionTelefono", SesionTelefono);
+				localStorage.setItem("SesionLoggedin", SesionLoggedin);
+				localStorage.setItem("SesionUsuario", SesionUsuario);
+				location.href="../index.html";
+				$("#ErrorInicio").html("");*/
 	</script>
 </head>
 <body onload='initialize();'>
@@ -174,31 +227,25 @@ texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>R
 <label for="userPwd2"><div class="textLabel">*Confirmar Contrase&ntilde;a</div></label>
 <input type="password" name="password2" id="userPwd2" required placeholder="">
 <br/><br/>
-<label>Soy: <select name='tipo' id='SelectTipo' required>
-<option value=''>Seleccione una Opci&ocute;n</option>
-<option value='1'>Empresa</option>
-<option value='2'>Particular</option>
-</select></label><br/><br/><br/>
+<label><div class="textLabel">Soy: </div></label><select name='prioridad' id='SelectTipo' required>
+<option value=''>Seleccione una Opci&oacute;n</option>
+<option value='2'>Empresa</option>
+<option value='3'>Particular</option>
+</select><br/><br/><br/>
 <label for="mail"><div class="textLabel">Correo Electronico</div></label>
-<input type="text" name="mail" id="mail" placeholder="ejemplo@xxxxxx.com">
+<input type="text" name="mail" id="mail" required placeholder="ejemplo@xxxxxx.com">
 <br/>
-<label for="telefono"><div class="textLabel">Tel&ecute;fono</div></label>
+<label for="telefono"><div class="textLabel">Tel&eacute;fono</div></label>
 <input type="text" name="telefono" id="telefono" placeholder="09xxxxxxxx">
 <br/>
-<label for="direccion"><div class="textLabel">Direcci&ocute;n</div></label>
+<label for="direccion"><div class="textLabel">Direcci&oacute;n</div></label>
 <input type="text" name="direccion" id="direccion"  placeholder="">
 <br/>
-<input type="text" name="Submit" id="direccion" value="Registrarse" style='display:none'  placeholder="">
+<input type="text" name="Submit" value="Registrarse" style='display:none'  placeholder="">
 <input type="submit"  value="Registrarse" />
 
 </form>
 <br/>
-<div id="aunnocuenta">
-
-<form action="registro.php" method="POST">
-    <input type="submit" value="Registrarse" style="background-color: #FFD54F;">
-</form>
-</div>
 </div>
 		</div>
 		</div>

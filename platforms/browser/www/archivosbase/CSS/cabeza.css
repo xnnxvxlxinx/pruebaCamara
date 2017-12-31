@@ -60,7 +60,7 @@ top: 10%;
 }
 
 
- input[type="search"].search_bar{
+ .search_bar{
    /* width: 50px;*/ /*ancho por defecto*/
     background: #ededed ; 
 	font-size:1em;
@@ -70,7 +70,7 @@ background-position: left center;
 background-size: 45px;*/
 border-style: none;
 box-shadow: 2px 2px 2px rgba(0,0,0,0.3),inset 0px 1px 0px rgba(255,255,255,0.07);
-    padding: 0.3em 7px 0.3em 10px;
+    padding: 0em 7px 0em 10px;
     border-radius: 10px;
     -webkit-transition: all .5s; /* transición de .5seg a todos los elementos para chrome*/
     -moz-transition: all .5s; /* transición de .5seg a todos los elementos para mozilla*/
@@ -78,7 +78,7 @@ box-shadow: 2px 2px 2px rgba(0,0,0,0.3),inset 0px 1px 0px rgba(255,255,255,0.07)
     transition: all .5s; /* transición de .5seg a todos los elementos*/
     outline: none; /* ocultar el fucos automático de los input */
 }
- input[type="search"]:focus.search_bar{
+.search_bar:focus{
    width: 80%; /*tamaño del boton buscar al hacer click*/
     padding-left: 30px; /*espacio entre el icono lupa y el placeholder*/
     color: #000;
