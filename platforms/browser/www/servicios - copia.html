@@ -15,7 +15,6 @@
 	<link rel="shortcut icon" href="archivosbase/icons/favicon.ico" />
 	<link rel="stylesheet" type="text/css" href="archivosbase/CSS/errores.css">
 	<link rel="stylesheet" type="text/css" href="archivosbase/CSS/ajax-loader.css">
-		<link rel="stylesheet" type="text/css" href="archivosbase/CSS/estrellitasM.css">
 	<link rel="stylesheet" type="text/css" href="archivosbase/CSS/productosBuscador.css">
 	<link rel="stylesheet" type="text/css" href="archivosbase/CSS/index_style.css">
 <script type="text/javascript" 
@@ -108,7 +107,6 @@ initialize();
 								//google.maps.event.addListener(Map, 'click', function() { if (infowindow) { infowindow.close(); }});
 								llamarmarc(GetBusqueda);
 								htmlTagsInicial();
-									//document.getElementById('TagSIMULARCLICKT').style.backgroundColor = "#FFCA28";
 								/*document.getElementById('menu_izquierda').style.display='none';*/
 						//cargarMas();
 						} 
@@ -139,7 +137,7 @@ initialize();
 							var indiv = document.createElement('div');
 								indiv.id='Producto_div_' + contproductos;
 								indiv.style.display='none';
-							var texto='<div class=\"imagenProducto\"><img src=\"https://nirjob.com/' + ImgUser + '?'+ randomnum +'\"></div>';
+							var texto='<div class=\"imagenProducto\"><img src=\"https://nirjob.com/' + ImgUser + '\"></div>';
 							texto=texto+'<div class=\"descripcionProducto\"><h3><a href=\"Login/visorServicios.html?ID='+ID+'\">' + Titulo + '</a></h3><p>' + Descri + '</p></div>';
 							texto=texto+'<div class=\"precioProducto\"><h3>$' + PUESTOS + '</h3></div>';
 								div.appendChild(indiv);
@@ -179,9 +177,8 @@ initialize();
 											var Numero=data[i].Numero;
 											var Nombre=data[i].Nombre;
 											var Descri=data[i].Descri;
-											var ReputacionProm=parseInt(data[i].ReputacionProm);
 											var ID=data[i].ID;
-										marcadores(latt, lon, ImgTag, ImgUser, Nombre, Descri, ID, PUESTOS, Numero, ReputacionProm);
+										marcadores(latt, lon, ImgTag, ImgUser, Nombre, Descri, ID, PUESTOS, Numero);
 										
 										}
 								
@@ -230,7 +227,7 @@ initialize();
 						}
 						var cont=0;
 						var Ninfowindow=null;
-						function marcadores(lati, lon, ImgTag, ImgUser, Nombre, Descri, ID, PUESTOS, Numero, ReputacionProm){
+						function marcadores(lati, lon, ImgTag, ImgUser, Nombre, Descri, ID, PUESTOS, Numero){
 							var image={
 									url:'https://nirjob.com/' + ImgTag,
 									// url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
@@ -245,53 +242,11 @@ initialize();
           type: 'poly'
         };	*/
 							var contentString = '<div class=\"contentString\">'+
-								'<div class=\"contentImg\"><a href="Login/visorUsurarios.html?ID='+ ID +'"><img onclick=\"location.href=\'Login/visorUsurarios.html?ID='+ ID +'\'\" src=\"https://nirjob.com/'+ ImgUser +'?'+ randomnum +'\" /></a></div>' +
+								'<div class=\"contentImg\"><img onclick=\"location.href=\'Login/visorUsurarios.html?ID='+ ID +'\'\" src=\"https://nirjob.com/'+ ImgUser +'\" /></div>' +
 								'<div class=\"contentMap\"><h3>'+ Nombre +'</h3><div class=\"contentDescription\">'+
 								//'<h4>Ofertas de trabajo: '+ Numero +'</h4>' + '</div></br>' +
 								'<p>' + Descri + '</p></div>' +
-								'<div class="calificacion_estrellitas">';
-								if(ReputacionProm==0){
-					//contentString = contentString +"<h4>Este usuario a&uacute;n no ha sido calificado.</h4>";
-				}else{
-				//contentString = contentString +"<div class='calificacion_estrellitas'>";
-		if(ReputacionProm==1){
-		contentString = contentString +"<label class='estrellitasN'></label>";
-		contentString = contentString +"<label class='estrellitasN'></label>";
-		contentString = contentString +"<label class='estrellitasN'></label>";
-		contentString = contentString +"<label class='estrellitasN'></label>";
-		contentString = contentString +"<label class='estrellitasT'></label>";
-		}
-		if(ReputacionProm==2){
-		contentString = contentString +"<label class='estrellitasN'></label>";
-		contentString = contentString +"<label class='estrellitaSN'></label>";
-		contentString = contentString +"<label class='estrellitasN'></label>";
-		contentString = contentString +"<label class='estrellitasT'></label>";
-		contentString = contentString +"<label class='estrellitasT'></label>";
-		}
-		if(ReputacionProm==3){
-		contentString = contentString +"<label class='estrellitasN'></label>";
-		contentString = contentString +"<label class='estrellitasN'></label>";
-		contentString = contentString +"<label class='estrellitasT'></label>";
-		contentString = contentString +"<label class='estrellitasT'></label>";
-		contentString = contentString +"<label class='estrellitasT'></label>";
-		}
-		if(ReputacionProm==4){
-		contentString = contentString +"<label class='estrellitasN'></label>";
-		contentString = contentString +"<label class='estrellitasT'></label>";
-		contentString = contentString +"<label class='estrellitasT'></label>";
-		contentString = contentString +"<label class='estrellitasT'></label>";
-		contentString = contentString +"<label class='estrellitasT'></label>";
-		}
-		if(ReputacionProm==5){
-		contentString = contentString +"<label class='estrellitasT'></label>";
-		contentString = contentString +"<label class='estrellitasT'></label>";
-		contentString = contentString +"<label class='estrellitasT'></label>";
-		contentString = contentString +"<label class='estrellitasT'></label>";
-		contentString = contentString +"<label class='estrellitasT'></label>";
-		}
-		//contentString = contentString +"</div>";
-				}
-								contentString = contentString + '</div><button onclick=\"location.href=\'Login/visorUsurarios.html?ID='+ ID +'\'\" class=\"contentButton\">Con&oacute;celos</button>' +
+								'<button onclick=\"location.href=\'Login/visorUsurarios.html?ID='+ ID +'\'\" class=\"contentButton\">Con&oacute;celos</button>' +
 								'</div></div>';	
 							var	 infowindow =new google.maps.InfoWindow({
 								content: contentString
@@ -373,21 +328,8 @@ initialize();
 
 								}else{
 									document.getElementById('categoriaCheckButton_' + ID).style.display='none';
-									$("#categoriaCheckButton_" + ID + " input[type=checkbox]").prop('checked', false);
-									/*var qri=$("#categoriaCheckButton_" + ID + " input[type=checkbox]");
-									var tam=qri.length;
-									for(var k=0; k<tam; k++){
-										var busc='&tagS%5B%5D='+ qri[k].value;
-									buscheck=buscheck.replace(busc, '');
-									
-									}*/
-									var busc='&tagS%5B%5D=';
-									buscheck=buscheck.replace(busc, '&tagA%5B%5D=');
-									//alert(buscheck);
 								}
-								
 									}
-									llamarmarc(buscheck);
 								});	
 
 							
@@ -494,12 +436,12 @@ initialize();
 								
 								document.getElementById('menu_izquierda').innerHTML=texto;
 								document.getElementById('ajax-loader').style.display='none';
-							//buscadorTagP('2');
-						subTag("0");
-						llamarmarc(buscheck);
-						cambiarColor('', 'T');
+								buscadorTagP('2');
+						subTag("2");
+						cambiarColor('', 2);
+					
+							
 							});	
-								//document.getElementById('TagSIMULARCLICKT').style.backgroundColor = "#FFCA28";
 						}  
 						function cambiodeMenu(div){
 
@@ -532,11 +474,8 @@ initialize();
 							var y=e.childNodes;
 							y[1].style.backgroundColor = "#FFCA28";
 							}else{
-							//num=num.toString();
-							//alert('TagSIMULARCLICK'+num);
 							var y=document.getElementById('TagSIMULARCLICK'+num).childNodes;
 							y[1].style.backgroundColor = "#FFCA28";
-						
 							}
 
 	}
@@ -553,11 +492,7 @@ var ini=NUM*4;
 		}else{
 		var fin=tamanio;
 		}
-		if(NUM*4+4<tamanio){
-		document.getElementById('cargarMas1').style.backgroundColor='#FFD54F';	
-		}else{
-			document.getElementById('cargarMas1').style.backgroundColor='#C4C4C4';	
-		}
+		
 			for(var i=ini; i<fin; i++){
 				var ID=data[i].ID;
 				var ID_Usuario=data[i].ID_Usuario;
@@ -565,36 +500,18 @@ var ini=NUM*4;
 				var ImgUser=data[i].ImgUser;
 				var PUESTOS=data[i].PUESTOS;
 				var Descri=data[i].Descri;
-				var TIPO=data[i].TIPO;
-				var CATEGORIA=data[i].CATEGORIA;
 				if(PUESTOS=='0'){
 					PUESTOS='A convenir';
 				}else{
 					PUESTOS='$' + PUESTOS;
-				}
-				if(TIPO==1){
-					TIPO='Vacante: ';
-				}else{
-					TIPO='Servicio: ';
-				}
-				if(CATEGORIA==1){
-					CATEGORIA='<h3 class="categoriaProductoB">B&Aacute;SICO</h3>';
-				}else{
-					if(CATEGORIA==2){
-					CATEGORIA='<h3 class="categoriaProductoM">MEDIO</h3>';
-				}
-				if(CATEGORIA==3){
-					CATEGORIA='<h3 class="categoriaProductoP">PREMIUM</h3>';
-				}
 				}
 var div=document.getElementById('productosBajoMapa');
 	var indiv = document.createElement('div');
 		indiv.id='productosBajoMapa_' + contproductosBaj;
 		indiv.className='productosBajoMapa';
 		indiv.style.display='none';
-	var texto='<div class=\"imagenProducto\"><img src=\"https://nirjob.com/' + ImgUser + '?'+ randomnum +'\"></div>';
-	texto=texto+'<div class=\"descripcionProducto\"><h3>' + TIPO + '<a href=\"Visor/visorC.php?ID='+ID+'\">' + Titulo + '</a></h3>';
-	texto=texto+'<div class="categoriaProducto">'+ CATEGORIA +'</div></div>';
+	var texto='<div class=\"imagenProducto\"><img src=\"https://nirjob.com/' + ImgUser + '\"></div>';
+	texto=texto+'<div class=\"descripcionProducto\"><h3><a href=\"Login/visorServicios.html?ID='+ID+'\">' + Titulo + '</a></h3></div>';
 	texto=texto+'<div class=\"precioProducto\"><h3>' + PUESTOS + '</h3></div>';
 		div.appendChild(indiv);
 		document.getElementById('productosBajoMapa_' + contproductosBaj).innerHTML=texto;
@@ -641,25 +558,18 @@ var ini=NUM*8;
 				var ImgUser=data[i].ImgUser;
 				var PUESTOS=data[i].PUESTOS;
 				var Descri=data[i].Descri;
-				var TIPO=data[i].TIPO;
-				var CATEGORIA=data[i].CATEGORIA;
 				if(PUESTOS=='0'){
 					PUESTOS='A convenir';
 				}else{
 					PUESTOS='$' + PUESTOS;
-				}
-				if(TIPO==1){
-					TIPO='Vacante:'
-				}else{
-					TIPO='Servicio:'
 				}
 var div=document.getElementById('mostradorProductos');
 	var indiv = document.createElement('div');
 		indiv.id='Producto_div_' + contproductosBaj2;
 		indiv.className='productosBajoMapa';
 		indiv.style.display='none';
-	var texto='<div class=\"imagenProducto\"><img src=\"https://nirjob.com/' + ImgUser + '?'+ randomnum +'\"></div>';
-	texto=texto+'<div class=\"descripcionProducto\"><h3><a href=\"Visor/visorC.php?ID='+ID+'\">'+ TIPO + ' ' + Titulo + '</a></h3></div>';
+	var texto='<div class=\"imagenProducto\"><img src=\"https://nirjob.com/' + ImgUser + '\"></div>';
+	texto=texto+'<div class=\"descripcionProducto\"><h3><a href=\"Login/visorServicios.html?ID='+ID+'\">' + Titulo + '</a></h3></div>';
 	texto=texto+'<div class=\"precioProducto\"><h3>' + PUESTOS + '</h3></div>';
 		div.appendChild(indiv);
 		document.getElementById('Producto_div_' + contproductosBaj2).innerHTML=texto;
@@ -690,11 +600,6 @@ var div=document.getElementById('mostradorProductos');
 			</div>
 			<!--<button type='button' class='index_button' name='mapButton' onclick='cambiodeMenu("mapaBuscador")'>Mapa</button>
 			<button type='button' class='index_button' name='listButton' onclick='cambiodeMenu("productosBuscador")'>Lista</button><br>-->
-			<div class='botonesSobremapa'>
-			<label>Ofrecen Servicio <input type='checkbox' id='checkbox_tipo_busqueda_2' value='2' onchange='buscador_tipo_check()' /></label>
-			<label>Ofrecen Vacante <input type='checkbox' id='checkbox_tipo_busqueda_1' value='1' onchange='buscador_tipo_check()' /></label>
-			</div>
-			<div class='limpiador'></div>
 			<div id='menu_izquierda'>
 			
 			</div>
@@ -702,26 +607,20 @@ var div=document.getElementById('mostradorProductos');
 			<div class='limpiador'></div>
 			<div id='mapaBuscador'>
 				<div id='map_canvas'></div>
-				
+					
+			
+			
+
 			<div class='limpiador'></div>
 			
 			<div id='mapas_de_google' >
 			</div>
-			<div class='limpiador'></div>
-			
 			<div id='productosBajoMapaC' >
-			<div id='productosOrdenar'>
-			<select onchange='ordenarProductos(this)'>
-			<option value='0'>Ordenar</option>
-			<option value='1'>Fecha de publicacion</option>
-			<option value='2'>Precio (Mayor a menor)</option>
-			<option value='3'>Precio (Menor a mayor)</option>
-			</select>
-			</div>
 	<div id='productosBajoMapa' >
+	
 			</div>
-			<div class='buttonMore'>
-			<button type='button' class='index_button cargarmas' id='cargarMas1' onclick='cargarMas();'>Cargar M&aacute;s</button>
+			<div id='buttonMore'>
+			<button type='button' class='index_button' onclick='cargarMas();'>Cargar M&aacute;s</button>
 			</div>
 			</div>
 			</div>
@@ -735,13 +634,11 @@ var div=document.getElementById('mostradorProductos');
 			</select>
 			</div>
 			<div id='mostradorProductos'>
-			</div><div class='buttonMore'>
-			<button type='button' class='index_button cargarmas' id='cargarMas2' onclick='cargarMas2();'>Cargar Mas</button>
 			</div>
+			<button type='button' class='index_button' onclick='cargarMas2();'>Cargar Mas</button>
 			<div class='limpiador'></div>
 			</div>
-			
-		<div class='limpiador'></div>
+			<div class='limpiador'></div>
 		</div>
 		
 	</div>
