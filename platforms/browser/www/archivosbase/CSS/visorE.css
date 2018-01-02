@@ -1,0 +1,302 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('roboto.eot'); /* IE9 Compat Modes */
+    src: url('roboto.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('roboto.woff') format('woff'), /* Modern Browsers */
+    url('roboto.ttf')  format('truetype'), /* Safari, Android, iOS */
+    url('roboto.svg#svgFontName') format('svg'); /* Legacy iOS */
+  }
+
+.adLeaderBoard{
+    background: #F4F4F4;
+    width: 728px;
+    height: 90px;
+	display:none;
+    margin: auto;
+    margin-top: 20px;
+}
+.adMediaLeft{
+    display:none;
+	width: 160px;
+    height: 600px;
+    writing-mode: vertical-lr;
+    /*transform: rotate(180deg);*/
+    word-wrap: break-word;
+    text-align:center;
+    line-height:20px;
+    background: #F4F4F4;
+    /*border: solid 1px black;*/
+    float: left;
+}
+.adMediaRight{
+	display:none;
+    width: 160px;
+    height: 600px;
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    background: #F4F4F4;
+    /*border: solid 1px black;*/
+    float: right;
+}
+#logoEmp{
+    /*position: absolute;*/
+    /*margin-left: 30px;*/
+    /*margin-top: 30px;*/
+    max-width: 100%;
+    /*margin-right: 20px;*/
+    display: inline-block;
+
+}
+#container{
+    /*background: #F9F9F9; */
+    background: #FFFFFF;
+}
+h2{
+    display: inline;
+    font-size: 115%;
+    color: #01579B;
+    font-weight: bold;
+}
+h3{
+    color: #01579B;
+    font-size: 90%;
+}
+.contenedorVisor{
+    margin: auto;
+    margin-top: 1.5em;
+    width: 90%;
+    padding-left: 0%;
+    padding-right: 0%;
+    /*border: solid 1px black;*/
+    background: rgba(241, 240, 240, 0.4);
+    border-radius: 10px;
+    
+}
+/*.imgVisor{
+    width: 200px;
+    height: 200px;
+}*/
+#nombreEmp{
+    /*margin-top: 20px;*/
+    padding-top: 15px;
+    font-size: 32px;
+    font-family: 'Roboto', sans-serif;
+    padding-bottom: 10px;
+    text-align: left;
+    color: rgb(0, 74, 131);
+}
+.cuerpoVisor{
+    /*margin-top: 20px;*/
+}
+#descripcion{
+    /*background: #E9EBEE;*/
+    background: #FFFFFF;
+}
+#descripcionEmpresa{
+    display: inline-block;
+    /*background: #F1F0F0;*/
+    background: #FFFFFF;
+    /*margin-left: 00px;*/
+    /*border: solid 1px black;*/
+    /*float: right;*/
+    width: 90%;
+    padding-left: 2%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    padding-right: 2%;
+    margin-bottom: 3%;
+    border-radius: 10px;
+}
+.contenedorProductos{
+    width:96%;
+    border-radius: 10px;
+    /*display: inline;*/
+    /*border: solid 1px black;*/
+    /*background: #E9EBEE;*/
+    /*background: #F1F0F0;*/
+    background: #FFFFFF;
+    padding-left: 2%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    padding-right: 2%;
+    /*margin-bottom: 3%;*/
+    /*display: inline-block;*/
+    /*padding-right: 200px;*/
+}
+/*Productos*/
+.contenerdor_Productos{
+	width:100%;
+	height:8em;
+}
+.contenerdor_Productos .producto{
+    border-top: 2px solid #029BDB;
+    /*border-bottom: 2px solid #A0A0A0;*/
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+	width:96%;
+	height:8em;
+}
+.contenerdor_Productos .producto div{
+    margin-top: 2%;
+    margin-bottom: 2%;
+	float:left;
+	height:7.8em;
+}
+.contenerdor_Productos .producto .img_producto{
+    width:30%;
+    /*width: 140px;*/
+    height: 7.8em;
+}
+.contenerdor_Productos .producto .img_producto img{
+	/*max-width:100%;
+    max-height:7.8em;*/
+    max-width: 25%;
+    height: 7.8em;
+	position:absolute;
+
+}
+.contenerdor_Productos .producto .botones_producto{
+    width:13%;
+    
+}
+.contenerdor_Productos .producto .botones_producto button{
+	width:90%;
+    /*padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 5%;
+    padding-bottom: 5%;*/
+    margin-top: 30%;
+    margin-left: 5%;
+    border: none;
+    color: #FFFFFF;
+    background: #FFD54F;
+    border-radius: 3px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3),inset 0px 1px 0px rgba(255,255,255,0.07);
+    cursor: pointer;
+}
+button{
+    /*padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 5%;
+    padding-bottom: 5%;*/
+    /*margin-top: 30%;
+    margin-left: 5%;*/
+    /*padding-top: 5px;
+    padding-bottom: 5px;*/
+    /*width: 20%;*/
+    border: none;
+    color: #FFFFFF;
+    background: #FFD54F;
+    border-radius: 3px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3),inset 0px 1px 0px rgba(255,255,255,0.07);
+    cursor: pointer;
+}
+.contenerdor_Productos .producto .botones_producto a{
+    text-decoration: none;
+    color: #FFFFFF;
+}
+.contenerdor_Productos a{
+    text-decoration: none;
+    color: #FFFFFF;
+}
+.producto{
+    border-top: 2px solid #029BDB;
+    margin-top: 1em;
+    padding-left: 1em;
+}
+.contenerdor_Productos .producto .discripcion_producto{
+    /*margin-left: 1.2em;*/
+	overflow:auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 7.8em;
+    width: 40%;
+    border: 1px solid rgba(160, 160, 160, 0.24);
+    
+}
+h4, p{
+    font-size: 13px;
+    /*margin-left: 5px;
+    margin-right: 5px;*/
+}
+.contenerdor_Productos .producto .precio_producto{
+    width:9%;
+    font-size: 12px;
+    padding-left: 10px;
+    padding-right: 5px;
+}
+.comentario_calificacion_t textarea
+{
+    width: 100%;
+    height: 8em;
+    resize: none;
+}
+.muestra_comentarioPrin{
+	width:100%;
+}
+.respuestasComentarios{
+	width:90%;
+	margin-left:9%;
+}
+.muestra_comentarioPrin div, .muestra_comentarioR div{
+	display:inline-block;
+}
+.img_ComenUsuario{
+
+	width:4em;
+	height:4em;
+	border-radius:200px;
+	overflow:hidden;
+}
+.img_ComenUsuario img{
+max-height:4em;
+
+}
+.comentario_calificacion_tC{
+vertical-align:top;
+	width:80%;
+}
+.comentario_calificacion_tC p{
+	width:100%;
+	font-size:1em;
+}
+.calificacion_estrellitas{
+ direction: rtl;
+ unicode-bidi: bidi-override;
+ text-align:center;
+}
+.calificacion_estrellitas input{
+	display:none;
+}
+.estrellitas{
+	cursor:pointer;
+	display:inline-block;
+	width:50px;
+	height:50px;
+	 background-image: url("../archivosbase/icons/ic_star_border_black_24dp_2x.png");
+	
+	background-repeat: no-repeat;
+	background-size: 50px 50px;
+	 
+	  background-position: center; 
+}
+/*.calificacion_estrellitas label:hover,
+.calificacion_estrellitas label:hover ~ label {
+background-image: url("../archivosbase/icons/ic_star_black_24dp_2x.png");
+}*/
+.estrellitasN, .estrellitasT{
+	display:inline-block;
+	width:50px;
+	height:50px;
+	background-repeat: no-repeat;
+	background-size: 50px 50px;
+	background-position: center; 
+}
+.estrellitasT{
+	 background-image: url("../archivosbase/icons/ic_star_black_24dp_2x.png"); 
+}
+.estrellitasN{
+	 background-image: url("../archivosbase/icons/ic_star_border_black_24dp_2x.png"); 
+}

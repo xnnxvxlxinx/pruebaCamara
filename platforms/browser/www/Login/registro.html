@@ -1,0 +1,262 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Inicio de Sesi&oacute;n</title>
+     <meta
+  name="viewport"
+  content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+   
+	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/cabeza.css">
+    <link rel="stylesheet" type="text/css" href="../archivosbase/CSS/iniciosesion.css">
+	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/ajax-loader.css">
+    <link rel="shortcut icon" href="../archivosbase/icons/favicon.ico" />
+	<script src="../archivosbase/jquerymobile145/jquery-3.2.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/mensaje_javascript.css">
+ <script src="../archivosbase/jquerymobile145/jquery.mobile-1.4.5.min.js"></script>
+ <script type="text/javascript" src="../cordova.js"></script>
+ <style>
+ .textLabel{
+ width:16em;
+ }
+ </style>
+	<script>
+	function initialize() {
+	$.get("../archivosbase/cabeza.html", function(htmlexterno){
+   $("#cabecera").html(htmlexterno);
+    	});
+		
+		}
+		var numeros="0123456789";
+		var letras="abcdefghyjklmnñopqrstuvwxyz";
+var letras_mayusculas="ABCDEFGHYJKLMNÑOPQRSTUVWXYZ";
+var letras_mail="@";
+var letras_mail2=".";
+		function tiene_numeros(texto){
+   for(i=0; i<texto.length; i++){
+      if (numeros.indexOf(texto.charAt(i),0)!=-1){
+         return 1;
+      }
+   }
+   return 0;
+}
+function tiene_minusculas(texto){
+   for(i=0; i<texto.length; i++){
+      if (letras.indexOf(texto.charAt(i),0)!=-1){
+         return 1;
+      }
+   }
+   return 0;
+}
+function tiene_mayusculas(texto){
+   for(i=0; i<texto.length; i++){
+      if (letras_mayusculas.indexOf(texto.charAt(i),0)!=-1){
+         return 1;
+      }
+   }
+   return 0;
+}
+function es_mail(texto){
+var arrova=0;
+var opunto=0;
+ for(i=0; i<texto.length; i++){
+      if (letras_mail.indexOf(texto.charAt(i),0)!=-1){  
+        arrova=1;
+      }
+	  if (letras_mail2.indexOf(texto.charAt(i),0)!=-1){  
+        opunto=1;
+      }
+   }
+   if(arrova==1 && opunto==1)
+   {
+    return 1;
+   }else{
+   return 0;
+   }
+}
+ 		function cerrar(div){		
+$("#" + div).fadeOut(150);
+}
+$(function(){
+        $("#formuploadajaxTag").on("submit", function(e){
+			
+            e.preventDefault();
+            var f = $(this);
+            var formData = new FormData(document.getElementById("formuploadajaxTag"));
+			document.getElementById('ajax-loader').style.display='block';
+			var valorContra=document.getElementById('userPwd').value;
+			var valorContra2=document.getElementById('userPwd2').value;
+			var valorMail=document.getElementById('mail').value;
+			if(tiene_numeros(valorContra)==1){
+			if(tiene_minusculas(valorContra)==1){
+			if(tiene_mayusculas(valorContra)==1){
+			if(valorContra.length>=8){
+			if(valorContra==valorContra2){
+			if(es_mail(valorMail)==1){
+			setTimeout(function(){
+            $.ajax({
+                url: "https://nirjob.com/PhoneGap/registro.php",
+                type: "post",
+                dataType: "json",
+                data: formData,
+                cache: false,
+                contentType: false,
+	     processData: false
+            }).done(function(data){
+			
+				var tamanio=data.length;
+				//alert(tamanio);
+				if(data[0].SesionError=='0' && tamanio==1){
+				var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<h3>Usuario registrado con &eacute;xito.</h3><p>Ya puede iniciar sesi&oacute;n con estos datos.</p>";
+texto= texto + "<button type='button' onclick='location.href=\"index.html\";'>Aceptar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+				
+				}else{
+				if(data[0].SesionError=='1'){
+				var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Error base.</p>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+				}
+				if(data[0].SesionError=='3'){
+				var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>El nombre de Usuario ya existe.</p>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+				}
+				if(data[0].SesionError=='2'){
+				var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>El mail ya est&aacute; registrado.</p>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+				}
+				if(data[0].SesionError=='4'){
+				var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Error Datos.</p>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+				}
+				}
+                });
+				
+				}, 250);
+				}else{
+				var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>El mail no es v&aacute;lido.</p>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+				}}else{
+				var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Las contraseñas no son iguales.</p>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+				}}else{
+				var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>La contraseña debe tener al menos 8 caracteres.</p>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+				}}else{
+				var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>La contraseña debe tener al menos 1 Mayuscula.</p>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+				}}else{
+				var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>La contraseña debe tener al menos 1 Miniscula.</p>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+				}}else{
+				var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>La contraseña debe tener al menos 1 N&uacute;mero.</p>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+				}
+        document.getElementById('ajax-loader').style.display='none';
+		});
+		});
+/*var SesionID=data[0].SesionID;	
+				var SesionNivel=data[0].SesionNivel;
+				var SesionNombre=data[0].SesionNombre;
+				var SesionDireccion=data[0].SesionDireccion;
+				var SesionMail=data[0].SesionMail;
+				var SesionTelefono=data[0].SesionTelefono;
+				var SesionLoggedin=data[0].SesionLoggedin;
+				var SesionUsuario=data[0].SesionUsuario;
+				localStorage.setItem("SesionID", SesionID);
+				localStorage.setItem("SesionNivel", SesionNivel);
+				localStorage.setItem("SesionNombre", SesionNombre);
+				localStorage.setItem("SesionDireccion", SesionDireccion);
+				localStorage.setItem("SesionMail", SesionMail);
+				localStorage.setItem("SesionTelefono", SesionTelefono);
+				localStorage.setItem("SesionLoggedin", SesionLoggedin);
+				localStorage.setItem("SesionUsuario", SesionUsuario);
+				location.href="../index.html";
+				$("#ErrorInicio").html("");*/
+	</script>
+</head>
+<body onload='initialize();'>
+    <div id="container">
+        <div id="cabecera">
+
+        </div>
+		<div id='contenido'>
+		<div id='form_inicio_sesion' class='form_inicio'>
+<div id='ErrorInicio'></div>
+    <div class="login">
+<form method="post" id='formuploadajaxTag' name="f1">
+<label for="nombre"><div class="textLabel">*Nombre</div></label>
+<input type="text" name="nombre" id="nombre" required placeholder="">
+<br/>	
+<label for="username"><div class="textLabel">*Usuario</div></label>
+<input type="text" name="username" id="username" required placeholder="">
+<br/>
+<label for="userPwd"><div class="textLabel">*Contrase&ntilde;a</div></label>
+<input type="password" name="password" id="userPwd" required placeholder="">
+<br/>
+<label for="userPwd2"><div class="textLabel">*Confirmar Contrase&ntilde;a</div></label>
+<input type="password" name="password2" id="userPwd2" required placeholder="">
+<br/><br/>
+<label><div class="textLabel">Soy: </div></label><select name='prioridad' id='SelectTipo' required>
+<option value=''>Seleccione una Opci&oacute;n</option>
+<option value='2'>Empresa</option>
+<option value='3'>Particular</option>
+</select><br/><br/><br/>
+<label for="mail"><div class="textLabel">Correo Electronico</div></label>
+<input type="text" name="mail" id="mail" required placeholder="ejemplo@xxxxxx.com">
+<br/>
+<label for="telefono"><div class="textLabel">Tel&eacute;fono</div></label>
+<input type="text" name="telefono" id="telefono" placeholder="09xxxxxxxx">
+<br/>
+<label for="direccion"><div class="textLabel">Direcci&oacute;n</div></label>
+<input type="text" name="direccion" id="direccion"  placeholder="">
+<br/>
+<input type="text" name="Submit" value="Registrarse" style='display:none'  placeholder="">
+<input type="submit"  value="Registrarse" />
+
+</form>
+<br/>
+</div>
+		</div>
+		</div>
+		<div id='footer'>
+
+		</div>
+		<div id='ajax-loader'>
+	<img src='../archivosbase/img/ajax-loader.gif'/>
+	</div>
+	<div id='mensaje_javascript'><div></div></div>
+    </div>
+</body>
+</html>
+

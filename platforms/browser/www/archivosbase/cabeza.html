@@ -1,0 +1,249 @@
+
+<div id="cabeza">
+    <div id="logo"><div id="logoMain"></div></div>
+	
+	<div id="busqueda">
+	<input type="text"  class="search_bar" id="search_bar_cabeza" placeholder="Busque Aqui" required>
+	<input type='submit' class='search_button' id='search_buttonB' onclick='funcion_buscar_text()' value=''>
+	</div>
+	<div id='ManeuBuscadorRadio'></div>
+	<div id='MenuCabezaC'>
+	</div>
+	
+	<div id='MenuCabeza'>
+
+	<ul id='MenuCabezaUl'>
+	</ul>
+	
+	</div>
+	
+<script>
+var URLdomain = window.location.host;
+var protocolo = window.location.protocol;
+var url=  "file:///android_asset/www/" ;
+//var url=protocolo + "//" + URLdomain +"/";
+var resolucionheight=screen.height;
+var resolucionheight10=resolucionheight*0.10;
+var Usuario = localStorage.getItem('SesionUsuario') || '<empty>';
+var Nivel = localStorage.getItem('SesionNivel') || '<empty>';
+var SesionID = localStorage.getItem('SesionID') || '<empty>';
+document.getElementById('cabeza').style.height=resolucionheight10+'px';
+document.getElementById('logo').style.height=resolucionheight10+'px';
+document.getElementById('logoMain').style.height=resolucionheight10+'px';
+document.getElementById('MenuCabeza').style.height=resolucionheight*0.9+'px';
+document.getElementById('MenuCabezaC').style.height=resolucionheight+'px';
+document.getElementById('MenuCabeza').style.top=resolucionheight10+'px';
+function funcion_buscar_text(){
+var  URLsearch=document.getElementById('search_bar_cabeza').value;
+GetBusqueda="?busqueda=" + URLsearch;
+GetbusTag="?Bus=" + URLsearch;
+llamarmarc(GetBusqueda);
+}
+	function checkConnection() {
+    	$.ajax({
+  			url: 'https://nirjob.com/',
+  			async: false,
+  			data: {'tag' : 'connection'}
+  		})
+  		.fail(function() {
+		var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Su dispositivo no esta conectado al Internet.</br>¿Decea intentar conectar de nuevo?</p>";
+texto= texto + "<button type='button' onclick='window.location.reload(true);'>Si</button>";
+texto= texto + "<button type='button' onclick='cerrarMensaje(\"mensaje_javascript\");'>No</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+		 })
+  		.done(function() {
+setTimeout( function (){
+checkConnection();
+}, 10000);
+		})
+  }
+  function cerrarMensaje(div){
+  $("#" + div).fadeOut(100);
+  }
+setTimeout( function (){
+checkConnection();
+}, 1000);
+	function getAbsolutePath() {
+    var loc = window.location;
+    var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') + 1);
+    return loc.href.substring(0, loc.href.length - ((loc.pathname + loc.search + loc.hash).length - pathName.length));
+}
+$( "#MenuCabezaC" ).click(function() {
+$( "#MenuCabeza" ).fadeOut(200);
+$( "#MenuCabezaC" ).fadeOut(200);
+
+});
+$( "#logo" ).click(function() {
+$( "#MenuCabezaC" ).fadeToggle(200);
+$( "#MenuCabeza" ).fadeToggle(200);
+var texto="";
+var texto1="";
+if(Usuario!='<empty>' && Nivel!='<empty>'){
+if(Nivel==1){
+texto = texto + "<li ><span id='CabezaImgUser'></span><h5>" + Usuario + "</h5></li>";
+texto = texto + "<li><a href='" + url + "Login/MiCuenta.html'>Mi Sesion</a></li>";
+//texto = texto + "<li><a href='" + url + "buscador.html'>Empresas/Productos</a></li>";
+texto = texto + "<li><a href='" + url + "servicios.html'>Mapa de Servicios</a></li>";
+texto = texto + "<li><a>Configuraciones de Administrador</a></li>";
+texto = texto + "<li><a href='" + url + "Login/logout.html'>Cerrar Sesion</a></li>";
+}
+if(Nivel==2){
+texto = texto + "<li><span id='CabezaImgUser'></span><h5>" + Usuario + "</h5></li>";
+texto = texto + "<li><a href='" + url + "Login/MiCuenta.html'>Configuraci&oacute;n de perfil</a></li>";
+texto = texto + "<li><a href='" + url + "servicios.html'>P&aacute;gina principal</a></li>";
+
+texto = texto + "<li><a href='" + url + "Login/notificaciones.html'>Notificaciones</a></li>";
+texto = texto + "<li><a href='" + url + "Login/descripcionE.html'>Descripcion de mi Empresa</a></li>";
+texto = texto + "<li><a href='" + url + "Login/ubicacion.html'>Ubicaciones de mis Locales</a></li>";
+texto = texto + "<li><a href='" + url + "Login/horarios.html'>Horarios de atencion de mis Locales</a></li>";
+texto = texto + "<li><a href='" + url + "Login/mis_servicios.html'>Mis servicios publicados</a></li>";
+texto = texto + "<li><a href='" + url + "Login/mis_ofertas.html'>Mis vacantes publicadas</a></li>";
+
+//texto = texto + "<li><a href='" + url + "buscador.html'>Empresas/Productos</a></li>";
+texto = texto + "<li><a href='" + url + "Login/administrar_servicio.html'>Publicar nuevo Servicio</a></li>";
+texto = texto + "<li><a href='" + url + "Login/administrar_ofertas.html'>Publicar nueva vacante</a></li>";
+texto = texto + "<li><a href='" + url + "Login/logout.html'>Cerrar Sesion</a></li>";
+}
+if(Nivel==3){
+texto = texto + "<li><span id='CabezaImgUser'></span><h5>" + Usuario + "</h5></li>";
+texto = texto + "<li><a href='" + url + "servicios.html'>P&aacute;gina principal</a></li>";
+texto = texto + "<li><a href='" + url + "Login/MiCuenta.html'>Configuraci&oacute;n de perfil</a></li>";
+
+texto = texto + "<li><a href='" + url + "Login/notificaciones.html'>Notificaciones</a></li>";
+texto = texto + "<li><a href='" + url + "Login/descripcionP.html'>Descripcion de mis Servicios</a></li>";
+texto = texto + "<li><a href='" + url + "Login/Mubicacion.html'>Mi Ubicaci&oacute;n en el MAPA</a></li>";
+//texto = texto + "<li><a href='" + url + "buscador.html'>Empresas/Productos</a></li>";
+texto = texto + "<li><a href='" + url + "Login/mis_servicios.html'>Mis servicios publicados</a></li>";
+texto = texto + "<li><a href='" + url + "Login/mis_ofertas.html'>Mis vacantes publicadas</a></li>";
+
+texto = texto + "<li><a href='" + url + "Login/administrar_ofertas.html'>Publicar nueva vacante</a></li>";
+texto = texto + "<li><a href='" + url + "Login/administrar_servicio.html'>Publicar nuevo Servicio</a></li>";
+texto = texto + "<li><a href='" + url + "Login/logout.html'>Cerrar Sesion</a></li>";
+
+}
+}else{
+texto = texto + "<li><a href='" + url + "Login/index.html'>Inicio de Sesion</a></li>";
+//texto = texto + "<li><a href='" + url + "buscador.html'>Empresas/Productos</a></li>";
+texto = texto + "<li><a href='" + url + "servicios.html'>Mapa de Servicios</a></li>";
+texto = texto + "<li><a href='pruebacamara.html'>Prueba notificacion</a></li>";
+}
+document.getElementById('MenuCabezaUl').innerHTML=texto;
+//$("#MenuCabezaUl").html(texto);
+imgUsuario();
+});
+function imgUsuario(){
+$.get('https://nirjob.com/PhoneGap/obtenerIMG.php?IDmen=' + SesionID, function(data){
+document.getElementById('CabezaImgUser').innerHTML=data;
+});
+}
+if(Nivel==3){
+$.getJSON('https://nirjob.com/PhoneGap/ubicacion/radioCabezaCheck.php?ID=' + SesionID, function(data){
+					var tamanio=data.length;
+					var check2='checked';
+					var check1='';
+					
+							if(data[0].CHEK=='1'){
+							 check1='checked';
+							 check2='';
+							}
+							if(data[0].CHEK=='2'){
+							 check2='checked';
+							 check1='';
+							}
+texto1="<div id='cabeza_disponibleP'>";
+	texto1= texto1 + "<p class='btn-switch'>";									
+	texto1= texto1 + "	<input type='radio' name='disponibilidadPartiular' " + check1 + " id='disponibilidadPartiular1' onchange='disponibilidadPartiular()' value='1' class='btn-switch__radio btn-switch__radio_yes' />";
+		texto1= texto1 + "<input type='radio' name='disponibilidadPartiular' " + check2 + " id='disponibilidadPartiular0' onchange='disponibilidadPartiular()' value='0' class='btn-switch__radio btn-switch__radio_no' />";
+		texto1= texto1 + "<label for='disponibilidadPartiular1' class='btn-switch__label btn-switch__label_yes'><span class='btn-switch__txt'></span></label>";
+		texto1= texto1 + "<label for='disponibilidadPartiular0' class='btn-switch__label btn-switch__label_no'><span class='btn-switch__txt'></span></label>";
+		texto1= texto1 + "</p></div>";
+$("#ManeuBuscadorRadio").html(texto1);		
+});
+}
+	function disponibilidadPartiularS(val){
+			$.getJSON('https://nirjob.com/archivosbase/php/disponibleJq/disponible.php?ID=' + SesionID + '&Val=1', function(data){
+					var tamanio=data.length;
+						for(var i=0; i<tamanio; i++){
+							if(data[i].Error=='0'){
+							if(val==1){
+								if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            
+            var  lat=position.coords.latitude;
+          var  lon=position.coords.longitude;
+        					$.getJSON('https://nirjob.com/archivosbase/php/disponibleJq/ubicacion.php?ID=' + SesionID + '&lat='+ lat +'&lon=' + lon, function(data2){
+					var tamanio2=data2.length;
+						for(var i=0; i<tamanio2; i++){
+							if(data2[i].Error=='0'){
+								location.reload();
+							}else{
+							document.getElementById('mensaje-cabeza').style.display='block';
+				var texto='<p>Informacion</p><h3>Error al subir su informacion.<br/>ERROR: '+ data2[i].Error +'</h3>';
+				texto=texto + '<button type=\"button\" onclick=\"location.reload();\">Aceptar</button>';
+			document.getElementById('mensaje-cabezaC').innerHTML=texto;	
+							}
+								}});
+		
+          }, function() {
+			  
+          
+			
+								
+								document.getElementById('mensaje-cabeza').style.display='block';
+				var texto='<p>Informacion</p><h3>Error se tiene que autorizar la ubicacion Geográfica.</h3>';
+				texto=texto + '<button type=\"button\" onclick=\"location.reload();\">Aceptar</button>';
+			document.getElementById('mensaje-cabezaC').innerHTML=texto;	
+							
+								});
+						}
+							}else{
+								location.reload();
+							}
+							}
+							if(data[i].Error=='2'){
+				document.getElementById('mensaje-cabeza').style.display='block';
+				var texto='<p>Informacion</p><h3>Su usuario no tiene todavia una descripci&oacute;n, para continuar debe crearla.</h3>';
+				texto=texto + '<button type=\"button\" onclick=\"location.href=\'Login/descripcionP.html\';\">Llenar descripci&oacute;n.</button>';
+				texto=texto + '<button type=\"button\" onclick=\"location.reload();\">Cancelar</button>';
+			document.getElementById('mensaje-cabezaC').innerHTML=texto;
+							}
+							if(data[i].Error=='4'){
+				document.getElementById('mensaje-cabeza').style.display='block';
+				var texto='<p>Informacion</p><h3>Su usuario no tiene todav&iacute;a un servicio para mostrar en el mapa..</h3>';
+				texto=texto + '<button type=\"button\" onclick=\"location.href=\'https://nirjob.com/Login/administrar.php?men=contratacion_empresas\';\">Solicitar Servicio.</button>';
+				texto=texto + '<button type=\"button\" onclick=\"location.href=\'https://nirjob.com/Login/administrar.php?men=contratacion_particular\';\">Ofrecer Servicio.</button>';
+				texto=texto + '<button type=\"button\" onclick=\"location.reload();\">Cancelar</button>';
+			document.getElementById('mensaje-cabezaC').innerHTML=texto;
+							}
+						}
+		});
+		}
+		function disponibilidadPartiular(){
+			var Si=document.getElementById('disponibilidadPartiular1');
+			var No=document.getElementById('disponibilidadPartiular0');
+			if(Si.checked==true){
+				document.getElementById('mensaje-cabeza').style.display='block';
+				var texto='<p>Informaci&oacute;n</p><h3>Desea enviar su posici&oacute;n actual?.</h3>';
+				
+				texto=texto + '<button type=\"button\" onclick=\"disponibilidadPartiularS(1);\">Usar posici&oacute;n actual.</button>';
+				texto=texto + '<button type=\"button\" onclick=\"disponibilidadPartiularS(0);\">Usar &uacute;ltima posici&oacute;n registrada.</button>';
+			document.getElementById('mensaje-cabezaC').innerHTML=texto;
+			}
+			if(No.checked==true){
+				$.get('https://nirjob.com/archivosbase/php/disponibleJq/disponible.php?ID=' + SesionID + '&Val=0', function(data){
+					var tamanio=data.length;
+						for(var i=0; i<tamanio; i++){
+							location.reload();
+						}
+		});
+			}
+		}
+</script>
+	<div id='mensaje-cabeza'>
+	<div id='mensaje-cabezaC'>
+	
+	</div>
+	</div>
+</div>

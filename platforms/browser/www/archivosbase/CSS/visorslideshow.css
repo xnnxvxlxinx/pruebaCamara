@@ -1,0 +1,93 @@
+#slideShowContratacion {
+	position:relative;
+	width:100%;
+
+}
+  .mySlides {
+	   background-color: rgba(0, 0, 0, 0.8);
+  display: none;
+  text-align:center;
+  width:100%;
+}
+
+
+  .cursor {
+  cursor: pointer;
+}
+
+  .prev,
+  .next {
+  cursor: pointer;
+  position: absolute;
+  top: 40%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+
+  .next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+
+  .prev:hover,
+  .next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+  .numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+ #slideShowContratacion img {
+  margin-bottom: -4px;
+
+}
+img.imgMySlides {
+max-width:100%;
+max-height:20em;
+}
+img.imgSlideCol{
+max-width:100%;
+max-height:2.5em;
+}
+  .caption-container {
+  text-align: center;
+  background-color: #222;
+  padding: 2px 16px;
+  color: white;
+}
+
+  .row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+  .column {
+  float: left;
+}
+
+
+  .demo {
+  opacity: 0.6;
+}
+
+  .active,
+  .demo:hover {
+  opacity: 1;
+}
