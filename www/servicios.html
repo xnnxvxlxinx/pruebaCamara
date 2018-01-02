@@ -53,10 +53,10 @@ var resolucionheight=screen.height;
 var resolucionheight10=resolucionheight*0.15;
 document.getElementById('menu_izquierda').style.height=resolucionheight10+'px';
 document.getElementById('map_canvas').style.height=resolucionheight*0.65+'px';
-cordova.plugins.diagnostic.isLocationEnabled(function(enabled){
+//cordova.plugins.diagnostic.isLocationEnabled(function(enabled){
 //alert(enabled);
-if(enabled==true){
-			navigator.geolocation.getCurrentPosition(function(position) {
+//if(enabled==true){
+		/*	navigator.geolocation.getCurrentPosition(function(position) {
 			var latI=position.coords.latitude;
             var lonI=position.coords.longitude;
 			lat=latI;
@@ -66,10 +66,10 @@ if(enabled==true){
 	}, function(error) {
 initialize();
     });
-			}else{
+			}else{*/
 			initialize();
-			}
-}, function(error){alert(error);});
+			/*}
+}, function(error){alert(error);});*/
 }
 						function initialize() {
 							var URLsearch = window.location.search;	
@@ -594,8 +594,8 @@ var div=document.getElementById('mostradorProductos');
 			</div>-->
 			<div id='botonBuscador'>
 			</div>
-			<button type='button' class='index_button' name='mapButton' onclick='cambiodeMenu("mapaBuscador")'>Mapa</button>
-			<button type='button' class='index_button' name='listButton' onclick='cambiodeMenu("productosBuscador")'>Lista</button><br>
+			<!--<button type='button' class='index_button' name='mapButton' onclick='cambiodeMenu("mapaBuscador")'>Mapa</button>
+			<button type='button' class='index_button' name='listButton' onclick='cambiodeMenu("productosBuscador")'>Lista</button><br>-->
 			<div id='menu_izquierda'>
 			
 			</div>

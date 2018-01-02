@@ -80,7 +80,7 @@ function ObtenerTagSecundario(ID){
 document.getElementById('ajax-loader').style.display='block';
 setTimeout(function(){
 	   $.getJSON('https://nirjob.com/PhoneGap/servicios/TagSecundarios.php' + '?ID=' + ID, function(data) {  
-	var texto='<div><h3>Sub Categorías.</h3>';
+	var texto='<div><h3>Sub Categor&iacute;as.</h3>';
 		var tamanio=data.length;
 			for(var i=0; i<tamanio; i++){
 				var ID=data[i].ID;
@@ -108,8 +108,8 @@ function mostrarTitulo(){
 
 var div=document.getElementById('seleccionadorTituloC');
 
-		var texto='<div ><h3>Título de la Publicación.</h3><input type="text" id="InputTitulo" value="'+ InputTitulo +'" /></br>';
-		 texto= texto + '<h3>Descripción de la Publicación.</h3><input type="text" id="InputDescripcion" value="' + InputDescripcion +'" /></br>';
+		var texto='<div ><h3>T&iacute;tulo de la Publicaci&oacute;n.</h3><input type="text" id="InputTitulo" value="'+ InputTitulo +'" /></br>';
+		 texto= texto + '<h3>Descripci&oacute;n de la Publicaci&oacute;n.</h3><input type="text" id="InputDescripcion" value="' + InputDescripcion +'" /></br>';
 		 texto= texto + '<h3>*Precio $:</h3><input type="number" id="InputPrecio" value="' + InputPrecio +'" /></br>';
 		 texto=texto +'<input type="submit" value="Siguiente" onclick="seleccionadorTagsSecundario();" style="background-color: #FFD54F;"></div>';
 		
@@ -134,7 +134,7 @@ function seleccionFotoImagenI(id){
 fotoImagen=document.getElementById(id);
 var mensaje=document.getElementById('mensaje_javascript');
 		mensaje.style.display='block';
-var texto="<p>¿Desea usar la cámara u obtener foto de la galería?</p>";
+var texto="<p>&iquest;Desea usar la c&aacute;mara u obtener foto de la galer&iacute;a?</p>";
 texto= texto + "<button type='button' onclick='seleccionFotoImagen(1); cerrar(\"mensaje_javascript\");'>Camara</button>";
 texto= texto + "<button type='button' onclick='seleccionFotoImagen(2); cerrar(\"mensaje_javascript\");'>Galeria</button>";
 		mensaje.childNodes[0].innerHTML=texto;
@@ -188,7 +188,7 @@ $("#seleccionadorTagsSecundario").fadeIn(250);
 }else{
 var mensaje=document.getElementById('mensaje_javascript');
 		mensaje.style.display='block';
-var texto="<p>La publicación debe tener un título, una descripción y un precio.<br/>(* Precio=0, A Convenir)</p>";
+var texto="<p>La publicaci&oacute;n debe tener un t&iacute;tulo, una descripci&oacute;n y un precio.<br/>(* Precio=0, A Convenir)</p>";
 texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Aceptar</button>";
 		mensaje.childNodes[0].innerHTML=texto;
 }
@@ -213,7 +213,7 @@ $("#seleccionadorImagenes").fadeIn(250);
 }, 255); }else{
 var mensaje=document.getElementById('mensaje_javascript');
 		mensaje.style.display='block';
-var texto="<p>No ha seleccionado ninguna sub categoría.</p>";
+var texto="<p>No ha seleccionado ninguna sub categor&iacute;a.</p>";
 texto= texto + "<button type='button' onclick='seleccionadorImagenes(); cerrar(\"mensaje_javascript\");'>Siguiente</button>";
 texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
 		mensaje.childNodes[0].innerHTML=texto;
@@ -290,8 +290,8 @@ function subirdatosservicio(){
 
 var div=document.getElementById('SubirDatosC');
 var texto='<div>';
-		var texto='<h3>Título de la Publicación.</h3><input type="text" name="titulo" value="'+ InputTitulo +'" required readonly/></br>';
-		 texto= texto + '<h3>Descripción de la Publicación.</h3><input name="descripcion" type="text" required readonly value="' + InputDescripcion +'" /></br>';
+		var texto='<h3>T&iacute;tulo de la Publicaci&oacute;n.</h3><input type="text" name="titulo" value="'+ InputTitulo +'" required readonly/></br>';
+		 texto= texto + '<h3>Descripci&oacute;n de la Publicaci&oacute;n.</h3><input name="descripcion" type="text" required readonly value="' + InputDescripcion +'" /></br>';
 texto= texto + '<h3>Valor $:</h3><input name="puestos" type="text"  required readonly value="' + InputPrecio +'" /></br>';		 
 		 texto= texto + '<input type="text" name="tag_principal" required readonly value="' +  TagPrinciForm +'" style="display:none"/></br>';
 		for(var i=0; i<InputTagSecundario.length; i++){
