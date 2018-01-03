@@ -73,6 +73,13 @@ setTimeout(function(){
 			 if(data[0].ERROR=='1'){
 			 alert('ERROR');
 			 }else{
+			 if(data[0].ERROR=='2'){
+			var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Su usuario aun no ha ofertado un servicio</p>";
+texto= texto + "<button type='button' onclick='location.href=\"administrar_servicio.html\";'>Ofertar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+			 }else{
 			for(var i=0; i<tamanio; i++){
 				var IDOB=data[i].ID;
 				var DescripcionOB=data[i].Descripcion;
@@ -102,7 +109,7 @@ setTimeout(function(){
 		$("#productosBajoMapa_" + contproductosBaj).fadeIn(250);
 		contproductosBaj=contproductosBaj + 1;
 			}
-			}
+			}}
 		document.getElementById('ajax-loader').style.display='none';	
 		});	
 
