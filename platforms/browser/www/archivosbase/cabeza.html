@@ -20,6 +20,8 @@
 <script>
 var URLdomain = window.location.host;
 var protocolo = window.location.protocol;
+var pathname = window.location.pathname;
+//alert(pathname);
 var url=  "file:///android_asset/www/" ;
 //var url=protocolo + "//" + URLdomain +"/";
 var resolucionheight=screen.height;
@@ -35,9 +37,13 @@ document.getElementById('MenuCabezaC').style.height=resolucionheight+'px';
 document.getElementById('MenuCabeza').style.top=resolucionheight10+'px';
 function funcion_buscar_text(){
 var  URLsearch=document.getElementById('search_bar_cabeza').value;
+if(pathname=="/servicios.html"){
 GetBusqueda="?busqueda=" + URLsearch;
 GetbusTag="?Bus=" + URLsearch;
 llamarmarc(GetBusqueda);
+}else{
+location.href=url + "servicios.html?busqueda=" + URLsearch;
+}
 }
 	function checkConnection() {
     	$.ajax({
