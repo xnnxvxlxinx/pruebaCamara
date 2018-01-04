@@ -250,8 +250,8 @@ height:4em;
 }
 #mensaje-cabeza div
 {
-	color=black;
-    position: absolute;
+	color:black;
+  /*  position: absolute;
     background-color: #FFFFFF;
     top: 50%;
     left: 50%;
@@ -259,5 +259,25 @@ height:4em;
     height: 30%;
     margin-left: -15%;
     margin-top: -15%;
-    padding-left: 3%;
+    padding-left: 3%;*/
+	 z-index: 11;
+    position: absolute;
+    background-color: #FFFFFF;
+    /* top: 50%; */
+    /* left: 50%; */
+    width: 90%;
+    height: 50%;
+	overflow:auto;
+    margin-left: 5%;
+    margin-top: 25%;
+    /* padding-left: 3%; */
+    text-align: center;
+}
+#mensaje-cabeza button
+{
+	border:0;
+	margin-right: 5%;
+	    width: 40%;
+    height: 3em;
+background-color:#FFD54F;	
 }
