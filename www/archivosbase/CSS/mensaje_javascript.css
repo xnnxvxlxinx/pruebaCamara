@@ -40,6 +40,7 @@
 
 #mensaje_javascript button
 {
+	border:0;
 	margin-right: 5%;
 	    width: 40%;
     height: 3em;
