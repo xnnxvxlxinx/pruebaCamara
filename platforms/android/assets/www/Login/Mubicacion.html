@@ -23,8 +23,8 @@
 	<script>
 	var UID = localStorage.getItem('SesionID') || '<empty>';
 	  var onSuccess = function(position) {
-        alert('Latitude: '          + position.coords.latitude          + '\n' +
-              'Longitude: '         + position.coords.longitude         + '\n');
+       /* alert('Latitude: '          + position.coords.latitude          + '\n' +
+              'Longitude: '         + position.coords.longitude         + '\n');*/
     obtenerUbicacion(position.coords.latitude, position.coords.longitude,'inputLat','inputLon');
 	};
  

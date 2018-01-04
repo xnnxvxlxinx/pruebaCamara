@@ -106,7 +106,7 @@ div#admin_usuarios_imagen:hover{
 	background-size: 80%;
 	background-position:center;
 }
-input[type="text"], input[type="password"] {
+input[type="text"]:not(#search_bar_cabeza), input[type="password"] {
 	width: 250px;
 	height: 30%;
 	padding: 7px 0px;

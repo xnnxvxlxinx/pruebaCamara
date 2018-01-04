@@ -7,6 +7,9 @@
   content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
    
 	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/cabeza.css">
+	 <link rel="stylesheet" type="text/css" href="../archivosbase/CSS/estilosinlabel.css">
+	 <link rel="stylesheet" type="text/css" href="../archivosbase/CSS/administrar_usuarios.css">
+	 	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/publicacionServicios.css">
 	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/ajax-loader.css">
 	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/mensaje_javascript.css">
     <link rel="shortcut icon" href="../archivosbase/icons/favicon.ico" />
@@ -94,7 +97,7 @@ document.getElementById('selectorHorarios').innerHTML=data;
 				 }else{
 					texto= texto + "<option value='Domingo'>Domingo</option>"; 
 				 }
-				texto= texto + "</select></label>";
+				texto= texto + "</select></label></br>";
 				 texto= texto + "<label>Dia de Salida: <select required name='DIA_F[]'>";
 				 if(data[i].DIA_F=='Lunes'){
 				texto= texto + "<option selected value='Lunes'>Lunes</option>";
@@ -131,7 +134,7 @@ document.getElementById('selectorHorarios').innerHTML=data;
 				 }else{
 					texto= texto + "<option value='Domingo'>Domingo</option>"; 
 				 }
-				texto= texto + "</select></label>";
+				texto= texto + "</select></label></br>";
 				texto= texto + "<label>Hora de Entrada: <select required name='HORA_I[]'>";
 				for(var j=0; j<24; j++){
 					if(j<10){
@@ -144,7 +147,7 @@ document.getElementById('selectorHorarios').innerHTML=data;
 				 }else{
 					texto= texto + "<option value='"+ horahora +"'>"+ horahora +"</option>"; 
 				}}
-				 texto= texto + "</select></label>";
+				 texto= texto + "</select></label></br>";
 				 texto= texto + "<label>Hora de Salida: <select required name='HORA_F[]'>";
 				for(var j=0; j<24; j++){
 					if(j<10){
@@ -157,7 +160,7 @@ document.getElementById('selectorHorarios').innerHTML=data;
 				 }else{
 					texto= texto + "<option value='"+ horahora +"'>"+ horahora +"</option>"; 
 				}}
-				 texto= texto + "</select></label>";
+				 texto= texto + "</select></label></br>";
 				 texto= texto + "<input type='text' class='oculto' name='ID_Horario[]' required value='"+ data[i].ID + "'>";
 				 texto=texto+ '<button type="button" class="cancelar_edit" onclick="borrarHorarioFun(' + data[i].ID +')"></button><br/>';
 				 texto= texto + "</div>";	
@@ -206,7 +209,7 @@ document.getElementById('selectorHorarios').innerHTML=data;
 				
 					texto= texto + "<option value='Domingo'>Domingo</option>"; 
 				 
-				texto= texto + "</select></label>";
+				texto= texto + "</select></label></br>";
 				 texto= texto + "<label>Dia de Salida: <select required name='DIA_F[]'>";
 				
 					texto= texto + "<option value='Lunes'>Lunes</option>"; 
@@ -229,7 +232,7 @@ document.getElementById('selectorHorarios').innerHTML=data;
 				 
 					texto= texto + "<option value='Domingo'>Domingo</option>"; 
 				 
-				texto= texto + "</select></label>";
+				texto= texto + "</select></label></br>";
 				texto= texto + "<label>Hora de Entrada: <select required name='HORA_I[]'>";
 				for(var j=0; j<24; j++){
 					if(j<10){
@@ -240,7 +243,7 @@ document.getElementById('selectorHorarios').innerHTML=data;
 				
 					texto= texto + "<option value='"+ horahora +"'>"+ horahora +"</option>"; 
 				}
-				 texto= texto + "</select></label>";
+				 texto= texto + "</select></label></br>";
 				 texto= texto + "<label>Hora de Salida: <select required name='HORA_F[]'>";
 				for(var j=0; j<24; j++){
 					if(j<10){
@@ -250,8 +253,8 @@ document.getElementById('selectorHorarios').innerHTML=data;
 					}
 					texto= texto + "<option value='"+ horahora +"'>"+ horahora +"</option>"; 
 				}
-				 texto= texto + "</select></label>";
-		texto=texto+ '<button type="button" class="cancelar_edit" onclick="eliminar_div_productos(\'horariosAtencionC_div_' + NHorariosN +'\')"></button><br/>';
+				 texto= texto + "</select></label></br>";
+		texto=texto+ '<button type="button" class="cancelar_edit" onclick="EliminarDiv(\'horariosAtencionC_div_' + NHorariosN +'\')"></button><br/>';
 		div.appendChild(indiv);
 		document.getElementById('horariosAtencionC_div_' + NHorariosN).innerHTML=texto;
 		NHorariosN=NHorariosN+1;
@@ -344,6 +347,16 @@ texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>R
         
 		/*});*/
 		}	
+			function EliminarDiv(div1){
+	var div = document.getElementById(div1);
+    if(div !== null){
+        while (div.hasChildNodes()){
+            div.removeChild(div.lastChild);
+        }
+    }else{
+        alert ('ERROR');
+    }
+	}
 	</script>
 </head>
 <body onload='initialize();'>
@@ -361,7 +374,7 @@ texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>R
 	<div id='horariosAtencion_empresasC'>
 		</div>
 <input type='text' readonly required style='display:none' value='' name='UID' id='InputUID'/>		
-		<button type='submit' name='Horarios_Subir' value='Subir'>Subir</button>
+		<input type='submit' name='Horarios_Subir' value='Subir' />
 </form>
 </div>
 		</div>

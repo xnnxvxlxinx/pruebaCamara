@@ -23,7 +23,7 @@
 </script> 
 	<script>
 	var UID = localStorage.getItem('SesionID') || '<empty>';
-	 
+	 var gpsenabled=0;
 function cerrar(div){		
 $("#" + div).fadeOut(150);
 }
@@ -33,6 +33,15 @@ $("#" + div).fadeOut(150);
    $("#cabecera").html(htmlexterno);
     	});
 document.getElementById('inputUID').value=UID;
+cordova.plugins.diagnostic.isLocationEnabled(function(enabled){
+//alert(enabled);
+if(enabled==true){
+gpsenabled=1;
+}
+else{
+gpsenabled=0;
+			}
+			}, function(error){alert(error);});
 	ObtenerSucursales();
 	}
 	function ObtenerSucursales(){
@@ -87,7 +96,9 @@ var indiv = document.createElement('div');
 	texto=texto + "<input style='display:none' type='text' class='coordEdit' name='latitud[]' value='' id='latitud_mapa_"+ nL +"' required readonly>";
 	texto=texto + "<input style='display:none' type='text' class='coordEdit' value='' id='longitud_mapa_"+ nL +"' name='longitud[]' required readonly>";
 texto=texto + "Direcci&oacute;n: <input type='text'class='coordEdit' name='direccion[]' value='' required></br>";
+if(gpsenabled==1){
 texto=texto + "<button type='button' class='botonUbi' onclick='aplastado(this);gps(\"latitud_mapa_"+ nL +"\",\"longitud_mapa_"+ nL +"\");' style='margin-left: 2%;'>Ubicaci&oacute;n Por GPS</button>";
+}
 texto=texto + "<button type='button' class='botonUbi' onclick='aplastado(this); obtenerUbicacion(-0.1574824, -78.4682946 ,\"latitud_mapa_"+ nL +"\",\"longitud_mapa_"+ nL +"\")' style='margin-left: 2%;'>Ubicaci&oacute;n Predeterminada</button>";
 texto=texto + "<button type='button' class='cancelar_edit' onclick='EliminarDiv(\"DIVUBI_"+ nL +"\");'></button><br/>";
 				div.appendChild(indiv);
@@ -195,6 +206,52 @@ texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>R
         
 		});
 		});
+		function EliminarUbicacion(id){
+			document.getElementById('mensaje_javascript').style.display='block';
+		$.get('https://nirjob.com/PhoneGap/ubicacion/borrarUbicacionE.php?IDmen=' + ID, function(texto){
+			
+			document.getElementById('mensaje_javascript').childNodes[0].innerHTML=texto;
+		});
+		}
+		function borrarBotonF(){
+      /*  $("#BorrarHorariosForm").on("submit", function(e){
+            e.preventDefault();*/
+            var f = $(this);
+            var formData = new FormData(document.getElementById("BorrarHorariosForm"));
+			document.getElementById('ajax-loader').style.display='block';
+			setTimeout(function(){
+            $.ajax({
+                url: "https://nirjob.com/PhoneGap/ubicacion/borrarUbicacionF.php",
+                type: "post",
+                dataType: "json",
+                data: formData,
+                cache: false,
+                contentType: false,
+	     processData: false
+            }).done(function(data){
+				var tamanio=data.length;
+			
+				if(data[0].Error=='0' && tamanio==1){
+				
+				var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Exito al Borrar su Ubicaci&oacute;n.</p>";
+texto= texto + "<button type='button' onclick='location.href=\"../index.html\";'>Aceptar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+			}else{
+			var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Error al Borrar su Ubicaci&oacute;n.</p>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+				}
+			document.getElementById('ajax-loader').style.display='none';
+                });
+				
+				}, 250);
+        
+		/*});*/
+		}	
 	</script>
 </head>
 <body onload='initialize();'>
