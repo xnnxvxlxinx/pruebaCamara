@@ -1,0 +1,653 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+ <title>Inicio</title>
+<meta http-equiv="Expires" content="0">
+  <meta http-equiv="Last-Modified" content="0">
+  <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta
+  name="viewport"
+  content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    
+	<link rel="stylesheet" type="text/css" href="archivosbase/CSS/cabeza.css">	
+
+	<link rel="shortcut icon" href="archivosbase/icons/favicon.ico" />
+	<link rel="stylesheet" type="text/css" href="archivosbase/CSS/errores.css">
+	<link rel="stylesheet" type="text/css" href="archivosbase/CSS/ajax-loader.css">
+	<link rel="stylesheet" type="text/css" href="archivosbase/CSS/productosBuscador.css">
+	<link rel="stylesheet" type="text/css" href="archivosbase/CSS/index_style.css">
+<script type="text/javascript" 
+    src="https://maps.google.com/maps/api/js?sensor=false&key=AIzaSyDfGxUMXZLtPNZzXgJ1xioFvsJranjPkiU"> 
+</script> 
+<script src="archivosbase/jquerymobile145/jquery-3.2.1.min.js"></script>
+ <script src="archivosbase/jquerymobile145/jquery.mobile-1.4.5.min.js"></script>
+ <script type="text/javascript" src="cordova.js"></script>
+</head>
+<body >
+<script type='text/javascript'> 
+ document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady() {
+        primero();
+    }
+
+						var map;
+						var marker = [];
+						var markers = [];
+						var GetBusqueda='';
+						var GetbusTag='';
+						var buscheck=''; 
+						var contproductos=0;
+						var contproductosMostrar=0;
+						var lat=-0.1574824;;
+						var lon=-78.4682946;
+						var iniCargarMas1=0;
+						function primero(){
+	$.get("archivosbase/cabeza.html", function(htmlexterno){
+   $("#cabecera").html(htmlexterno);
+    	});
+	$.get("https://nirjob.com/archivosbase/php/subhead.php", function(htmlexterno){
+   $("#subHeadID").html(htmlexterno);
+    	});	
+var resolucionheight=screen.height;
+var resolucionheight10=resolucionheight*0.15;
+document.getElementById('menu_izquierda').style.height=resolucionheight10+'px';
+document.getElementById('map_canvas').style.height=resolucionheight*0.65+'px';
+//cordova.plugins.diagnostic.isLocationEnabled(function(enabled){
+//alert(enabled);
+//if(enabled==true){
+		/*	navigator.geolocation.getCurrentPosition(function(position) {
+			var latI=position.coords.latitude;
+            var lonI=position.coords.longitude;
+			lat=latI;
+			lon=lonI;
+			initialize();
+			
+	}, function(error) {
+initialize();
+    });
+			}else{*/
+			initialize();
+			/*}
+}, function(error){alert(error);});*/
+}
+						function initialize() {
+							var URLsearch = window.location.search;	
+							if(URLsearch==''){
+							//GetBusqueda='?tag=2';
+							GetBusqueda='';
+							GetbusTag='';
+							}else{
+								URLsearch=URLsearch.replace('?busqueda=', '');
+								URLsearch=decodeURI(URLsearch);
+							GetBusqueda="?busqueda=" + URLsearch;
+							//GetBusqueda="?tag=2&busqueda=" + URLsearch;
+							GetbusTag="?Bus=" + URLsearch;
+							document.getElementById("search_bar_cabeza").value=URLsearch;
+							}
+								
+							/*var lat=-0.1574824;	
+							var lon=-78.4682946;*/
+							
+      
+
+	  
+								var myLatlng = new google.maps.LatLng(lat,lon); 
+								var myOptions = { 
+									zoom: 15,
+									center: myLatlng, 
+									
+									mapTypeId: google.maps.MapTypeId.ROADMAP, 
+								} 
+								map = new google.maps.Map(document.getElementById('map_canvas'), myOptions); 
+								
+								map.setOptions({styles: styles['hide']});
+								
+
+								//google.maps.event.addListener(Map, 'click', function() { if (infowindow) { infowindow.close(); }});
+								llamarmarc(GetBusqueda);
+								htmlTagsInicial();
+								/*document.getElementById('menu_izquierda').style.display='none';*/
+						//cargarMas();
+						} 
+						var styles = {
+								default: null,
+								hide: [
+								{
+									featureType: 'poi.business',
+									stylers: [{visibility: 'off'}]
+								},
+								{
+									featureType: 'transit',
+									elementType: 'labels.icon',
+									stylers: [{visibility: 'off'}]
+								}
+								]
+						}; 
+
+						function desaparecer(){
+							for(var kon=contproductos-1; kon>=0; kon--){
+								$("#Producto_div_" + kon ).fadeOut(250);
+							}
+						}
+						var randomnum = Math.floor((Math.random() * 1000) + 1);
+							
+						function mostrarProductos(PUESTOS, Titulo,  Descri, ID, ImgUser, ID_Usuario){
+							var div=document.getElementById('mostradorProductos');
+							var indiv = document.createElement('div');
+								indiv.id='Producto_div_' + contproductos;
+								indiv.style.display='none';
+							var texto='<div class=\"imagenProducto\"><img src=\"https://nirjob.com/' + ImgUser + '\"></div>';
+							texto=texto+'<div class=\"descripcionProducto\"><h3><a href=\"Login/visorServicios.html?ID='+ID+'\">' + Titulo + '</a></h3><p>' + Descri + '</p></div>';
+							texto=texto+'<div class=\"precioProducto\"><h3>$' + PUESTOS + '</h3></div>';
+								div.appendChild(indiv);
+								document.getElementById('Producto_div_' + contproductos).innerHTML=texto;
+								$("#Producto_div_" + contproductos).fadeIn(250);
+								contproductos=contproductos + 1;
+						}	  
+						/*function funcionSubTagsHideSearch(){
+							document.getElementById('menu_izquierda').style.display='none';
+						}*/
+
+						function llamarmarc(busqueda){
+							desaparecer();
+							document.getElementById('productosBajoMapa').innerHTML='';
+							document.getElementById('mostradorProductos').innerHTML='';
+							contadorProductosBaj=0;
+	contproductosBaj=0;
+								contadorProductosBaj2=0;
+	contproductosBaj2=0;
+							buscheck=busqueda;
+							setTimeout(function(){
+								deleteMarkers();
+								
+								contproductos=0;
+								document.getElementById('ajax-loader').style.display='block';
+								$.getJSON('https://nirjob.com/archivosbase/php/Buscador100Jq_contratacion/funcionbuscadorjq.php' + busqueda, function(data) {
+									
+									var tamanio=data.length;
+									
+										for(var i=0; i<tamanio; i++){
+									
+											var latt=parseFloat(data[i].Lat);
+											var lon=parseFloat(data[i].Lon);
+											var ImgTag=data[i].ImgTag;
+											var ImgUser=data[i].ImgUser;
+											var PUESTOS=data[i].PUESTOS;
+											var Numero=data[i].Numero;
+											var Nombre=data[i].Nombre;
+											var Descri=data[i].Descri;
+											var ID=data[i].ID;
+										marcadores(latt, lon, ImgTag, ImgUser, Nombre, Descri, ID, PUESTOS, Numero);
+										
+										}
+								
+								});	
+								
+									$.getJSON('https://nirjob.com/archivosbase/php/Buscador100Jq_contratacion/productoscontratacion.php' + busqueda, function(data) {
+								
+									var tamanio=data.length;
+										for(var i=0; i<tamanio; i++){
+											var ID=data[i].ID;
+											var ID_Usuario=data[i].ID_Usuario;
+											var Titulo=data[i].Titulo;
+											var ImgUser=data[i].ImgUser;
+											var PUESTOS=data[i].PUESTOS;
+											var Descri=data[i].Descri;
+											
+										//mostrarProductos(PUESTOS, Titulo,  Descri, ID, ImgUser, ID_Usuario);
+										
+										}
+										
+									document.getElementById('ajax-loader').style.display='none';	
+									});
+									
+									//setTimeout(function(){deleteMarkers()},5000);
+									
+									//document.getElementById('ajax-loader').style.display='block';
+								
+									//setTimeout(function(){deleteMarkers()},5000);
+							}, 250);
+							if(iniCargarMas1==0){
+								iniCargarMas1=1;
+							}else{
+								cargarMas2();
+								cargarMas();
+							}
+							
+						}
+							
+						function clearMarkers() {
+							setMapOnAll(null);
+						}
+						function deleteMarkers() {
+								clearMarkers();
+								markers = [];
+								//llamarmarc();
+						}
+						var cont=0;
+						var Ninfowindow=null;
+						function marcadores(lati, lon, ImgTag, ImgUser, Nombre, Descri, ID, PUESTOS, Numero){
+							var image={
+									url:'https://nirjob.com/' + ImgTag,
+									// url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+          
+									size: new google.maps.Size(50, 50),
+									origin: new google.maps.Point(0, 0),
+									anchor: new google.maps.Point(19, 50),
+									scaledSize: new google.maps.Size(50, 50)
+									};
+							/*	var shape = {
+          coords: [1, 1, 1, 20, 18, 20, 18, 1],
+          type: 'poly'
+        };	*/
+							var contentString = '<div class=\"contentString\">'+
+								'<div class=\"contentImg\"><img onclick=\"location.href=\'Login/visorUsurarios.html?ID='+ ID +'\'\" src=\"https://nirjob.com/'+ ImgUser +'\" /></div>' +
+								'<div class=\"contentMap\"><h3>'+ Nombre +'</h3><div class=\"contentDescription\">'+
+								//'<h4>Ofertas de trabajo: '+ Numero +'</h4>' + '</div></br>' +
+								'<p>' + Descri + '</p></div>' +
+								'<button onclick=\"location.href=\'Login/visorUsurarios.html?ID='+ ID +'\'\" class=\"contentButton\">Con&oacute;celos</button>' +
+								'</div></div>';	
+							var	 infowindow =new google.maps.InfoWindow({
+								content: contentString
+							});		
+							
+								marker = new google.maps.Marker({		
+									position: {lat: lati, lng: lon},
+									map: map,
+									icon: image,		
+									title:'',
+									//shape:shape									
+								}); 
+							/*marker.addListener('mouseover', (function() {
+							return function() {   
+							infowindow.open(map, marker);}
+							})(marker));*/
+							/*marker.addListener('mouseover', function() {
+						
+								infowindow.open(map, this);
+								});
+							marker.addListener('click', function() {
+								location.href="Login/visorUsurarios.php?ID="+ ID ;
+								});	
+						marker.addListener('mouseout', function() {
+								infowindow.close();
+							});	*/
+							/*
+							marker.addListener('click', function(){
+								infowindow.close();
+								infowindow.open(map, marker);
+							});*/
+						marker.addListener('click', (function(marker) {
+							
+							return function() {   
+							if(Ninfowindow!=null){
+							Ninfowindow.close();	
+							
+							}
+							infowindow.open(map, marker);
+							Ninfowindow=infowindow;
+							}
+							})(marker));	
+								markers.push(marker);
+							cont=cont+1;	 
+						}
+						function setMapOnAll(map) {
+								for (var i = 0; i < markers.length; i++) {
+								markers[i].setMap(map);
+								}
+						}
+							
+						function subTag(TAG){
+							document.getElementById('menu_izquierda').style.display='block';
+								if(TAG=='Todos'){
+
+									document.getElementById('categoriaTagPrincipalMenu').style.display='block';
+									document.getElementById('categoriaCheckButton').style.display='none';
+								}
+								if(TAG=='TodosT'){
+									
+									document.getElementById("search_bar_cabeza").value="";
+									document.getElementById('categoriaTagPrincipalMenu').style.display='block';
+									document.getElementById('categoriaCheckButton').style.display='none';
+									
+								}
+								if(TAG!='Todos' && TAG!='TodosT'){
+									document.getElementById('categoriaTagPrincipalMenu').style.display='none';
+									document.getElementById('categoriaCheckButton').style.display='block';
+								}
+								
+								$.getJSON('https://nirjob.com/archivosbase/php/Buscador100Jq_contratacion/funciontablaTag.php', function(datat) {
+									
+								var tamaniot=datat.length;
+									for(var i=0; i<tamaniot; i++){
+									var ID=datat[i].ID;
+									
+									if(TAG==ID){
+									document.getElementById('categoriaCheckButton_' + ID).style.display='block';
+
+								}else{
+									document.getElementById('categoriaCheckButton_' + ID).style.display='none';
+								}
+									}
+								});	
+
+							
+						}
+						function ordenarProductos(e){
+								if(buscheck==''){
+								var busc='?ordenar='+ e.value;
+								buscheck=buscheck + busc;
+								llamarmarc(buscheck);
+								}else{
+									var busc='&ordenar='+ e.value;
+								buscheck=buscheck + busc;
+								llamarmarc(buscheck);
+								}
+						}	  
+						function checkTagSecundario(e, Tag){
+								var check=e.checked;
+								var busc='&tagS%5B%5D='+ e.value;
+								if(check==true){
+								buscheck=buscheck + busc;
+								}else{
+									buscheck=buscheck.replace(busc, '');
+								}
+								
+								llamarmarc(buscheck);
+						}
+						function buscadorTagP(ID){
+							document.getElementById('menu_izquierda').style.display='block';
+							if(buscheck==''){
+								var busc='?tag='+ ID;
+								/*if(ID!='N'){*/
+								buscheck=buscheck + busc;
+								llamarmarc(buscheck);
+								/*}else{
+									buscheck=buscheck.replace(busc, '');
+									llamarmarc(buscheck);
+								}*/
+								}else{
+									var busc='&tag='+ ID;
+									/*if(ID!='N'){*/
+								buscheck=buscheck + busc;
+								llamarmarc(buscheck);
+								/*}else{
+									buscheck=buscheck.replace(busc, '');
+									llamarmarc(buscheck);
+								}*/}
+						} 
+						function buscador_tipo_check(){
+								var oferta=document.getElementById('checkbox_tipo_busqueda_1');
+								var servicio=document.getElementById('checkbox_tipo_busqueda_2');
+								var borrar='&tipoB%5B%5D='+ oferta.value;
+								buscheck=buscheck.replace(borrar, '');
+								var borrar='&tipoB%5B%5D='+ servicio.value;
+								buscheck=buscheck.replace(borrar, '');
+								var borrar='?tipoB%5B%5D='+ servicio.value;
+								buscheck=buscheck.replace(borrar, '');
+								var borrar='?tipoB%5B%5D='+ oferta.value;
+								buscheck=buscheck.replace(borrar, '');
+								if(buscheck!=''){
+									if(oferta.checked==true && servicio.checked==true){	 
+									var busco='&tipoB%5B%5D='+ oferta.value;
+									var buscs='&tipoB%5B%5D='+ servicio.value; 
+									}
+									if(oferta.checked==true && servicio.checked==false){	 
+									var busco='&tipoB%5B%5D='+ oferta.value;
+									var buscs=''; 
+									}
+									if(oferta.checked==false && servicio.checked==true){	 
+									var busco='';
+									var buscs='&tipoB%5B%5D='+ servicio.value; 
+									}
+									}else{
+									if(oferta.checked==true && servicio.checked==true){	 
+									var busco='?tipoB%5B%5D='+ oferta.value;
+									var buscs='&tipoB%5B%5D='+ servicio.value; 
+									}
+									if(oferta.checked==true && servicio.checked==false){	 
+									var busco='?tipoB%5B%5D='+ oferta.value;
+									var buscs=''; 
+									}
+									if(oferta.checked==false && servicio.checked==true){	 
+									var busco='';
+									var buscs='?tipoB%5B%5D='+ servicio.value; 
+									}
+									}
+									if(oferta.checked==true){
+								buscheck=buscheck + busco;
+								}else{
+									buscheck=buscheck.replace(busco, '');
+								} 
+							if(servicio.checked==true){
+								buscheck=buscheck + buscs;
+								}else{
+									buscheck=buscheck.replace(buscs, '');
+								} 		  
+								
+								llamarmarc(buscheck);
+						}
+						function htmlTagsInicial(){
+							document.getElementById('ajax-loader').style.display='block';
+							$.get('https://nirjob.com/archivosbase/php/Buscador100Jq_contratacion/funcionhtmlTagsInicial.php'+ GetbusTag, function(texto) {
+								/*texto='<button name=\'mapButton\' onclick=\'cambiodeMenu("mapas_de_google")\'>Mapa</button>' +
+								'<button name=\'listButton\' onclick=\'cambiodeMenu("productosBuscador")\'>Lista</button><br>' + texto;*/
+								
+								document.getElementById('menu_izquierda').innerHTML=texto;
+								document.getElementById('ajax-loader').style.display='none';
+								buscadorTagP('2');
+						subTag("2");
+						cambiarColor('', 2);
+					
+							
+							});	
+						}  
+						function cambiodeMenu(div){
+
+								$("#mapaBuscador").fadeOut(200);
+								$("#productosBuscador").fadeOut(200);
+								setTimeout(function(){
+									$("#"+ div).fadeIn(200);},205);
+								if(div=='mapaBuscador')
+								{
+									$(".optionMapButtonYellow1").addClass("optionMapButtonBlue1");
+									$(".optionMapButtonYellow2").removeClass("optionMapButtonBlue2");
+									$(".optionMapButtonYellow2").addClass("optionMapButtonYellow2");
+									
+								}
+								else
+								{
+									$(".optionMapButtonYellow1").addClass("optionMapButtonYellow1");
+									$(".optionMapButtonYellow1").removeClass("optionMapButtonBlue1");
+									$(".optionMapButtonYellow2").addClass("optionMapButtonBlue2");
+								}
+								
+						}
+						function cambiarColor(e, num)
+						{
+							var x = document.getElementsByClassName("logoTag");
+							for (var i = 0; i < x.length; i++) {
+								x[i].style.backgroundColor = "#0288D1";
+							}
+							if(num==0){
+							var y=e.childNodes;
+							y[1].style.backgroundColor = "#FFCA28";
+							}else{
+							var y=document.getElementById('TagSIMULARCLICK'+num).childNodes;
+							y[1].style.backgroundColor = "#FFCA28";
+							}
+
+	}
+	var contadorProductosBaj=0;
+	var contproductosBaj=0;
+	function ProductosBajoMapa(NUM){
+
+	 $.getJSON('https://nirjob.com/archivosbase/php/Buscador100Jq_contratacion/productoscontratacion.php' + buscheck, function(data) {
+
+var ini=NUM*4;
+		var tamanio=data.length;
+		if(NUM*4+4<=tamanio){
+		var fin=NUM*4+4;
+		}else{
+		var fin=tamanio;
+		}
+		
+			for(var i=ini; i<fin; i++){
+				var ID=data[i].ID;
+				var ID_Usuario=data[i].ID_Usuario;
+				var Titulo=data[i].Titulo;
+				var ImgUser=data[i].ImgUser;
+				var PUESTOS=data[i].PUESTOS;
+				var Descri=data[i].Descri;
+				if(PUESTOS=='0'){
+					PUESTOS='A convenir';
+				}else{
+					PUESTOS='$' + PUESTOS;
+				}
+var div=document.getElementById('productosBajoMapa');
+	var indiv = document.createElement('div');
+		indiv.id='productosBajoMapa_' + contproductosBaj;
+		indiv.className='productosBajoMapa';
+		indiv.style.display='none';
+	var texto='<div class=\"imagenProducto\"><img src=\"https://nirjob.com/' + ImgUser + '\"></div>';
+	texto=texto+'<div class=\"descripcionProducto\"><h3><a href=\"Login/visorServicios.html?ID='+ID+'\">' + Titulo + '</a></h3></div>';
+	texto=texto+'<div class=\"precioProducto\"><h3>' + PUESTOS + '</h3></div>';
+		div.appendChild(indiv);
+		document.getElementById('productosBajoMapa_' + contproductosBaj).innerHTML=texto;
+		$("#productosBajoMapa_" + contproductosBaj).fadeIn(250);
+		contproductosBaj=contproductosBaj + 1;
+			}	
+		});
+	}
+		function cargarMas(){
+			ProductosBajoMapa(contadorProductosBaj);
+		contadorProductosBaj=contadorProductosBaj+1;
+		}
+	/*$(document).scroll(function() {
+if(document.getElementById('productosBuscador').style.display=='none'){
+	var windowS=$(window).scrollTop();
+
+var windowH=$(window).height();
+var documentH=$(document).height();
+
+if(windowS+windowH==documentH){
+	
+		//window.scrollTo(0, windowS*0.99);
+		}
+
+	}});	*/
+	var contadorProductosBaj2=0;
+	var contproductosBaj2=0;
+	function ProductosBajoMapa2(NUM){
+
+	 $.getJSON('https://nirjob.com/archivosbase/php/Buscador100Jq_contratacion/productoscontratacion.php' + buscheck, function(data) {
+
+var ini=NUM*8;
+		var tamanio=data.length;
+		if(NUM*8+8<=tamanio){
+		var fin=NUM*8+8;
+		}else{
+		var fin=tamanio;
+		}
+		
+			for(var i=ini; i<fin; i++){
+				var ID=data[i].ID;
+				var ID_Usuario=data[i].ID_Usuario;
+				var Titulo=data[i].Titulo;
+				var ImgUser=data[i].ImgUser;
+				var PUESTOS=data[i].PUESTOS;
+				var Descri=data[i].Descri;
+				if(PUESTOS=='0'){
+					PUESTOS='A convenir';
+				}else{
+					PUESTOS='$' + PUESTOS;
+				}
+var div=document.getElementById('mostradorProductos');
+	var indiv = document.createElement('div');
+		indiv.id='Producto_div_' + contproductosBaj2;
+		indiv.className='productosBajoMapa';
+		indiv.style.display='none';
+	var texto='<div class=\"imagenProducto\"><img src=\"https://nirjob.com/' + ImgUser + '\"></div>';
+	texto=texto+'<div class=\"descripcionProducto\"><h3><a href=\"Login/visorServicios.html?ID='+ID+'\">' + Titulo + '</a></h3></div>';
+	texto=texto+'<div class=\"precioProducto\"><h3>' + PUESTOS + '</h3></div>';
+		div.appendChild(indiv);
+		document.getElementById('Producto_div_' + contproductosBaj2).innerHTML=texto;
+		$("#Producto_div_" + contproductosBaj2).fadeIn(250);
+		contproductosBaj2=contproductosBaj2 + 1;
+			}	
+		});
+	}
+		function cargarMas2(){
+			ProductosBajoMapa2(contadorProductosBaj2);
+		contadorProductosBaj2=contadorProductosBaj2+1;
+		}
+					</script>
+<div id="container">
+    <div id="cabecera">
+
+    </div>
+<div id='subHeadID'>
+</div>
+	<div id='contenido'>
+	
+		
+		<div id='contenidoBuscador'>
+		<!--<div id='menu_derecha'>
+				<h1>Espacio para publicidad</h1>
+			</div>-->
+			<div id='botonBuscador'>
+			</div>
+			<!--<button type='button' class='index_button' name='mapButton' onclick='cambiodeMenu("mapaBuscador")'>Mapa</button>
+			<button type='button' class='index_button' name='listButton' onclick='cambiodeMenu("productosBuscador")'>Lista</button><br>-->
+			<div id='menu_izquierda'>
+			
+			</div>
+			
+			<div class='limpiador'></div>
+			<div id='mapaBuscador'>
+				<div id='map_canvas'></div>
+					
+			
+			
+
+			<div class='limpiador'></div>
+			
+			<div id='mapas_de_google' >
+			</div>
+			<div id='productosBajoMapaC' >
+	<div id='productosBajoMapa' >
+	
+			</div>
+			<div id='buttonMore'>
+			<button type='button' class='index_button' onclick='cargarMas();'>Cargar M&aacute;s</button>
+			</div>
+			</div>
+			</div>
+			<div id='productosBuscador' style='display:none'>
+			<div id='productosOrdenar'>
+			<select onchange='ordenarProductos(this)'>
+			<option value='0'>Ordenar</option>
+			<option value='1'>Fecha de publicacion</option>
+			<option value='2'>Precio (Mayor a menor)</option>
+			<option value='3'>Precio (Menor a mayor)</option>
+			</select>
+			</div>
+			<div id='mostradorProductos'>
+			</div>
+			<button type='button' class='index_button' onclick='cargarMas2();'>Cargar Mas</button>
+			<div class='limpiador'></div>
+			</div>
+			<div class='limpiador'></div>
+		</div>
+		
+	</div>
+	<div id='footer'>
+
+	</div>
+	<div id='ajax-loader'>
+	<img src='archivosbase/img/ajax-loader.gif'/>
+	</div>
+</div>					
+</body>
+</html>
