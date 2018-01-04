@@ -86,7 +86,7 @@ setTimeout(function(){
 			for(var i=0; i<tamanio; i++){
 				var ID=data[i].ID;
 				var Nombre=data[i].Nombre;
-				texto=texto + "<label>"+ Nombre +": <input type='radio' value='"+ ID +"' class='InputTagSecundario'/></label><br/><br/><br/>";
+				texto=texto + "<label>"+ Nombre +": <input type='radio' name='radiosubtagNoT' value='"+ ID +"' class='InputTagSecundario'/></label><br/><br/><br/>";
 			}
 			texto=texto + "<input type='submit' value='Siguiente' onclick='seleccionadorImagenes();' style='background-color: #FFD54F;'></div>";
 		document.getElementById('seleccionadorTagsSecundarioC').innerHTML=texto;
