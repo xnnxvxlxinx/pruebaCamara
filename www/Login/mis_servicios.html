@@ -100,8 +100,8 @@ texto= texto + "<button type='button' onclick='location.href=\"administrar_servi
 		indiv.id='productosBajoMapa_' + contproductosBaj;
 		indiv.className='productosBajoMapa';
 		indiv.style.display='none';
-	var texto='<div class="imagenProducto"><img src="https://nirjob.com/' + ImagenOB[0] + '?'+ randomnum +'"></div>';
-	texto=texto+'<div class="descripcionProducto">';
+	var texto='<div onclick="llenadodeServi(' + IDOB + ', \''+ DescripcionOB +'\', \''+ PrecioOB +'\', \''+ TagPricipalOB +'\', \''+ SecundariosOB +'\', \''+ TituloOB +'\', \''+ ImagenOB +'\' );" class="imagenProducto"><img src="https://nirjob.com/' + ImagenOB[0] + '?'+ randomnum +'"></div>';
+	texto=texto+'<div onclick="llenadodeServi(' + IDOB + ', \''+ DescripcionOB +'\', \''+ PrecioOB +'\', \''+ TagPricipalOB +'\', \''+ SecundariosOB +'\', \''+ TituloOB +'\', \''+ ImagenOB +'\' );" class="descripcionProducto">';
 	texto=texto+'<h3><a onclick="llenadodeServi(' + IDOB + ', \''+ DescripcionOB +'\', \''+ PrecioOB +'\', \''+ TagPricipalOB +'\', \''+ SecundariosOB +'\', \''+ TituloOB +'\', \''+ ImagenOB +'\' );">' + TituloOB + '</a></h3></div>';
 	texto=texto+'<div class="precioProducto"><h3>' + PrecioOD + '</h3></div>';
 		div.appendChild(indiv);
@@ -560,7 +560,8 @@ texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>R
         </div>
 		<div id='contenido'>
 		<div class='limpiador'></div>
-		<div id ='productosBajoMapa'></div>
+		<div id ='productosBajoMapaC'>
+		<div id ='productosBajoMapa'></div></div>
 		<div id='seleccionadorTagsC' style='display:none'>
 		<div id='seleccionadorTags' >
 		</div>

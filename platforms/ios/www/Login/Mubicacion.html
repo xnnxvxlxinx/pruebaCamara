@@ -45,6 +45,17 @@ $("#" + div).fadeOut(150);
    $("#cabecera").html(htmlexterno);
     	});
 document.getElementById('inputUID').value=UID;
+cordova.plugins.diagnostic.isLocationEnabled(function(enabled){
+//alert(enabled);
+var textobotones="";
+if(enabled==true){
+			textobotones=textobotones + "<input type='submit' onclick='gps();' value='Obtener ubicacion por GPS' />";
+		textobotones=textobotones + "<input type='submit' onclick=\"obtenerUbicacion(-0.1574824, -78.4682946,'inputLat','inputLon');\" value='Ubicacion Predeterminada' />";
+			}else{
+		textobotones=textobotones + "<input type='submit' onclick=\"obtenerUbicacion(-0.1574824, -78.4682946,'inputLat','inputLon');\" value='Ubicacion Predeterminada' />";
+			}
+	document.getElementById('Botones').innerHTML=textobotones;	
+}, function(error){alert(error);});
 	ObtenerSucursales();
 	}
 	function ObtenerSucursales(){
@@ -156,9 +167,9 @@ texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>R
 		<div id='SubirDatosC' >
 		<div id='Botones'>
 		<!--<button type='button' onclick='gps();'>Obtener ubicacion por GPS</button>
-		<button type='button' onclick="obtenerUbicacion(-0.1574824, -78.4682946,'inputLat','inputLon');">Ubicacion Predeterminada</button>-->
+		<button type='button' onclick="obtenerUbicacion(-0.1574824, -78.4682946,'inputLat','inputLon');">Ubicacion Predeterminada</button>
 		<input type="submit" onclick='gps();' value='Obtener ubicacion por GPS' />
-		<input type="submit" onclick="obtenerUbicacion(-0.1574824, -78.4682946,'inputLat','inputLon');" value='Ubicacion Predeterminada' />
+		<input type="submit" onclick="obtenerUbicacion(-0.1574824, -78.4682946,'inputLat','inputLon');" value='Ubicacion Predeterminada' />-->
 		
 		</div>
 		<form id="formUbicacion" method="post" enctype="multipart/form-data">

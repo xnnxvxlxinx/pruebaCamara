@@ -43,24 +43,25 @@
 						var lat=-0.1574824;;
 						var lon=-78.4682946;
 						var iniCargarMas1=0;
+						var iniCargarSubini=0;
 						function primero(){
 	$.get("archivosbase/cabeza.html", function(htmlexterno){
    $("#cabecera").html(htmlexterno);
-  /* var textosercvar=window.location.search;
+  var textosercvar=window.location.search;
    textosercvar=textosercvar.replace('?busqueda=', '');
     textosercvar=decodeURIComponent(textosercvar);
-   document.getElementById("search_bar_cabeza").value=textosercvar;*/
+   document.getElementById("search_bar_cabeza").value=textosercvar;
     	});
 	$.get("https://nirjob.com/archivosbase/php/subhead.php", function(htmlexterno){
    $("#subHeadID").html(htmlexterno);
     	});	
 var resolucionheight=screen.height;
 var resolucionheight10=resolucionheight*0.15;
-document.getElementById('menu_izquierda').style.height=resolucionheight10+'px';
+//document.getElementById('menu_izquierda').style.height=resolucionheight10+'px';
 document.getElementById('map_canvas').style.height=resolucionheight*0.65+'px';
-//cordova.plugins.diagnostic.isLocationEnabled(function(enabled){
+cordova.plugins.diagnostic.isLocationEnabled(function(enabled){
 //alert(enabled);
-/*if(enabled==true){
+if(enabled==true){
 			navigator.geolocation.getCurrentPosition(function(position) {
 			var latI=position.coords.latitude;
             var lonI=position.coords.longitude;
@@ -71,10 +72,11 @@ document.getElementById('map_canvas').style.height=resolucionheight*0.65+'px';
 	}, function(error) {
 initialize();
     });
-			}else{*/
+			}else{
 			initialize();
-			/*}
-}, function(error){alert(error);});*/
+			}
+}, function(error){alert(error);});
+cargarbotonesSobremapa();
 }
 						function initialize() {
 							var URLsearch = window.location.search;	
@@ -352,12 +354,12 @@ initialize();
 						function subTag(TAG){
 							document.getElementById('menu_izquierda').style.display='block';
 								if(TAG=='Todos'){
-
+//iniCargarSubini=0;
 									document.getElementById('categoriaTagPrincipalMenu').style.display='block';
 									document.getElementById('categoriaCheckButton').style.display='none';
 								}
 								if(TAG=='TodosT'){
-									
+									//iniCargarSubini=0;
 									document.getElementById("search_bar_cabeza").value="";
 									document.getElementById('categoriaTagPrincipalMenu').style.display='block';
 									document.getElementById('categoriaCheckButton').style.display='none';
@@ -393,7 +395,7 @@ initialize();
 								}
 								
 									}
-									llamarmarc(buscheck);
+								//	llamarmarc(buscheck);
 								});	
 
 							
@@ -497,7 +499,7 @@ initialize();
 							$.get('https://nirjob.com/archivosbase/php/Buscador100Jq_contratacion/funcionhtmlTagsInicial.php'+ GetbusTag, function(texto) {
 								/*texto='<button name=\'mapButton\' onclick=\'cambiodeMenu("mapas_de_google")\'>Mapa</button>' +
 								'<button name=\'listButton\' onclick=\'cambiodeMenu("productosBuscador")\'>Lista</button><br>' + texto;*/
-								
+								texto="<div id='botondesplegarSubtag' onclick='desplegarSubCategorias();'>Seleccionar Subcategor&iacute;as</div>" + texto;
 								document.getElementById('menu_izquierda').innerHTML=texto;
 								document.getElementById('ajax-loader').style.display='none';
 							//buscadorTagP('2');
@@ -540,8 +542,8 @@ initialize();
 							}else{
 							//num=num.toString();
 							//alert('TagSIMULARCLICK'+num);
-							var y=document.getElementById('TagSIMULARCLICK'+num).childNodes;
-							y[1].style.backgroundColor = "#FFCA28";
+							//var y=document.getElementById('TagSIMULARCLICK'+num).childNodes;
+							//y[1].style.backgroundColor = "#FFCA28";
 						
 							}
 
@@ -610,8 +612,12 @@ var div=document.getElementById('productosBajoMapa');
 		});
 	}
 		function cargarMas(){
+		//if(iniCargarSubini!=0){
 			ProductosBajoMapa(contadorProductosBaj);
 		contadorProductosBaj=contadorProductosBaj+1;
+		/*}else{
+				iniCargarSubini=1;
+			}*/
 		}
 	/*$(document).scroll(function() {
 if(document.getElementById('productosBuscador').style.display=='none'){
@@ -678,6 +684,35 @@ var div=document.getElementById('mostradorProductos');
 			ProductosBajoMapa2(contadorProductosBaj2);
 		contadorProductosBaj2=contadorProductosBaj2+1;
 		}
+		function cargarbotonesSobremapa(){
+		var Usuarios = localStorage.getItem('SesionUsuario') || '<empty>';
+var Nivels = localStorage.getItem('SesionNivel') || '<empty>';
+var SesionIDs = localStorage.getItem('SesionID') || '<empty>';
+if(Usuarios!='<empty>' && SesionIDs!='<empty>'){
+var texto="<a href='Login/administrar_servicio.html'><button class='index_button' type='button'>¿Qu&eacute; servicio ofreces? Publica aqui</button></a>";
+texto=texto +"<a href='Login/administrar_ofertas.html'><button class='index_button' type='button'>¿Qu&eacute; servicio necesitas? Publica aqui</button></a>";
+document.getElementById('botonBuscador').innerHTML=texto;
+}
+//document.getElementById('TagSIMULARCLICKT').style.backgroundColor = "#FFCA28";
+//$('#TagSIMULARCLICKT').css('background-color', '#FFCA28');
+		}
+		var desplegarSubCategoriasC=0;
+		function desplegarSubCategorias(){
+		//var x=document.getElementsByClassName('menuCategorias');
+		if(desplegarSubCategoriasC==0){
+		var el = $('.menuCategorias');
+   var curHeight = el.height();
+   var autoHeight = el.css('height', 'auto').height();
+el.height(curHeight).animate({height: autoHeight}, 800);
+desplegarSubCategoriasC=1;
+}else{
+	var el = $('.menuCategorias');
+   var curHeight = el.height();
+   var autoHeight = '0.05';
+el.height(curHeight).animate({height: autoHeight}, 800);
+desplegarSubCategoriasC=0;
+}
+		}
 					</script>
 <div id="container">
     <div id="cabecera">
@@ -692,19 +727,20 @@ var div=document.getElementById('mostradorProductos');
 		<!--<div id='menu_derecha'>
 				<h1>Espacio para publicidad</h1>
 			</div>-->
-			<div id='botonBuscador'>
-			</div>
+			
 			<!--<button type='button' class='index_button' name='mapButton' onclick='cambiodeMenu("mapaBuscador")'>Mapa</button>
 			<button type='button' class='index_button' name='listButton' onclick='cambiodeMenu("productosBuscador")'>Lista</button><br>-->
 			<div class='botonesSobremapa'>
 			<label>Ofrecen Servicio <input type='checkbox' id='checkbox_tipo_busqueda_2' value='2' onchange='buscador_tipo_check()' /></label>
 			<label>Ofrecen Vacante <input type='checkbox' id='checkbox_tipo_busqueda_1' value='1' onchange='buscador_tipo_check()' /></label>
 			</div>
+			
 			<div class='limpiador'></div>
 			<div id='menu_izquierda'>
 			
 			</div>
-			
+			<div id='botonBuscador'>
+			</div>
 			<div class='limpiador'></div>
 			<div id='mapaBuscador'>
 				<div id='map_canvas'></div>

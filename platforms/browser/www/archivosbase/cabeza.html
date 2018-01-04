@@ -176,7 +176,10 @@ $("#ManeuBuscadorRadio").html(texto1);
 						for(var i=0; i<tamanio; i++){
 							if(data[i].Error=='0'){
 							if(val==1){
-								if (navigator.geolocation) {
+							//	if (navigator.geolocation) {
+								cordova.plugins.diagnostic.isLocationEnabled(function(enabled){
+//alert(enabled);
+if(enabled==true){
           navigator.geolocation.getCurrentPosition(function(position) {
             
             var  lat=position.coords.latitude;
@@ -195,17 +198,20 @@ $("#ManeuBuscadorRadio").html(texto1);
 								}});
 		
           }, function() {
-			  
-          
-			
-								
 								document.getElementById('mensaje-cabeza').style.display='block';
 				var texto='<p>Informacion</p><h3>Error se tiene que autorizar la ubicacion Geográfica.</h3>';
 				texto=texto + '<button type=\"button\" onclick=\"location.reload();\">Aceptar</button>';
 			document.getElementById('mensaje-cabezaC').innerHTML=texto;	
 							
 								});
-						}
+								}else{
+			document.getElementById('mensaje-cabeza').style.display='block';
+				var texto='<p>Informacion</p><h3>Error se tiene que activar el GPS.</h3>';
+				texto=texto + '<button type=\"button\" onclick=\"location.reload();\">Aceptar</button>';
+			document.getElementById('mensaje-cabezaC').innerHTML=texto;	
+			}
+}, function(error){alert(error);});
+						//}
 							}else{
 								location.reload();
 							}
