@@ -36,6 +36,7 @@ var InputTagSecundario=[];
 var UriImagnes=[];
 var TotalImagenes=0;
 var InputPrecio=0;
+var randomnum = Math.floor((Math.random() * 1000) + 1);
 	function initialize() {
 	
 	$.get("../archivosbase/cabeza.html", function(htmlexterno){
@@ -85,7 +86,7 @@ setTimeout(function(){
 			for(var i=0; i<tamanio; i++){
 				var ID=data[i].ID;
 				var Nombre=data[i].Nombre;
-				texto=texto + "<label>"+ Nombre +": <input type='checkbox' value='"+ ID +"' class='InputTagSecundario'/></label><br/><br/><br/>";
+				texto=texto + "<label>"+ Nombre +": <input type='radio' value='"+ ID +"' class='InputTagSecundario'/></label><br/><br/><br/>";
 			}
 			texto=texto + "<input type='submit' value='Siguiente' onclick='seleccionadorImagenes();' style='background-color: #FFD54F;'></div>";
 		document.getElementById('seleccionadorTagsSecundarioC').innerHTML=texto;
@@ -97,7 +98,7 @@ function mostrarTags(ID, Nombre, Imagen){
 var div=document.getElementById('seleccionadorTags');
 var indiv = document.createElement('div');
 		indiv.id='seleccionadorTags_' + numeroTagsPrin;
-		var texto='<div  onclick="seleccionadorTitulo(\''+ ID +'\')"><img src="https://nirjob.com/'+ Imagen +'" style="background-color:#1c8ee6;border-radius: 20px;"/>';
+		var texto='<div  onclick="seleccionadorTitulo(\''+ ID +'\')"><img src="https://nirjob.com/'+ Imagen +'?'+ randomnum +'" style="background-color:#1c8ee6;border-radius: 20px;"/>';
 		 texto= texto + '<h3>'+ Nombre +'</h3></div>';
 		div.appendChild(indiv);
 		document.getElementById('seleccionadorTags_' + numeroTagsPrin).innerHTML=texto;
@@ -214,8 +215,8 @@ $("#seleccionadorImagenes").fadeIn(250);
 var mensaje=document.getElementById('mensaje_javascript');
 		mensaje.style.display='block';
 var texto="<p>No ha seleccionado ninguna sub categor&iacute;a.</p>";
-texto= texto + "<button type='button' onclick='seleccionadorImagenes(); cerrar(\"mensaje_javascript\");'>Siguiente</button>";
-texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
+//texto= texto + "<button type='button' onclick='seleccionadorImagenes(); cerrar(\"mensaje_javascript\");'>Siguiente</button>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\");'>Regresar</button>";
 		mensaje.childNodes[0].innerHTML=texto;
 }
 }

@@ -37,13 +37,15 @@ document.getElementById('MenuCabezaC').style.height=resolucionheight+'px';
 document.getElementById('MenuCabeza').style.top=resolucionheight10+'px';
 function funcion_buscar_text(){
 var  URLsearch=document.getElementById('search_bar_cabeza').value;
-if(pathname=="/servicios.html"){
+//URLsearch=decodeURIComponent(URLsearch);
+/*if(pathname=="/servicios.html"){
 GetBusqueda="?busqueda=" + URLsearch;
 GetbusTag="?Bus=" + URLsearch;
+alert(URLsearch);
 llamarmarc(GetBusqueda);
-}else{
+}else{*/
 location.href=url + "servicios.html?busqueda=" + URLsearch;
-}
+//}
 }
 	function checkConnection() {
     	$.ajax({

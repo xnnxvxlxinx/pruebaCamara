@@ -9,7 +9,7 @@
   <meta
   name="viewport"
   content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" type="text/css" href="archivosbase/CSS/cabeza.css">	
 
 	<link rel="shortcut icon" href="archivosbase/icons/favicon.ico" />
@@ -46,6 +46,10 @@
 						function primero(){
 	$.get("archivosbase/cabeza.html", function(htmlexterno){
    $("#cabecera").html(htmlexterno);
+  /* var textosercvar=window.location.search;
+   textosercvar=textosercvar.replace('?busqueda=', '');
+    textosercvar=decodeURIComponent(textosercvar);
+   document.getElementById("search_bar_cabeza").value=textosercvar;*/
     	});
 	$.get("https://nirjob.com/archivosbase/php/subhead.php", function(htmlexterno){
    $("#subHeadID").html(htmlexterno);
@@ -54,9 +58,9 @@ var resolucionheight=screen.height;
 var resolucionheight10=resolucionheight*0.15;
 document.getElementById('menu_izquierda').style.height=resolucionheight10+'px';
 document.getElementById('map_canvas').style.height=resolucionheight*0.65+'px';
-cordova.plugins.diagnostic.isLocationEnabled(function(enabled){
+//cordova.plugins.diagnostic.isLocationEnabled(function(enabled){
 //alert(enabled);
-if(enabled==true){
+/*if(enabled==true){
 			navigator.geolocation.getCurrentPosition(function(position) {
 			var latI=position.coords.latitude;
             var lonI=position.coords.longitude;
@@ -67,10 +71,10 @@ if(enabled==true){
 	}, function(error) {
 initialize();
     });
-			}else{
+			}else{*/
 			initialize();
-			}
-}, function(error){alert(error);});
+			/*}
+}, function(error){alert(error);});*/
 }
 						function initialize() {
 							var URLsearch = window.location.search;	
@@ -81,11 +85,12 @@ initialize();
 							GetbusTag='';
 							}else{
 								URLsearch=URLsearch.replace('?busqueda=', '');
-								URLsearch=decodeURI(URLsearch);
+								//URLsearch=decodeURI(URLsearch);
+								//alert(URLsearch);
 							GetBusqueda="?busqueda=" + URLsearch;
 							//GetBusqueda="?tag=2&busqueda=" + URLsearch;
 							GetbusTag="?Bus=" + URLsearch;
-							document.getElementById("search_bar_cabeza").value=URLsearch;
+							//document.getElementById("search_bar_cabeza").value=window.location.search;
 							}
 								
 							/*var lat=-0.1574824;	

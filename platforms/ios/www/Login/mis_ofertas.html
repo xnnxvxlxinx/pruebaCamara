@@ -100,7 +100,7 @@ texto= texto + "<button type='button' onclick='location.href=\"administrar_ofert
 		indiv.id='productosBajoMapa_' + contproductosBaj;
 		indiv.className='productosBajoMapa';
 		indiv.style.display='none';
-	var texto='<div class="imagenProducto"><img src="https://nirjob.com/' + ImagenOB[0] + '"></div>';
+	var texto='<div class="imagenProducto"><img src="https://nirjob.com/' + ImagenOB[0] + '?'+ randomnum +'"></div>';
 	texto=texto+'<div class="descripcionProducto">';
 	texto=texto+'<h3><a onclick="llenadodeServi(' + IDOB + ', \''+ DescripcionOB +'\', \''+ PrecioOB +'\', \''+ TagPricipalOB +'\', \''+ SecundariosOB +'\', \''+ TituloOB +'\', \''+ ImagenOB +'\' );">' + TituloOB + '</a></h3></div>';
 	texto=texto+'<div class="precioProducto"><h3>' + PrecioOD + '</h3></div>';
@@ -173,9 +173,9 @@ setTimeout(function(){
 				var ID=data[i].ID;
 				var Nombre=data[i].Nombre;
 				if(InputTagSecundario[i]==ID){
-				texto=texto + "<label>"+ Nombre +": <input type='checkbox' value='"+ ID +"' checked class='InputTagSecundario'/></label><br/><br/><br/>";
+				texto=texto + "<label>"+ Nombre +": <input type='radio' value='"+ ID +"' checked class='InputTagSecundario'/></label><br/><br/><br/>";
 				}else{
-				texto=texto + "<label>"+ Nombre +": <input type='checkbox' value='"+ ID +"' class='InputTagSecundario'/></label><br/><br/><br/>";
+				texto=texto + "<label>"+ Nombre +": <input type='radio' value='"+ ID +"' class='InputTagSecundario'/></label><br/><br/><br/>";
 				}
 			}
 			texto=texto + "<input type='submit' value='Siguiente' onclick='seleccionadorImagenes();' style='background-color: #FFD54F;'></div>";
@@ -189,10 +189,10 @@ var div=document.getElementById('seleccionadorTags');
 var indiv = document.createElement('div');
 		indiv.id='seleccionadorTags_' + numeroTagsPrin;
 		if(TagPrinciForm==ID){
-		var texto='<div  onclick="seleccionadorTitulo(\''+ ID +'\')"><img src="https://nirjob.com/'+ Imagen +'" style="background-color:#FFD54F;border-radius: 20px;"/>';
+		var texto='<div  onclick="seleccionadorTitulo(\''+ ID +'\')"><img src="https://nirjob.com/'+ Imagen +'?'+ randomnum +'" style="background-color:#FFD54F;border-radius: 20px;"/>';
 		
 		}else{
-		var texto='<div  onclick="seleccionadorTitulo(\''+ ID +'\')"><img src="https://nirjob.com/'+ Imagen +'" style="background-color:#1c8ee6;border-radius: 20px;"/>';
+		var texto='<div  onclick="seleccionadorTitulo(\''+ ID +'\')"><img src="https://nirjob.com/'+ Imagen +'?'+ randomnum +'" style="background-color:#1c8ee6;border-radius: 20px;"/>';
 		 }
 		 texto= texto + '<h3>'+ Nombre +'</h3></div>';
 		div.appendChild(indiv);
@@ -302,6 +302,7 @@ texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>A
 		mensaje.childNodes[0].innerHTML=texto;
 }
 }
+var randomnum = Math.floor((Math.random() * 1000) + 1);
 function seleccionadorImagenes(){
 var C=document.getElementsByClassName('InputTagSecundario');
 var aux=0;
@@ -323,11 +324,14 @@ var div=document.getElementById('seleccionadorImagenesC');
 var indiv = document.createElement('div');
 		indiv.id='seleccionadorImagenesC_T' + j;
 		var texto='';
+		if(UriTImagnes[j]!='archivosbase/img/noImage.png'){
+		
 		 texto= texto + '<div class="seleccionadorImagenesC_foto" >';
-		 texto= texto + '<img id="seleccionadorImagenesC_IMGT'+ j +'" src="https://nirjob.com/' + UriTImagnes[j] + '" style="width:100%; height:10em;"/>';
+		 texto= texto + '<img id="seleccionadorImagenesC_IMGT'+ j +'" src="https://nirjob.com/' + UriTImagnes[j] + '?'+ randomnum +'" style="width:100%; height:10em;"/>';
 		texto = texto + '<button type="button" class="cancelar_edit" onclick="eliminar_Imagen(\'' + UriTImagnes[j] + '\', \'seleccionadorImagenesC_T' + j + '\')"></button><br/></div>';
 		div.appendChild(indiv);
 		document.getElementById('seleccionadorImagenesC_T' + j).innerHTML=texto;
+		}
 	}	
 ObtenerImagenes();
 document.getElementById('ajax-loader').style.display='none';	
@@ -345,7 +349,7 @@ function eliminar_Imagen(link, div){
 var mensaje=document.getElementById('mensaje_javascript');
 		mensaje.style.display='block';
 var texto="<p>&iquest;Est&aacute; seguro de que quiere borrar la imagen?.</p>";
-texto= texto + "<p><img src='https://nirjob.com/" + link + "' style='width:40px; height:40px'/></p>";
+texto= texto + "<p><img src='https://nirjob.com/" + link + "?"+ randomnum +"' style='width:40px; height:40px'/></p>";
 texto= texto + '<button type="button" onclick="eliminar_ImagenF(\'' + link + '\', \'' + div + '\');">BORRAR</button>';
 texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\");'>Cancelar</button>";
 		mensaje.childNodes[0].innerHTML=texto;
@@ -453,7 +457,9 @@ texto= texto + '<h3>Valor $:</h3><input name="puestos" type="text"  required rea
 		 texto= texto + '<input type="text" name="subtag[]" required readonly value="' +  InputTagSecundario[i] +'" style="display:none"/></br>';
 		}
 		for(var i=0; i<UriTImagnes.length; i++){
-		 texto= texto + '<h3>Imagen: </h3><div class="seleccionadorImagenesC_foto"><img src="https://nirjob.com/'+ UriTImagnes[i] +'" style="width:100%; height:10em;"/></div></br>';
+		if(UriTImagnes[i]!='archivosbase/img/noImage.png'){
+		 texto= texto + '<h3>Imagen: </h3><div class="seleccionadorImagenesC_foto"><img src="https://nirjob.com/'+ UriTImagnes[i] +'?'+ randomnum +'" style="width:100%; height:10em;"/></div></br>';
+		}
 		}
 		for(var i=0; i<UriImagnes.length; i++){
 		 texto= texto + '<h3>Imagen: </h3><div class="seleccionadorImagenesC_foto"><img src="'+ UriImagnes[i] +'" style="width:100%; height:10em;"/></div></br>';
