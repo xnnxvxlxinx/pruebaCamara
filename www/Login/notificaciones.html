@@ -39,7 +39,91 @@ $("#" + div).fadeOut(150);
 
         </div>
 		<div id='contenido'>
-	
+	<div class='oculto' id='notificaciones'>
+<div id='containerNotif'>
+<h2>Activas</h2>";
+		$buscarNoti="SELECT * FROM NOTIFICACION WHERE ID_Usuario_D='$_SESSION[ID]' AND ACTIVA='1' ORDER BY ID";
+						  $buscarNotiI = $conexion->query($buscarNoti);
+						$numeroimgprod=mysqli_num_rows($buscarNotiI);
+							while ($fila2 = $buscarNotiI->fetch_row()){
+								if($fila2[3]==1){
+						$buscarUSUARIONOTI="SELECT * FROM USUARIOS WHERE ID='$fila2[2]'";
+						  $buscarUSUARIONOTII = $conexion->query($buscarUSUARIONOTI);
+						  $rowUNOTI = $buscarUSUARIONOTII->fetch_array(MYSQLI_ASSOC);
+								echo "
+								<div><li><a href='https://nirjob.com/$fila2[4]'>El Usuario $rowUNOTI[Usuario] le a dado una calificaci&oacute;n.</a></li></div>
+								";	
+								}
+								if($fila2[3]==2){
+						$buscarUSUARIONOTI="SELECT * FROM USUARIOS WHERE ID='$fila2[2]'";
+						  $buscarUSUARIONOTII = $conexion->query($buscarUSUARIONOTI);
+						  $rowUNOTI = $buscarUSUARIONOTII->fetch_array(MYSQLI_ASSOC);
+								echo "
+								<div><li><a href='https://nirjob.com/$fila2[4]'>El Usuario $rowUNOTI[Usuario] le a dejado un comentario.</a></li></div>
+								";	
+								}
+									if($fila2[3]==3){
+						$buscarUSUARIONOTI="SELECT * FROM USUARIOS WHERE ID='$fila2[2]'";
+						  $buscarUSUARIONOTII = $conexion->query($buscarUSUARIONOTI);
+						  $rowUNOTI = $buscarUSUARIONOTII->fetch_array(MYSQLI_ASSOC);
+								echo "
+								<div><li><a href='https://nirjob.com/$fila2[4]'>El Usuario $rowUNOTI[Usuario] le a dado una calificaci&oacute;n a una de sus publicaciones.</a></li></div>
+								";	
+								}
+									if($fila2[3]==4){
+						$buscarUSUARIONOTI="SELECT * FROM USUARIOS WHERE ID='$fila2[2]'";
+						  $buscarUSUARIONOTII = $conexion->query($buscarUSUARIONOTI);
+						  $rowUNOTI = $buscarUSUARIONOTII->fetch_array(MYSQLI_ASSOC);
+								echo "
+								<div><li><a href='https://nirjob.com/$fila2[4]'>El Usuario $rowUNOTI[Usuario] le a dejado un comentario a una de sus publicaciones.</a></li></div>
+								";	
+								}
+							}       
+
+
+</div>
+<div id='containerNotif'>
+<h2>Inactivas</h2>
+
+$buscarNoti="SELECT * FROM NOTIFICACION WHERE ID_Usuario_D='$_SESSION[ID]' AND ACTIVA='0' ORDER BY ID DESC ";
+						  $buscarNotiI = $conexion->query($buscarNoti);
+						$numeroimgprod=mysqli_num_rows($buscarNotiI);
+							while ($fila2 = $buscarNotiI->fetch_row()){
+								if($fila2[3]==1){
+						$buscarUSUARIONOTI="SELECT * FROM USUARIOS WHERE ID='$fila2[2]'";
+						  $buscarUSUARIONOTII = $conexion->query($buscarUSUARIONOTI);
+						  $rowUNOTI = $buscarUSUARIONOTII->fetch_array(MYSQLI_ASSOC);
+								echo "
+								<div><li><a href='https://nirjob.com/$fila2[4]'>El Usuario $rowUNOTI[Usuario] le a dado una calificaci&oacute;n.</a></li></div>
+								";	
+								}
+								if($fila2[3]==2){
+						$buscarUSUARIONOTI="SELECT * FROM USUARIOS WHERE ID='$fila2[2]'";
+						  $buscarUSUARIONOTII = $conexion->query($buscarUSUARIONOTI);
+						  $rowUNOTI = $buscarUSUARIONOTII->fetch_array(MYSQLI_ASSOC);
+								echo "
+								<div><li><a href='https://nirjob.com/$fila2[4]'>El Usuario $rowUNOTI[Usuario] le a dejado un comentario.</a></li></div>
+								";	
+								}
+									if($fila2[3]==3){
+						$buscarUSUARIONOTI="SELECT * FROM USUARIOS WHERE ID='$fila2[2]'";
+						  $buscarUSUARIONOTII = $conexion->query($buscarUSUARIONOTI);
+						  $rowUNOTI = $buscarUSUARIONOTII->fetch_array(MYSQLI_ASSOC);
+								echo "
+								<div><li><a href='https://nirjob.com/$fila2[4]'>El Usuario $rowUNOTI[Usuario] le a dado una calificaci&oacute;n a una de sus publicaciones.</a></li></div>
+								";	
+								}
+									if($fila2[3]==4){
+						$buscarUSUARIONOTI="SELECT * FROM USUARIOS WHERE ID='$fila2[2]'";
+						  $buscarUSUARIONOTII = $conexion->query($buscarUSUARIONOTI);
+						  $rowUNOTI = $buscarUSUARIONOTII->fetch_array(MYSQLI_ASSOC);
+								echo "
+								<div><li><a href='https://nirjob.com/$fila2[4]'>El Usuario $rowUNOTI[Usuario] le a dejado un comentario a una de sus publicaciones.</a></li></div>
+								";	
+								}
+							}
+</div>
+</div>
 
 		</div>
 		<div id='footer'>
