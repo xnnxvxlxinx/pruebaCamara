@@ -22,8 +22,8 @@ var URLdomain = window.location.host;
 var protocolo = window.location.protocol;
 var pathname = window.location.pathname;
 //alert(pathname);
-//var url=  "file:///android_asset/www/" ;
-var url=protocolo + "//" + URLdomain +"/";
+var url=  "file:///android_asset/www/" ;
+//var url=protocolo + "//" + URLdomain +"/";
 var resolucionheight=screen.height;
 var resolucionheight10=resolucionheight*0.10;
 var Usuario = localStorage.getItem('SesionUsuario') || '<empty>';
@@ -62,9 +62,9 @@ texto= texto + "<button type='button' onclick='cerrarMensaje(\"mensaje_javascrip
 		mensaje.childNodes[0].innerHTML=texto;
 		 })
   		.done(function() {
-setTimeout( function (){
+/*setTimeout( function (){
 checkConnection();
-}, 10000);
+}, 10000);*/
 		})
   }
   function cerrarMensaje(div){
@@ -72,7 +72,7 @@ checkConnection();
   }
 setTimeout( function (){
 checkConnection();
-}, 1000);
+}, 10);
 	function getAbsolutePath() {
     var loc = window.location;
     var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') + 1);
@@ -144,9 +144,11 @@ imgUsuario();
 numeroNotificaciones();
 });
 function imgUsuario(){
+if(Usuario!='<empty>' && Nivel!='<empty>'){
 $.get('https://nirjob.com/PhoneGap/obtenerIMG.php?IDmen=' + SesionID, function(data){
-document.getElementById('CabezaImgUser').innerHTML=data;
+document.getElementById('CabezaImgUser').innerHTML='<a href="' + url + 'Login/cambiarfotoPerfil.html">'+data+'</a>';
 });
+}
 }
 function numeroNotificaciones(){
 
@@ -154,7 +156,7 @@ if(Usuario!='<empty>' && Nivel!='<empty>'){
 
 $.get('https://nirjob.com/PhoneGap/notifiicaciones/notificacionesObnum.php?IDmen=' + SesionID, function(data){
 
-document.getElementById('numeroNoticabezaM').innerHTML=data;
+document.getElementById('numeroNoticabezaM').innerHTML='&nbsp;'+data+'&nbsp;';
 });
 }
 }

@@ -281,3 +281,12 @@ height:4em;
     height: 3em;
 background-color:#FFD54F;	
 }
+#numeroNoticabezaM{
+	display:inline-block;
+	border-radius:200px;
+	color:white;
+	background-color:red;
+	/*width:1em;
+	height:1em;*/
+	text-align:center;
+}
