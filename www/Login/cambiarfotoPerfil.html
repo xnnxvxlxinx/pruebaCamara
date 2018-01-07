@@ -114,7 +114,7 @@ $(function(){
 var win = function(r) {
    var mensaje=document.getElementById('mensaje_javascript');
 		mensaje.style.display='block';
-var texto="<p>Se ha subido su imagen con exito.</p>";
+var texto="<p>Se ha subido su imagen con exito."+ r +"</p>";
 texto= texto + "<button type='button' onclick='location.href=\"../index.html\"; cerrar(\"mensaje_javascript\");'>Continuar</button>";
 //texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
 		mensaje.childNodes[0].innerHTML=texto;
