@@ -3,8 +3,10 @@
     <div id="logo"><div id="logoMain"></div></div>
 	
 	<div id="busqueda">
+	<form id='buscadorformcabeza' method='get'>
 	<input type="text"  class="search_bar" id="search_bar_cabeza" placeholder="Busque Aqui" required />
-	<input type='submit' class='search_button' id='search_buttonB' onclick='funcion_buscar_text()' value='' />
+	<input type='submit' class='search_button' id='search_buttonB'  value='' />
+	</form>
 	</div>
 	<div id='ManeuBuscadorRadio'></div>
 	<div id='MenuCabezaC'>
@@ -35,6 +37,13 @@ document.getElementById('logoMain').style.height=resolucionheight10+'px';
 document.getElementById('MenuCabeza').style.height=resolucionheight*0.9+'px';
 document.getElementById('MenuCabezaC').style.height=resolucionheight+'px';
 document.getElementById('MenuCabeza').style.top=resolucionheight10+'px';
+
+$(function(){
+        $("#buscadorformcabeza").on("submit", function(e){
+            e.preventDefault();
+			funcion_buscar_text();
+			});
+			});
 function funcion_buscar_text(){
 var  URLsearch=document.getElementById('search_bar_cabeza').value;
 URLsearch=decodeURIComponent(URLsearch);

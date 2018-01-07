@@ -1,0 +1,181 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Inicio de Sesi&oacute;n</title>
+     <meta
+  name="viewport"
+  content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+   
+	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/cabeza.css">
+    <link rel="stylesheet" type="text/css" href="../archivosbase/CSS/estilosinlabel.css">
+	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/publicacionServicios.css">
+	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/fotosseleccion.css">
+	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/ajax-loader.css">
+	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/mensaje_javascript.css">
+    <link rel="shortcut icon" href="../archivosbase/icons/favicon.ico" />
+	<script src="../archivosbase/jquerymobile145/jquery-3.2.1.min.js"></script>
+ <script src="../archivosbase/jquerymobile145/jquery.mobile-1.4.5.min.js"></script>
+ <script type="text/javascript" src="../cordova.js"></script>
+   <script type="text/javascript"  src="../js/phonegap.js"></script>
+   <style>
+   #seleccionadorImagenesC_foto{
+   width:100%;
+   height:15em;
+   text-align:center;
+   }
+   #seleccionadorImagenesC_IMG{
+   width:15em;
+   height:15em;
+   }
+   </style>
+	<script>
+
+	var UID = localStorage.getItem('SesionID') || '<empty>';
+	var UriImagnes='';
+	  var pictureSource;   // picture source
+    var destinationType; // sets the format of returned value 
+ document.addEventListener("deviceready",onDeviceReady,false);
+    // PhoneGap is ready to be used!
+    //
+    function onDeviceReady() {
+	
+        pictureSource=navigator.camera.PictureSourceType;
+        destinationType=navigator.camera.DestinationType;
+    }
+function cerrar(div){		
+$("#" + div).fadeOut(150);
+}
+	function initialize() {
+	
+	$.get("../archivosbase/cabeza.html", function(htmlexterno){
+   $("#cabecera").html(htmlexterno);
+    	});
+		imagen();
+		}
+function imagen(){
+$.get('https://nirjob.com/PhoneGap/obtenerIMGT.php?IDmen=' + UID, function(data){
+var texto='';
+texto= texto + '<img id="seleccionadorImagenesC_IMG" onclick="seleccionFotoImagenI(\'seleccionadorImagenesC_IMG\');" src="'+ data +'" />';
+document.getElementById('seleccionadorImagenesC_foto').innerHTML=texto;
+});
+
+}
+var fotoImagen='';
+function seleccionFotoImagenI(id){
+
+fotoImagen=document.getElementById(id);
+var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>&iquest;Desea usar la c&aacute;mara u obtener foto de la galer&iacute;a?</p>";
+texto= texto + "<button type='button' onclick='seleccionFotoImagen(1); cerrar(\"mensaje_javascript\");'>Camara</button>";
+texto= texto + "<button type='button' onclick='seleccionFotoImagen(2); cerrar(\"mensaje_javascript\");'>Galeria</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+	}
+	function seleccionFotoImagen(Num){
+
+if(Num==1){
+navigator.camera.getPicture(correcto, error, { quality: 50, allowEdit: false });
+//navigator.camera.getPicture(correcto, error, { quality: 200, destinationType: Camera.DestinationType.FILE_URI });
+}else{
+getPhoto(pictureSource.PHOTOLIBRARY);
+}
+}
+function getPhoto(source) {
+      navigator.camera.getPicture(onPhotoURISuccess, error, { quality: 50, 
+        destinationType: destinationType.FILE_URI,
+        sourceType: source });
+    }
+function onPhotoURISuccess(imageURI) {
+      fotoImagen.src=imageURI;
+	  UriImagnes=imageURI;
+	
+    }	
+function correcto(rutaImagen){
+//console.log(JSON.stringify(rutaImagen));
+fotoImagen.src=rutaImagen;
+ UriImagnes=rutaImagen;
+		
+}
+function error(mensaje){
+var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Error al tomar la imagen.<br/>Mensaje: " + mensaje + "</p>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Aceptar</button>";
+		}
+$(function(){
+        $("#FotoPerfil").on("submit", function(e){
+			
+            e.preventDefault();
+		
+
+				var UID = localStorage.getItem('SesionID') || '<empty>';
+				var Usuario = localStorage.getItem('SesionUsuario') || '<empty>';
+				if(UriImagnes!=''){
+var win = function(r) {
+   var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Se ha subido su imagen con exito.</p>";
+texto= texto + "<button type='button' onclick='location.href=\"../index.html\"; cerrar(\"mensaje_javascript\");'>Continuar</button>";
+//texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+}
+
+var fail = function(error) {
+var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Error al enviar su imagen.</p>";
+texto= texto + "<button type='button' onclick='location.href=\"../index.html\"; cerrar(\"mensaje_javascript\");'>Salir</button>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Volver a intentar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+}	
+var options = new FileUploadOptions();
+options.fileKey = "file";
+options.fileName = UriImagnes.substr(UriImagnes.lastIndexOf('/') + 1);
+options.mimeType = "image/jpeg";
+
+var params = {};
+params.UID=UID;
+params.Usuario=Usuario;
+options.params = params;
+var ft = new FileTransfer();
+
+ft.upload(UriImagnes, encodeURI("https://nirjob.com/PhoneGap/imagenesSubirFotoPerfil.php"), win, fail, options);
+}else{
+var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>No se ha seleccionado una imagen para subir.</p>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\");'>Continuar</button>";
+//texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+}			});
+		});
+	</script>
+</head>
+<body onload='initialize();'>
+    <div id="container">
+        <div id="cabecera">
+
+        </div>
+		<div id='contenido'>
+
+<div id='Imagen'>
+<h2>Foto de Perfil</h2>
+<form id='FotoPerfil' method='POST' enctype='multipart/form-data'>
+<div id='seleccionadorImagenesC_foto'>
+	
+</div>
+<input type='submit' id='subir_imagen_Usuario' name='subir_imagen_Usuario' value='Subir'/>
+</form></div>
+
+		</div>
+		<div id='footer'>
+
+		</div>
+		<div id='ajax-loader'>
+	<img src='../archivosbase/img/ajax-loader.gif'/>
+	</div>
+	<div id='mensaje_javascript'><div></div></div>
+    </div>
+</body>
+</html>
+
