@@ -62,6 +62,7 @@ background-image: url("../archivosbase/icons/ic_star_black_24dp_2x.png");
 </head>
 <script>
 var GetID='';
+var UIDT='';
 var UID = localStorage.getItem('SesionID') || '<empty>';
 function initialize() {
 $.get("../archivosbase/cabeza.html", function(htmlexterno){
@@ -111,9 +112,14 @@ $( "#contenido" ).live( "click", function() {
   alert( "Goodbye!" ); // jQuery 1.3+
 });
 function htmlTagsInicial(){
-	
+	var Usuario = localStorage.getItem('SesionUsuario') || '<empty>';
+var Nivel = localStorage.getItem('SesionNivel') || '<empty>';
+var SesionID = localStorage.getItem('SesionID') || '<empty>';
+if(Usuario!='<empty>' && Nivel!='<empty>'){
+UIDT='&UIDT=' + SesionID;
+}
 	document.getElementById('ajax-loader').style.display='block';
-	$.get('http://nirjob.com/PhoneGap/visores/funcioninicialContratacion.php'+ GetID, function(texto) {
+	$.get('http://nirjob.com/PhoneGap/visores/funcioninicialContratacion.php'+ GetID + UIDT, function(texto) {
 		
 		document.getElementById('contenido').innerHTML=texto;
 		document.getElementById('ajax-loader').style.display='none';
@@ -123,9 +129,7 @@ function htmlTagsInicial(){
 	var num=100/(x.length);
 	//x[i].style.width=num + '%';
 }
-var Usuario = localStorage.getItem('SesionUsuario') || '<empty>';
-var Nivel = localStorage.getItem('SesionNivel') || '<empty>';
-var SesionID = localStorage.getItem('SesionID') || '<empty>';
+
 if(Usuario!='<empty>' && Nivel!='<empty>'){
 
 var y=document.getElementsByClassName('botondisable');
@@ -153,7 +157,7 @@ register.onsubmit = function(e){
 
 			document.getElementById('ajax-loader').style.display='block';
             $.ajax({
-                url: "http://nirjob.com/archivosbase/php/visor100jq/reputacionS.php",
+                url: "http://nirjob.com/PhoneGap/visores/reputacion.php",
                 type: "POST",
                  dataType: 'html', 
         
@@ -180,7 +184,7 @@ register.onsubmit = function(e){
 
 			document.getElementById('ajax-loader').style.display='block';
             $.ajax({
-                url: "http://nirjob.com/archivosbase/php/visor100jq/comentarioS.php",
+                url: "http://nirjob.com/PhoneGap/visores/comentarioS.php",
                 type: "POST",
                  dataType: 'html', 
         
@@ -207,7 +211,7 @@ register.onsubmit = function(e){
 
 			document.getElementById('ajax-loader').style.display='block';
             $.ajax({
-                url: "http://nirjob.com/archivosbase/php/visor100jq/comentarioSR.php",
+                url: "http://nirjob.com/PhoneGap/visores/comentarioSR.php",
                 type: "POST",
                  dataType: 'html', 
         

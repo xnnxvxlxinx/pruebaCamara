@@ -30,6 +30,7 @@
     /* left: 50%; */
     width: 90%;
     height: 50%;
+	overflow:auto;
     margin-left: 5%;
     margin-top: 25%;
     /* padding-left: 3%; */
@@ -39,6 +40,7 @@
 
 #mensaje_javascript button
 {
+	border:0;
 	margin-right: 5%;
 	    width: 40%;
     height: 3em;

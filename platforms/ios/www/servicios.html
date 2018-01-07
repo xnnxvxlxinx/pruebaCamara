@@ -79,6 +79,7 @@ initialize();
 cargarbotonesSobremapa();
 }
 						function initialize() {
+						var pathname = window.location.pathname;
 							var URLsearch = window.location.search;	
 							//alert(URLsearch);
 							if(URLsearch==''){
@@ -86,6 +87,7 @@ cargarbotonesSobremapa();
 							GetBusqueda='';
 							GetbusTag='';
 							}else{
+							if(pathname=="/servicios.html"){
 								URLsearch=URLsearch.replace('?busqueda=', '');
 								//URLsearch=decodeURI(URLsearch);
 								//alert(URLsearch);
@@ -93,6 +95,15 @@ cargarbotonesSobremapa();
 							//GetBusqueda="?tag=2&busqueda=" + URLsearch;
 							GetbusTag="?Bus=" + URLsearch;
 							//document.getElementById("search_bar_cabeza").value=window.location.search;
+							}else{
+							URLsearch=URLsearch.replace('?busqueda=', '');
+								URLsearch=decodeURI(URLsearch);
+							
+							GetBusqueda="?busqueda=" + URLsearch;
+							
+							GetbusTag="?Bus=" + URLsearch;
+							
+							}
 							}
 								
 							/*var lat=-0.1574824;	

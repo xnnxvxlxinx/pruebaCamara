@@ -38,7 +38,7 @@ body {
 	  background: #29B6F6;
   }
   
-  input[type="text"], input[type="password"] {
+  input[type="text"]:not(#search_bar_cabeza), input[type="password"] {
 	width: 90%;
 	padding-top: 0.8em;
 	padding-bottom: 0.8em;

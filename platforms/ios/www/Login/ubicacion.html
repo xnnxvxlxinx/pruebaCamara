@@ -124,8 +124,8 @@ texto=texto + "<button type='button' class='cancelar_edit' onclick='EliminarDiv(
 	}
 	
 var onSuccess = function(position) {
-        alert('Latitude: '          + position.coords.latitude          + '\n' +
-              'Longitude: '         + position.coords.longitude         + '\n');
+       /* alert('Latitude: '          + position.coords.latitude          + '\n' +
+              'Longitude: '         + position.coords.longitude         + '\n');*/
     obtenerUbicacion(position.coords.latitude, position.coords.longitude, inputLatitud, inputLongitud);
 	};
 
@@ -208,7 +208,7 @@ texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>R
 		});
 		function EliminarUbicacion(id){
 			document.getElementById('mensaje_javascript').style.display='block';
-		$.get('https://nirjob.com/PhoneGap/ubicacion/borrarUbicacionE.php?IDmen=' + ID, function(texto){
+		$.get('https://nirjob.com/PhoneGap/ubicacion/borrarUbicacionE.php?IDmen=' + id, function(texto){
 			
 			document.getElementById('mensaje_javascript').childNodes[0].innerHTML=texto;
 		});
