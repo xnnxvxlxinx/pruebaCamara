@@ -59,7 +59,7 @@ var resolucionheight=screen.height;
 var resolucionheight10=resolucionheight*0.15;
 //document.getElementById('menu_izquierda').style.height=resolucionheight10+'px';
 document.getElementById('map_canvas').style.height=resolucionheight*0.65+'px';
-cordova.plugins.diagnostic.isLocationEnabled(function(enabled){
+/*cordova.plugins.diagnostic.isLocationEnabled(function(enabled){
 //alert(enabled);
 if(enabled==true){
 			navigator.geolocation.getCurrentPosition(function(position) {
@@ -72,11 +72,11 @@ if(enabled==true){
 	}, function(error) {
 initialize();
     });
-			}else{
+			}else{*/
 			initialize();
-			}
+		/*	}
 }, function(error){alert(error);});
-cargarbotonesSobremapa();
+cargarbotonesSobremapa();*/
 }
 						function initialize() {
 						var pathname = window.location.pathname;
@@ -87,7 +87,7 @@ cargarbotonesSobremapa();
 							GetBusqueda='';
 							GetbusTag='';
 							}else{
-							if(pathname=="/servicios.html"){
+							//if(pathname=="/servicios.html"){
 								URLsearch=URLsearch.replace('?busqueda=', '');
 								//URLsearch=decodeURI(URLsearch);
 								//alert(URLsearch);
@@ -95,15 +95,15 @@ cargarbotonesSobremapa();
 							//GetBusqueda="?tag=2&busqueda=" + URLsearch;
 							GetbusTag="?Bus=" + URLsearch;
 							//document.getElementById("search_bar_cabeza").value=window.location.search;
-							}else{
+							/*}else{
 							URLsearch=URLsearch.replace('?busqueda=', '');
-								//URLsearch=encodeURI(URLsearch);
+								URLsearch=decodeURI(URLsearch);
 							
 							GetBusqueda="?busqueda=" + URLsearch;
 							
 							GetbusTag="?Bus=" + URLsearch;
 							
-							}
+							}*/
 							}
 								
 							/*var lat=-0.1574824;	
@@ -510,7 +510,7 @@ cargarbotonesSobremapa();
 							$.get('https://nirjob.com/archivosbase/php/Buscador100Jq_contratacion/funcionhtmlTagsInicial.php'+ GetbusTag, function(texto) {
 								/*texto='<button name=\'mapButton\' onclick=\'cambiodeMenu("mapas_de_google")\'>Mapa</button>' +
 								'<button name=\'listButton\' onclick=\'cambiodeMenu("productosBuscador")\'>Lista</button><br>' + texto;*/
-								texto="<div id='botondesplegarSubtag' onclick='desplegarSubCategorias();'>Seleccionar Subcategor&iacute;as</div>" + texto;
+								texto="<div id='botondesplegarSubtag' onclick='desplegarSubCategorias();'>Seleccionar Subcategor&iacute;as&nbsp;&nbsp;&#9660;</div>" + texto;
 								document.getElementById('menu_izquierda').innerHTML=texto;
 								document.getElementById('ajax-loader').style.display='none';
 							//buscadorTagP('2');
