@@ -59,7 +59,7 @@ var resolucionheight=screen.height;
 var resolucionheight10=resolucionheight*0.15;
 //document.getElementById('menu_izquierda').style.height=resolucionheight10+'px';
 document.getElementById('map_canvas').style.height=resolucionheight*0.65+'px';
-/*cordova.plugins.diagnostic.isLocationEnabled(function(enabled){
+cordova.plugins.diagnostic.isLocationEnabled(function(enabled){
 //alert(enabled);
 if(enabled==true){
 			navigator.geolocation.getCurrentPosition(function(position) {
@@ -72,11 +72,11 @@ if(enabled==true){
 	}, function(error) {
 initialize();
     });
-			}else{*/
+			}else{
 			initialize();
-		/*	}
+			}
 }, function(error){alert(error);});
-cargarbotonesSobremapa();*/
+cargarbotonesSobremapa();
 }
 						function initialize() {
 						var pathname = window.location.pathname;
