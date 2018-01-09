@@ -75,8 +75,8 @@ function tagPrincipal(){
   
 		var tamanio=data.length;
 var div=document.getElementById('TagPrincipalC');
-var texto="<select name='TagPrincipal' onchange='ObtenerTagSecundario()' id='ITagPrincipal' required><option value=''>Escoja una Opci&oacute;n</option>";
-
+var texto="<select name='TagPrincipal'  id='ITagPrincipal' required><option value=''>Escoja una Opci&oacute;n</option>";
+//onchange='ObtenerTagSecundario()'
 		for(var i=0; i<tamanio; i++){
 				var ID=data[i].ID;
 				var Nombre=data[i].Nombre;
