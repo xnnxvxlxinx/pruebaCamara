@@ -19,11 +19,26 @@
  <script src="archivosbase/jquerymobile145/jquery.mobile-1.4.5.min.js"></script>
 	<script>
 	var conn = false;
+	function botongps(){
+	checkConnection();
+	}
 	function initializeT(){
-	
 	document.getElementById('logo').style.top=(screen.height)/3 + 'px';
-	 
- checkConnection();
+	
+	 cordova.plugins.diagnostic.isLocationEnabled(function(enabled){
+//alert(enabled);
+if(enabled==true){
+		checkConnection();
+			}else{
+			var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Su GPS no esta activado, para una mejor precision activelo.</p>";
+texto= texto + "<button type='button' onclick='location.href =\"index.html\";'>Aceptar</button>";
+
+		mensaje.childNodes[0].innerHTML=texto;
+			}
+}, function(error){alert(error);});
+ 
   /* setTimeout(function(){
   if(conn==true){
 //slideBaby();
@@ -71,7 +86,7 @@ texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\");'>
     <script type="text/javascript" src="js/index.js"></script>
     
 	<script type="text/javascript">
-        app.initialize();
+        //app.initialize();
 		
     </script>
 	<div id='mensaje_javascript'><div></div></div>

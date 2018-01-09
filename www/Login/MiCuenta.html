@@ -32,11 +32,19 @@
 		document.getElementById("InDireccion").value=direccion;
 		var telefono=localStorage.getItem('SesionTelefono') || ' ';
 		document.getElementById("InTelefono").value=direccion;
+		var Nivel = localStorage.getItem('SesionNivel') || '<empty>';
 		var UID = localStorage.getItem('SesionID') || '<empty>';
 	var C=document.getElementsByClassName("UID");
 for(var i=0; i<C.length; i++){
 C[i].value=UID;
 }	
+if(Nivel==2){
+document.getElementById('botonDecripcion').innerHTML="<button type='button' onclick='location.href=\"descripcionE.html\";'>Descripci&oacute;n de mi Perfil</button></br>";
+}
+if(Nivel==3){
+document.getElementById('botonDecripcion').innerHTML="<button type='button' onclick='location.href=\"descripcionP.html\";'>Descripci&oacute;n de mi Perfil</button></br>";
+
+}
 		}
 			function cancelarconfiguauario(id){
 	document.getElementById(id).style.display='none';
@@ -317,6 +325,9 @@ $("#" + div).fadeOut(150);
 				</div>
 				<div class='loginEdit'>
 				<button type='button' onclick='location.href="cambiarfotoPerfil.html";'>Editar Foto de Perfil</button></br>
+				</div>
+				<div id='botonDecripcion' class='loginEdit'>
+				
 				</div>
 			</div></div>
 	<!--	<div id='form_inicio_sesion' class='form_inicio'>

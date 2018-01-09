@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/cabeza.css">
     <link rel="stylesheet" type="text/css" href="../archivosbase/CSS/iniciosesion.css">
 	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/ajax-loader.css">
+	<link rel="stylesheet" type="text/css" href="../archivosbase/CSS/mensaje_javascript.css">
     <link rel="shortcut icon" href="../archivosbase/icons/favicon.ico" />
 	<script src="../archivosbase/jquerymobile145/jquery-3.2.1.min.js"></script>
  <script src="../archivosbase/jquerymobile145/jquery.mobile-1.4.5.min.js"></script>
@@ -78,7 +79,17 @@ $(function(){
         
 		});
 		});
- 		
+ 		function avisoOlvide(){
+			var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<h3>Aviso.</h3><p>Para obtener una nueva contrase&ntilde;a ser&aacute; dirigido a la plataforma web. </p>";
+texto= texto + "<button type='button' onclick='location.href=\"https://nirjob.com/Login/olvidemicontrasenia.php\";'>Aceptar</button>";
+texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\");'>Cancelar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+		}
+		function cerrar(div){		
+$("#" + div).fadeOut(150);
+}
 	</script>
 </head>
 <body onload='initialize();'>
@@ -107,6 +118,8 @@ $(function(){
     <input type="submit" onclick='location.href="registro.html"' value="Registrarse" style="background-color: #FFD54F;">
 
 </div>
+</br>
+<input type="submit" onclick='avisoOlvide();' value="Olvide mi Contrase&ntilde;a" style="background-color: #FFD54F;">
 </div>
 		</div>
 		</div>
@@ -116,6 +129,7 @@ $(function(){
 		<div id='ajax-loader'>
 	<img src='../archivosbase/img/ajax-loader.gif'/>
 	</div>
+	<div id='mensaje_javascript'><div></div></div>
     </div>
 </body>
 </html>

@@ -305,7 +305,7 @@ texto= texto + '<h3>Valor $:</h3><input name="puestos" type="text"  required rea
 		texto= texto + '<input type="text" name="UID" required readonly value="' +  UID +'" style="display:none"/>';
 		texto= texto + '<input type="text" name="tipo" required readonly value="1" style="display:none"/>';
 		 texto= texto + '<input type="text" required readonly name="subir_nuevo_oferta_E" value="Subir" style="display:none"/></br>';
-		 texto=texto +'<input type="submit"   value="Subir" style="background-color: #FFD54F;"/>';
+		 texto=texto +'<input type="submit"   value="Finalizar" style="background-color: #FFD54F;"/>';
 		 texto=texto +'</form></div>';
 		div.innerHTML=texto;
 }
@@ -339,7 +339,7 @@ $(function(){
 var win = function(r) {
    var mensaje=document.getElementById('mensaje_javascript');
 		mensaje.style.display='block';
-var texto="<p>Se ha subido su pedido de servcio con exito.</p>";
+var texto="<p>Se ha publicado su vacante con &eacute;xito.</p>";
 texto= texto + "<button type='button' onclick='location.href=\"../index.html\"; cerrar(\"mensaje_javascript\");'>Continuar</button>";
 //texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
 		mensaje.childNodes[0].innerHTML=texto;
@@ -368,7 +368,7 @@ ft.upload(UriImagnes[i], encodeURI("https://nirjob.com/PhoneGap/servicios/imagen
 }}else{
 var mensaje=document.getElementById('mensaje_javascript');
 		mensaje.style.display='block';
-var texto="<p>Se ha subido su pedido de servcio con exito.</p>";
+var texto="<p>Se ha publicado su vacante con &eacute;xito.</p>";
 texto= texto + "<button type='button' onclick='location.href=\"../index.html\"; cerrar(\"mensaje_javascript\");'>Continuar</button>";
 //texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\")'>Regresar</button>";
 		mensaje.childNodes[0].innerHTML=texto;
