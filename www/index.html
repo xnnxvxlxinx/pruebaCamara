@@ -22,8 +22,13 @@
 	function botongps(){
 	checkConnection();
 	}
-	function initializeT(){
+	document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady() {
 	document.getElementById('logo').style.top=(screen.height)/3 + 'px';
+	initializeT();
+	}
+	function initializeT(){
+	
 	
 	 cordova.plugins.diagnostic.isLocationEnabled(function(enabled){
 //alert(enabled);
@@ -33,7 +38,7 @@ if(enabled==true){
 			var mensaje=document.getElementById('mensaje_javascript');
 		mensaje.style.display='block';
 var texto="<p>Su GPS no esta activado, para una mejor precision activelo.</p>";
-texto= texto + "<button type='button' onclick='location.href =\"index.html\";'>Aceptar</button>";
+texto= texto + "<button type='button' onclick='botongps();'>Aceptar</button>";
 
 		mensaje.childNodes[0].innerHTML=texto;
 			}
@@ -80,7 +85,7 @@ texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\");'>
           }*/
 	</script>
 </head>
-<body onload='initializeT();'>
+<body >
 	<div id='logo'><img src='archivosbase\img\logo.png' /><p>Nirjob</p></div>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
