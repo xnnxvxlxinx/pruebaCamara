@@ -565,14 +565,14 @@ cargarbotonesSobremapa();
 
 	 $.getJSON('https://nirjob.com/archivosbase/php/Buscador100Jq_contratacion/productoscontratacion.php' + buscheck, function(data) {
 
-var ini=NUM*4;
+var ini=NUM*10;
 		var tamanio=data.length;
-		if(NUM*4+4<=tamanio){
-		var fin=NUM*4+4;
+		if(NUM*10+10<=tamanio){
+		var fin=NUM*10+10;
 		}else{
 		var fin=tamanio;
 		}
-		if(NUM*4+4<tamanio){
+		if(NUM*10+10<tamanio){
 		document.getElementById('cargarMas1').style.backgroundColor='#FFD54F';	
 		}else{
 			document.getElementById('cargarMas1').style.backgroundColor='#C4C4C4';	
