@@ -253,6 +253,7 @@ var mensaje=document.getElementById('mensaje_javascript');
 var texto="<p>&iquest;Desea usar la c&aacute;mara u obtener foto de la galer&iacute;a?</p>";
 texto= texto + "<button type='button' onclick='seleccionFotoImagen(1); cerrar(\"mensaje_javascript\");'>Camara</button>";
 texto= texto + "<button type='button' onclick='seleccionFotoImagen(2); cerrar(\"mensaje_javascript\");'>Galeria</button>";
+texto= texto + "</br><button type='button' onclick='cerrar(\"mensaje_javascript\");'>Cancelar</button>";
 		mensaje.childNodes[0].innerHTML=texto;
 	}
 function seleccionFotoImagen(Num){
