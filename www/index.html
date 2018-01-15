@@ -38,7 +38,7 @@ if(enabled==true){
 			var mensaje=document.getElementById('mensaje_javascript');
 		mensaje.style.display='block';
 var texto="<p>Su GPS no esta activado, para una mejor precision activelo.</p>";
-texto= texto + "<button type='button' onclick='botongps();'>Aceptar</button>";
+texto= texto + "<button type='button' onclick='botongps(); cerrar(\"mensaje_javascript\");'>Aceptar</button>";
 
 		mensaje.childNodes[0].innerHTML=texto;
 			}
