@@ -86,5 +86,13 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "phonegap-facebook-plugin": {
+    "source": {
+      "type": "registry",
+      "id": "https://github.com/Wizcorp/phonegap-facebook-plugin/"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }
