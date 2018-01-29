@@ -33,6 +33,11 @@
     },
     "cordova.plugins.diagnostic": {
       "PACKAGE_NAME": "io.cordova.Nirjob"
+    },
+    "cordova-plugin-facebook4": {
+      "APP_ID": "193346298066753",
+      "APP_NAME": "Nirjob",
+      "PACKAGE_NAME": "io.cordova.Nirjob"
     }
   },
   "dependent_plugins": {
